@@ -1,0 +1,33 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "@loadable/babel-plugin",
+    [
+      "@babel/plugin-transform-arrow-functions",
+      {
+        "spec": false
+      }
+    ],
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "helpers": false,
+        "regenerator": true,
+        "useESModules": true
+      }
+    ]
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "jsx": "react",
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "paths": {
+      "*": [
+        "src/*"
+      ]
+    },
+    "types": ["reflect-metadata"],
+    "typeRoots": [
+      "node_modules/@types",
+      "src/core/types/**/*.d.ts"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "webpack",
+    "webpack.config.babel.js",
+    "dist"
+  ]
+}

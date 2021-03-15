@@ -1,0 +1,181 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "sort-keys-fix",
+    "import",
+    "sort-class-members"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "settings": {
+    "import/extensions": [
+      ".ts",
+      ".tsx"
+    ]
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "legacyDecorators": true,
+      "jsx": true
+    },
+    "useJSXTextNode": true
+  },
+  "globals": {
+    "DEVELOPMENT": "writable",
+    "SERVER": "writable"
+  },
+  "rules": {
+    "guard-for-in": "off",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "index",
+          "sibling",
+          "parent"
+        ]
+      }
+    ],
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "import/no-useless-path-segments": "off",
+    "import/prefer-default-export": "off",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "VariableDeclarator": 2,
+        "outerIIFEBody": 0,
+        "MemberExpression": 1,
+        "FunctionExpression": {
+          "parameters": "first"
+        },
+        "CallExpression": {
+          "arguments": "first"
+        },
+        "ArrayExpression": 1,
+        "ObjectExpression": 1,
+        "ImportDeclaration": 1,
+        "flatTernaryExpressions": true
+      }
+    ],
+    "linebreak-style": "off",
+    "lines-between-class-members": "error",
+    "max-len": "off",
+    "newline-before-return": "error",
+    "no-bitwise": "off",
+    "no-console": "error",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "no-sequences": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": "off",
+    "no-useless-constructor": "off",
+    "no-shadow": "off",
+    "no-prototype-builtins": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
+    "one-var-declaration-per-line": "error",
+    "one-var": "off",
+    "curly": "error",
+    "object-curly-spacing": "error",
+    "object-curly-newline": "off",
+    "object-property-newline": "off",
+    "prefer-const": "error",
+    "react/destructuring-assignment": "off",
+    "react/forbid-prop-types": "off",
+    "react/no-unused-prop-types": "warn",
+    "react/prefer-stateless-function": "off",
+    "react/prop-types": "warn",
+    "react/require-default-props": "off",
+    "require-await": "error",
+    "sort-keys-fix/sort-keys-fix": "error",
+    "sort-keys": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": true,
+        "natural": false,
+        "minKeys": 2
+      }
+    ],
+    "sort-class-members/sort-class-members": [
+      "error",
+      {
+        "order": [
+          "[container-type]",
+          "[static-properties]",
+          "[static-methods]",
+          "[conventional-private-properties]",
+          "[properties]",
+          "[getters]",
+          "[setters]",
+          "[conventional-private-methods]",
+          "[accessor-pairs]",
+          "constructor",
+          "[async-methods]",
+          "[arrow-function-properties]",
+          "[methods]"
+        ],
+        "groups": {
+          "container-type": {
+            "name": "/^containerType/",
+            "type": "property",
+            "sort": "alphabetical"
+          },
+          "arrow-function-properties": {
+            "type": "property",
+            "propertyType": "ArrowFunctionExpression",
+            "sort": "alphabetical"
+          },
+          "methods": {
+            "type": "method",
+            "sort": "alphabetical"
+          },
+          "static-methods": {
+            "type": "method",
+            "sort": "alphabetical",
+            "static": true
+          },
+          "async-methods": {
+            "type": "method",
+            "sort": "alphabetical",
+            "async": true
+          }
+        },
+        "accessorPairPositioning": "getThenSet",
+        "stopAfterFirstProblem": false
+      }
+    ],
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-namespace": "off"
+  }
+}
