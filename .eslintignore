@@ -3,3 +3,6 @@ package.json
 package-lock.json
 yarn.lock
 yarn-error.log
+
+webpack/*
+webpack.config.babel.js

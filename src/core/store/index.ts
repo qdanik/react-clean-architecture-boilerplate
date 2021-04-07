@@ -1,1 +1,1 @@
-export * as Store from './store';
+export {RootStore, MobxStore} from './RootStore';

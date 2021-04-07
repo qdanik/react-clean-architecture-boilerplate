@@ -5,32 +5,20 @@
     "target": "es6",
     "module": "esnext",
     "moduleResolution": "node",
+    "listFiles": false,
     "allowJs": true,
     "checkJs": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "jsx": "react",
-    "lib": [
-      "es6",
-      "es7",
-      "dom"
-    ],
+    "lib": ["es6", "es7", "dom"],
     "paths": {
-      "*": [
-        "src/*"
-      ]
+      "assets/*": ["assets/*"],
+      "*": ["src/*"]
     },
-    "types": ["reflect-metadata"],
-    "typeRoots": [
-      "node_modules/@types",
-      "src/core/types/**/*.d.ts"
-    ]
+    "types": ["reflect-metadata", "jest"],
+    "typeRoots": ["node_modules/@types", "./src/typings"]
   },
-  "exclude": [
-    "node_modules",
-    "webpack",
-    "webpack.config.babel.js",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist", ".webpack", ".jest", "coverage"]
 }
