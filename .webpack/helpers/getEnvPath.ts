@@ -1,4 +1,4 @@
-export function getEnvPath(config) {
+export function getEnvPath(config): string {
   const { env = 'dev' } = config;
   switch (env) {
     case 'dev':

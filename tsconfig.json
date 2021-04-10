@@ -6,7 +6,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "listFiles": false,
-    "allowJs": true,
+    "allowJs": false,
+    "sourceMap": true,
     "checkJs": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -17,8 +18,8 @@
       "assets/*": ["assets/*"],
       "*": ["src/*"]
     },
-    "types": ["reflect-metadata", "jest"],
+    "types": ["reflect-metadata"],
     "typeRoots": ["node_modules/@types", "./src/typings"]
   },
-  "exclude": ["node_modules", "dist", ".webpack", ".jest", "coverage"]
+  "exclude": ["node_modules", "dist", ".webpack", ".jest", "coverage", "**/*.test.ts"]
 }

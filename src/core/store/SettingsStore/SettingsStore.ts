@@ -1,3 +1,4 @@
+import {StorageKeys} from 'core/storage';
 import {action, computed, makeAutoObservable, observable} from 'mobx';
 import {SettingsTheme} from './types';
 
