@@ -1,22 +1,17 @@
 import 'reflect-metadata';
-import {DependencyInjectorContext} from 'core/hooks/di';
-import {StoreProvider} from 'core/hooks/store';
-import {Di} from 'core/shared';
-import {Store} from 'core/store';
-import {App} from 'presentation';
+import {RootStore, MobxStore} from 'core/store';
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDom from 'react-dom';
+import {StoreProvider} from 'ui/hooks/store';
 
-const store = Di.get<Store.IStore>(Store.Type);
+const store: MobxStore = new RootStore();
 
 function Root(): React.ReactElement {
   return (
     <StoreProvider store={store}>
-      <DependencyInjectorContext.Provider value={Di}>
-        <App />
-      </DependencyInjectorContext.Provider>
+      <h1>Danik</h1>
     </StoreProvider>
   );
 }
 
-render(<Root />, document.getElementById('root'));
+ReactDom.render(<Root />, document.getElementById('root'));

@@ -1,21 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "sort-keys-fix",
-    "import",
-    "sort-class-members"
-  ],
+  "plugins": ["sort-keys-fix", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "settings": {
-    "import/extensions": [
-      ".ts",
-      ".tsx"
-    ]
-  },
   "env": {
     "browser": true,
     "es6": true,
@@ -125,57 +115,10 @@
         "minKeys": 2
       }
     ],
-    "sort-class-members/sort-class-members": [
-      "error",
-      {
-        "order": [
-          "[container-type]",
-          "[static-properties]",
-          "[static-methods]",
-          "[conventional-private-properties]",
-          "[properties]",
-          "[getters]",
-          "[setters]",
-          "[conventional-private-methods]",
-          "[accessor-pairs]",
-          "constructor",
-          "[async-methods]",
-          "[arrow-function-properties]",
-          "[methods]"
-        ],
-        "groups": {
-          "container-type": {
-            "name": "/^containerType/",
-            "type": "property",
-            "sort": "alphabetical"
-          },
-          "arrow-function-properties": {
-            "type": "property",
-            "propertyType": "ArrowFunctionExpression",
-            "sort": "alphabetical"
-          },
-          "methods": {
-            "type": "method",
-            "sort": "alphabetical"
-          },
-          "static-methods": {
-            "type": "method",
-            "sort": "alphabetical",
-            "static": true
-          },
-          "async-methods": {
-            "type": "method",
-            "sort": "alphabetical",
-            "async": true
-          }
-        },
-        "accessorPairPositioning": "getThenSet",
-        "stopAfterFirstProblem": false
-      }
-    ],
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-namespace": "off"
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/ban-types": "off"
   }
 }
