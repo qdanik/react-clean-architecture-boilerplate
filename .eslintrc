@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["import", "prettier", "react-hooks", "sort-keys-fix"],
+  "plugins": ["@typescript-eslint", "import", "prettier", "react-hooks", "sort-keys-fix"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -22,12 +22,12 @@
     },
     "useJSXTextNode": true
   },
-  "globals": {
-    "DEVELOPMENT": "writable",
-    "SERVER": "writable"
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "rules": {
-    "prettier/prettier": "error",
     "guard-for-in": "off",
     "import/order": [
       "error",
@@ -82,6 +82,35 @@
     "require-await": "error",
     "sort-keys-fix/sort-keys-fix": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "prettier/prettier": ["off", {"semi": false}],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "none",
+          "requireLast": false
+        },
+        "singleline": {
+          "delimiter": "semi",
+          "requireLast": true
+        },
+        "overrides": {
+          "interface": {
+            "multiline": {
+              "delimiter": "comma",
+              "requireLast": false
+            }
+          },
+          "typeLiteral": {
+            "multiline": {
+              "delimiter": "comma",
+              "requireLast": false
+            }
+          }
+        }
+      }
+    ]
   }
 }

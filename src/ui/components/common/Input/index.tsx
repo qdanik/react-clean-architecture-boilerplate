@@ -2,9 +2,9 @@ import React from 'react'
 import { Wrapper, Label, StyledInput, LabelWrapper } from './styles'
 
 type InputProps = {
-  label?: string
-  value: string | number
-  placeholder?: string
+  label?: string,
+  value: string | number,
+  placeholder?: string,
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 

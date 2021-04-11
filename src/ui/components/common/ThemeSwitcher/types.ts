@@ -1,7 +1,7 @@
 import { SettingsTheme } from 'core/store/SettingsStore/types'
 
 export interface ThemeSwitcherProps {
-  value: SettingsTheme
+  value: SettingsTheme,
   onChange: () => void
 }
 

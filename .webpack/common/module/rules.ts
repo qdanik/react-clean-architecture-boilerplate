@@ -1,9 +1,10 @@
-import {OUTPUT_FONTS, OUTPUT_IMAGES, OUTPUT_SOUNDS} from '../../constants';
+import { RuleSetRule } from 'webpack';
+import { OUTPUT_FONTS, OUTPUT_IMAGES, OUTPUT_SOUNDS } from '../../constants'
 
-export default () => [
+export default (): RuleSetRule[] => [
   {
     test: /\.html$/,
-    use: [{loader: 'html-loader'}],
+    use: [{ loader: 'html-loader' }],
   },
   {
     exclude: /node_modules/,
@@ -36,7 +37,7 @@ export default () => [
     use: [
       {
         loader: 'file-loader',
-        options: {name: OUTPUT_IMAGES},
+        options: { name: OUTPUT_IMAGES },
       },
     ],
   },
@@ -45,8 +46,8 @@ export default () => [
     use: [
       {
         loader: 'file-loader',
-        options: {name: OUTPUT_SOUNDS},
+        options: { name: OUTPUT_SOUNDS },
       },
     ],
   },
-];
+]

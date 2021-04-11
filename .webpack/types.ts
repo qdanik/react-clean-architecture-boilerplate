@@ -1,7 +1,9 @@
+import { Configuration } from 'webpack';
+
 export type EnvConfig = {
   DOMAIN: string,
-  PROXIES: Array<string>,
-  TOKEN: string,
+  PROXIES: string,
+  TOKEN: string
 }
 
 export enum EnvType {
@@ -16,11 +18,11 @@ export enum ConfigType {
 }
 
 export type WebpackConfig = {
-  WEBPACK_SERVE?: boolean;
-  env?: EnvType;
-  url?: string;
-  isDev?: boolean;
-  envConfig?: EnvConfig;
+  WEBPACK_SERVE?: boolean,
+  env?: EnvType,
+  url?: string,
+  isDev?: boolean,
+  envConfig?: EnvConfig
 }
 
-export type ConfigBuilder = (config: WebpackConfig) => any;
+export type ConfigBuilder = (config: WebpackConfig) => Configuration

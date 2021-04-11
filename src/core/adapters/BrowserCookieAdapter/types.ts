@@ -10,12 +10,12 @@ export enum CookieSameSite {
 }
 
 export interface CookieOptions {
-  domain?: string
-  expires?: Date
-  maxAge?: number
-  path?: string
-  sameSite?: CookieSameSite
-  secure?: boolean
+  domain?: string,
+  expires?: Date,
+  maxAge?: number,
+  path?: string,
+  sameSite?: CookieSameSite,
+  secure?: boolean,
   httpOnly?: boolean
 }
 

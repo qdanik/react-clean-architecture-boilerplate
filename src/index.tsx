@@ -7,6 +7,7 @@ import { App } from 'ui'
 const store: MobxStore = new RootStore()
 
 function Root(): React.ReactElement {
+  // eslint-disable-next-line no-console
   console.log(store)
 
   return <App />

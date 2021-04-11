@@ -1,5 +1,6 @@
-import { APP_INIT_FILE } from '../constants';
+import { Entry } from 'webpack';
+import { APP_INIT_FILE } from '../constants'
 
-export default () => ({
+export default (): Entry => ({
   main: APP_INIT_FILE,
 })

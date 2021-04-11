@@ -4,7 +4,7 @@ import React from 'react'
 import { getFormComponentByType } from './helpers'
 import { FormProps } from './types'
 
-export function Form(props: FormProps): React.ReactElement<FormProps> {
+export function Form(props: FormProps<any>): React.ReactElement<FormProps<any>> {
   const { fields, children, ...rest } = props
 
   return (

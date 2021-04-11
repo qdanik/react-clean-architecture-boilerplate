@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `
 
 type BoxProps = {
-  className?: string
+  className?: string,
   children: React.ReactElement | React.ReactElement[]
 }
 

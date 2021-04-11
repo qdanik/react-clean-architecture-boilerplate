@@ -2,6 +2,6 @@ import { SettingsStore } from 'core/store/SettingsStore'
 import { UserStore } from 'core/store/UserStore'
 
 export interface MobxStore {
-  user: UserStore
+  user: UserStore,
   settingsStore: SettingsStore
 }
