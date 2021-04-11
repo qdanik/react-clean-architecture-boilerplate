@@ -1,9 +1,9 @@
-import {HttpErrorCallback} from './HttpError';
+import { HttpErrorCallback } from './HttpError'
 
-export const HttpClientType = Symbol('HttpClient');
+export const HttpClientType = Symbol('HttpClient')
 
 export interface HttpClient<THttp, TConfig = any> {
-  http: THttp;
+  http: THttp
 
   delete(url: string, config?: TConfig): Promise<any>
   get(url: string, config?: TConfig): Promise<any>
@@ -13,5 +13,5 @@ export interface HttpClient<THttp, TConfig = any> {
   post(url: string, data?: any, config?: TConfig): Promise<any>
   put(url: string, data?: any, config?: TConfig): Promise<any>
 
-  setErrorHandler: (cb: HttpErrorCallback) => void;
+  setErrorHandler: (cb: HttpErrorCallback) => void
 }

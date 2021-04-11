@@ -1,20 +1,20 @@
 export enum ButtonVariants {
   Round = 'round',
-  HalfRound = 'halfRound'
+  HalfRound = 'halfRound',
 }
 
 export interface ButtonWrapperProps {
-  height?: string;
-  width?: string;
-  className?: string;
+  height?: string
+  width?: string
+  className?: string
   variant?: ButtonVariants
-  onClick?: () => void;
-  disabled?: boolean;
-  isLoading?: boolean;
+  onClick?: () => void
+  disabled?: boolean
+  isLoading?: boolean
 }
 
 export interface ButtonProps extends Omit<ButtonWrapperProps, 'isLoading'> {
-  children: any;
-  type?: 'submit' | 'reset' | 'button';
-  loading?: boolean;
+  children: any
+  type?: 'submit' | 'reset' | 'button'
+  loading?: boolean
 }

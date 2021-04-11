@@ -1,8 +1,8 @@
 export function correctKey(key: string): string {
-  switch(key) {
+  switch (key) {
     case 'maxAge':
-      return 'max-age';
-    default: 
-      return key;
+      return 'max-age'
+    default:
+      return key
   }
 }

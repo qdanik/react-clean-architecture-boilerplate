@@ -1,1 +1,1 @@
-export type HttpErrorCallback = (error: any) => any;
+export type HttpErrorCallback = (error: any) => any

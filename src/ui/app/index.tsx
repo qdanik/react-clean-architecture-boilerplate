@@ -1,7 +1,7 @@
-import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Routes} from 'ui/routes';
-import {GlobalStyles} from './styles';
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Routes } from 'ui/routes'
+import { GlobalStyles } from './styles'
 
 export const App = (): React.ReactElement => {
   return (
@@ -11,5 +11,5 @@ export const App = (): React.ReactElement => {
         <Routes />
       </Router>
     </>
-  );
-};
+  )
+}

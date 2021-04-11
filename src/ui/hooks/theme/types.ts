@@ -1,9 +1,9 @@
 export enum ThemeVariant {
   Light = 'light',
-  Dark = 'dark'
+  Dark = 'dark',
 }
 
 export interface ThemeApi {
-  theme: ThemeVariant,
-  setTheme: (value: ThemeVariant) => void,
+  theme: ThemeVariant
+  setTheme: (value: ThemeVariant) => void
 }

@@ -1,5 +1,5 @@
-import {Storage} from 'core/storage';
-import {injectable} from 'inversify';
+import { Storage } from 'core/storage'
+import { injectable } from 'inversify'
 
 @injectable()
 export class LocalStorageAdapter implements Storage {
