@@ -1,16 +1,16 @@
-import {Formik, Form as FormikForm, Field} from 'formik';
-import map from 'lodash/map';
-import React from 'react';
-import {getFormComponentByType} from './helpers';
-import {FormProps} from './types';
+import { Formik, Form as FormikForm, Field } from 'formik'
+import map from 'lodash/map'
+import React from 'react'
+import { getFormComponentByType } from './helpers'
+import { FormProps } from './types'
 
 export function Form(props: FormProps): React.ReactElement<FormProps> {
-  const {fields, children, ...rest} = props;
+  const { fields, children, ...rest } = props
 
   return (
     <Formik validateOnMount {...rest}>
       <FormikForm>
-        {map(fields, ({fieldType, ...field}) => (
+        {map(fields, ({ fieldType, ...field }) => (
           <Field key={field.name} {...field} as={getFormComponentByType(fieldType)} />
         ))}
         {children}

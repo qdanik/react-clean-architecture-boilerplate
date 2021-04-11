@@ -10,6 +10,11 @@ export enum EnvType {
   prod = 'prod',
 }
 
+export enum ConfigType {
+  start = 'start',
+  build = 'build',
+}
+
 export type WebpackConfig = {
   WEBPACK_SERVE?: boolean;
   env?: EnvType;

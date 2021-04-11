@@ -1,1 +1,1 @@
-export * from './AxiosAdapter';
+export * from './AxiosAdapter'
