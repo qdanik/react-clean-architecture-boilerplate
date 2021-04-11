@@ -1,1 +1,1 @@
-export const COOKIE_REGEX = /([.$?*|{}()[\]\\/+^])/g;
+export const COOKIE_REGEX = /([.$?*|{}()[\]\\/+^])/g

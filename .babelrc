@@ -13,14 +13,9 @@
       }
     ],
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
     "@babel/plugin-syntax-dynamic-import",
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true
-      }
-    ],
+    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    "@babel/plugin-proposal-class-properties",
     [
       "@babel/plugin-transform-runtime",
       {
@@ -29,5 +24,13 @@
         "useESModules": true
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }]
+      ]
+    }
+  }
 }

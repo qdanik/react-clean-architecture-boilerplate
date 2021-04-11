@@ -1,7 +1,7 @@
 
 # Architecture
 
-Using Clean Architecture with React + Mobx.
+Create Web App use Clean Architecture + React + Mobx. 
 
 # Available Scripts
 
@@ -12,6 +12,8 @@ In the project directory, you can run:
     `Description:` Use this flag to re-record every snapshot that fails during this test run.
   * --watch
     `Description:` Watch files for changes and rerun tests related to changed files.
+  * --coverage
+    `Description:` Use this flag to receive code coverage stats.
 ### `npm start` - use this command to run dev server.
 
   * env - one of `[dev, stage, prod, <custom env>]`. 
@@ -42,12 +44,15 @@ In the project directory, you can run:
 
 # Folder Structure
 ```
+  .jest/
+    config.ts
+    setup.ts
   .webpack/
-    - config/
+    - common/
     - helpers/
-    - utils/
-    constant.js
-    webpack.config.babel.js
+    constant.ts
+    types.ts
+    webpack.config.babel.ts
   - assets/
     - fonts
     - images
@@ -111,13 +116,15 @@ In the project directory, you can run:
     index.tsx
 ```
 
-* `src/index.tsx` - application entry point.
+* `.webpack/` - webpack config files.
+* `.jest/` - jest config files.
+* `assets/` - assets files here(fonts, images, music, videos and etc.).
 * `src/core` - core layer.
 * `src/container` - IoC.
 * `src/data-access` - data-access layer.
 * `src/domain` - business layer.
 * `src/ui` - presentation layer.
-* `assets/` - assets files here(fonts, images, music, videos and etc.).
-* `templates/` - templates here.
+* `src/index.tsx` - application entry point.
+* `templates/` - templates.
 
 >Note: All environment variables stored in global variable `ENV_CONFIG`

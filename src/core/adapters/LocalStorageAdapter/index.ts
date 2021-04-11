@@ -1,1 +1,1 @@
-export * from './LocalStorageAdapter';
+export * from './LocalStorageAdapter'

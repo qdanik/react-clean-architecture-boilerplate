@@ -1,5 +1,5 @@
-import { resolve } from 'path';
-import { OUTPUT_FILENAME, OUTPUT_FOLDER } from '../constants';
+import { resolve } from 'path'
+import { OUTPUT_FILENAME, OUTPUT_FOLDER } from '../constants'
 
 export default () => ({
   chunkFilename: OUTPUT_FILENAME,

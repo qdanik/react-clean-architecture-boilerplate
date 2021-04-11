@@ -1,7 +1,7 @@
 export enum CookieKeys {
   RefreshToken = 'REFRESH_TOKEN',
   AccessToken = 'ACCESS_TOKEN',
-  XsrfToken = 'XSRF-TOKEN'
+  XsrfToken = 'XSRF-TOKEN',
 }
 
 export enum CookieSameSite {
@@ -16,9 +16,9 @@ export interface CookieOptions {
   path?: string,
   sameSite?: CookieSameSite,
   secure?: boolean,
-  httpOnly?: boolean,
+  httpOnly?: boolean
 }
 
 export interface CookieSetOptions extends Omit<CookieOptions, 'expires'> {
-  expires?: string;
+  expires?: string
 }

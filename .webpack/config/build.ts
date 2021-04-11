@@ -1,17 +1,10 @@
-import { Configuration } from 'webpack';
-import {
-  entry,
-  module,
-  optimization,
-  output,
-  plugins,
-  resolve
-} from '../common';
-import { WebpackConfig } from '../types';
+import { Configuration } from 'webpack'
+import { entry, module, optimization, output, plugins, resolve } from '../common'
+import { WebpackConfig } from '../types'
 
 export default (config: WebpackConfig): Configuration => ({
-  mode: 'production',
   entry: entry(),
+  mode: 'production',
   module: module(),
   optimization: optimization(),
   output: output(),

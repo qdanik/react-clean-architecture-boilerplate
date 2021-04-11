@@ -1,4 +1,3 @@
-
 export enum HttpMethods {
   POST = 'post',
   PUT = 'put',

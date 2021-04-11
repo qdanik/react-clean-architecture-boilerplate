@@ -1,1 +1,1 @@
-export * from './BrowserCookieAdapter';
+export * from './BrowserCookieAdapter'

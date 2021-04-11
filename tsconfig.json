@@ -21,5 +21,5 @@
     "types": ["reflect-metadata"],
     "typeRoots": ["node_modules/@types", "./src/typings"]
   },
-  "exclude": ["node_modules", "dist", ".webpack", ".jest", "coverage", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist", "coverage", "**/*.test.ts"]
 }

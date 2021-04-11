@@ -1,5 +1,5 @@
-import {Env} from './config'
+import { Env } from './config'
 
 declare global {
-  const ENV_CONFIG: Env;
+  const ENV_CONFIG: Env
 }

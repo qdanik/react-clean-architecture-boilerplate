@@ -1,5 +1,5 @@
-import TerserPlugin from 'terser-webpack-plugin';
-import webpack from 'webpack';
+import TerserPlugin from 'terser-webpack-plugin'
+import {Configuration} from 'webpack'
 
 const TerserPluginOptions = {
   extractComments: false,
@@ -9,7 +9,7 @@ const TerserPluginOptions = {
       arguments: true,
       drop_console: true,
       drop_debugger: true,
-      unsafe: true
+      unsafe: true,
     },
     ie8: false,
     output: {
@@ -18,15 +18,17 @@ const TerserPluginOptions = {
     },
     parse: {
       html5_comments: false,
-      shebang: false
+      shebang: false,
     },
     safari10: false,
   },
 }
 
 export default () => {
-  const config: webpack.Configuration = {
+  const config: Configuration = {
     optimization: {
+      minimize: true,
+      minimizer: [new TerserPlugin(TerserPluginOptions)],
       splitChunks: {
         cacheGroups: {
           common: {
@@ -47,12 +49,8 @@ export default () => {
           vendors: false,
         },
       },
-      minimize: true,
-      minimizer: [
-        new TerserPlugin(TerserPluginOptions),
-      ],
-    }
+    },
   }
 
-  return config.optimization;
+  return config.optimization
 }
