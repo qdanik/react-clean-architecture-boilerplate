@@ -1,6 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
+import {HttpClient, HttpErrorCallback} from 'core/http';
 import {injectable} from 'inversify';
-import {HttpAdapter, HttpErrorCallback} from 'typings/http';
 
 @injectable()
 export class AxiosAdapter implements HttpClient<AxiosInstance, AxiosRequestConfig> {

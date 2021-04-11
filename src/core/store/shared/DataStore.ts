@@ -1,29 +1,29 @@
-import {Api, StoreTypes} from 'core/types';
 import isEqual from 'lodash/isEqual';
 import {action, computed, observable} from 'mobx';
+import {DataStatus} from '../types';
 
-export class DataStore<TData, TError = Api.IErrorResponse> {
+export class DataStore<TData, TError = any> {
 
   @observable private _data: TData;
 
   @observable private _error: TError;
 
-  @observable private _status: StoreTypes.DataStatus = StoreTypes.DataStatus.Loading;
+  @observable private _status: DataStatus = DataStatus.Loading;
 
   @computed getError(): TError {
     return this._error;
   }
 
-  @computed getStatus(): StoreTypes.DataStatus {
+  @computed getStatus(): DataStatus {
     return this._status;
   }
 
   @computed hasError(): boolean {
-    return isEqual(this._status, StoreTypes.DataStatus.Error);
+    return isEqual(this._status, DataStatus.Error);
   }
 
   @computed isLoading(): boolean {
-    return isEqual(this._status, StoreTypes.DataStatus.Loading);
+    return isEqual(this._status, DataStatus.Loading);
   }
 
   @action setData<T = TData>(data: T): void {
@@ -34,7 +34,7 @@ export class DataStore<TData, TError = Api.IErrorResponse> {
     this._error = error;
   }
 
-  @action setStatus(status: StoreTypes.DataStatus): void {
+  @action setStatus(status: DataStatus): void {
     this._status = status;
   }
 

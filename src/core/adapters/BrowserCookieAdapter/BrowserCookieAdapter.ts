@@ -1,9 +1,9 @@
-import {CookieOptions, CookieSetOptions} from 'core/cookie';
 import {Storage} from 'core/storage';
 import {injectable} from 'inversify';
 import reduce from 'lodash/reduce';
 import {COOKIE_REGEX} from './constants';
 import {correctKey} from './helpers';
+import {CookieOptions, CookieSetOptions} from './types';
 
 @injectable()
 export class BrowserCookieAdapter implements Storage {
