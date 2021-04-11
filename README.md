@@ -83,7 +83,7 @@ In the project directory, you can run:
             [SharedStoreName].ts
     - data-access/
       - [DomainName]
-          [DomainName]Impl.ts
+          [DomainNameRepository]Impl.ts
     - domain/
       - [DomainName]/
         - entities/
