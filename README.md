@@ -3,6 +3,14 @@
 
 Create Web App use Clean Architecture + React + Mobx. 
 
+# Docker
+
+`docker-compose build` - use this command to build or rebuild image
+
+`docker-compose up` - use this command to start app
+
+`docker-compose down` - use this command to start app
+
 # Available Scripts
 
 In the project directory, you can run:

@@ -1,4 +1,4 @@
-export const DEV_HOST = '127.0.0.1'
+export const DEV_HOST = '0.0.0.0'
 export const DEV_PORT = '3000'
 
 export const PROXY_STATUS = true

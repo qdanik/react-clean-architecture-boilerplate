@@ -2,6 +2,9 @@
 .idea
 .history
 
+.husky/_
+.husky/.gitignore
+
 /dist
 /coverage
 /node_modules
