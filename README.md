@@ -9,7 +9,7 @@ Create Web App use Clean Architecture + React + Mobx.
 
 `docker-compose up` - use this command to start app
 
-`docker-compose down` - use this command to start app
+`docker-compose down` - use this command to halt app
 
 # Available Scripts
 
