@@ -9,6 +9,7 @@ type ProxyConfig = {
 
 const DEFAULT_SERVER = {
   contentBase: resolve(OUTPUT_FOLDER),
+  disableHostCheck: true,
   historyApiFallback: true,
   host: DEV_HOST,
   hot: true,
