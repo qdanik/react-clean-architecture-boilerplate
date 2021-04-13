@@ -6,12 +6,17 @@ Partial<
   Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> &
   Config.GlobalConfig
 > & {
+  preset: string,
   moduleNameMapper: Record<string, string>,
   transform: Record<string, string>,
 }
 
 const config: JestConfig  = {
-  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  preset: 'ts-jest',
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/index.tsx'
+  ],
   coverageDirectory: 'coverage',
   coverageThreshold: {
     global: {
@@ -22,6 +27,9 @@ const config: JestConfig  = {
     },
   },
   globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.test.json',
+    },
     DEVELOPMENT: false,
     ENV_CONFIG: {
       TOKEN: 'mockToken',
@@ -35,7 +43,7 @@ const config: JestConfig  = {
     'file-loader?.*': 'GlobalImageStub',
   },
   transform: {
-    '^.+\\.(tsx|ts)?$': 'babel-jest'
+    '^.+\\.(tsx|ts)?$': 'ts-jest'
   },
 }
 
