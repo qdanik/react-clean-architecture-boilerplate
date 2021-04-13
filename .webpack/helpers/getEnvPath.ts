@@ -5,6 +5,10 @@ export function getEnvPath(config: WebpackConfig): string {
   switch (env) {
     case EnvType.dev:
       return '.env'
+    case EnvType.prod:
+      return '.env.production'
+    case EnvType.stage:
+      return '.env.staging'
     default:
       return `.env.${env}`
   }

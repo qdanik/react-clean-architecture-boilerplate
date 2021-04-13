@@ -22,6 +22,7 @@ In the project directory, you can run:
     `Description:` Watch files for changes and rerun tests related to changed files.
   * --coverage
     `Description:` Use this flag to receive code coverage stats.
+### `npm test:ci` - use this command to execute test at CI platform.
 ### `npm start` - use this command to run dev server.
 
   * env - one of `[dev, stage, prod, <custom env>]`. 

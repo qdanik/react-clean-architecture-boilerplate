@@ -1,7 +1,13 @@
-.env
+
+# misc
+.DS_Store
+.vscode
 .idea
+.env
+.env*.local
 .history
 
+# husky
 .husky/_
 .husky/.gitignore
 
@@ -10,6 +16,5 @@
 /node_modules
 
 package-lock.json
-yarn.lock
 yarn-error.log
 
