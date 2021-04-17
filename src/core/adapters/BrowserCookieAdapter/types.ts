@@ -9,16 +9,14 @@ export enum CookieSameSite {
   Lax = 'lax',
 }
 
-export interface CookieOptions {
-  domain?: string,
-  expires?: Date,
-  maxAge?: number,
-  path?: string,
-  sameSite?: CookieSameSite,
-  secure?: boolean,
-  httpOnly?: boolean
+export interface CookieOptions<ExpireType = Date> {
+  domain?: string;
+  expires?: ExpireType;
+  maxAge?: number;
+  path?: string;
+  sameSite?: CookieSameSite;
+  secure?: boolean;
+  httpOnly?: boolean;
 }
 
-export interface CookieSetOptions extends Omit<CookieOptions, 'expires'> {
-  expires?: string
-}
+export type CookieSetOptions = CookieOptions<string>;

@@ -1,8 +1,8 @@
-import { SettingsTheme } from 'core/store/SettingsStore/types'
+import { SettingsTheme } from 'core/store/SettingsStore/types';
 
 export interface ThemeSwitcherProps {
-  value: SettingsTheme,
-  onChange: () => void
+  value: SettingsTheme;
+  onChange: () => void;
 }
 
 export enum SwitcherPosition {
@@ -11,7 +11,7 @@ export enum SwitcherPosition {
 }
 
 export interface SwitcherBubbleProps {
-  position: SwitcherPosition
+  position: SwitcherPosition;
 }
 
-export type SwitcherIcon = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+export type SwitcherIcon = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;

@@ -1,7 +1,6 @@
-
 # Architecture
 
-Create Web App use Clean Architecture + React + Mobx. 
+Create Web App use Clean Architecture + React + Mobx.
 
 # Docker
 
@@ -14,44 +13,50 @@ Create Web App use Clean Architecture + React + Mobx.
 # Available Scripts
 
 In the project directory, you can run:
+
 ### `npm install` - use this command to install all dependencies.
+
 ### `npm test` - use this command to execute tests.
-  * --updateSnapshot
-    `Description:` Use this flag to re-record every snapshot that fails during this test run.
-  * --watch
-    `Description:` Watch files for changes and rerun tests related to changed files.
-  * --coverage
-    `Description:` Use this flag to receive code coverage stats.
-### `npm test:ci` - use this command to execute test at CI platform.
+
+- --updateSnapshot
+  `Description:` Use this flag to re-record every snapshot that fails during this test run.
+- --watch
+  `Description:` Watch files for changes and rerun tests related to changed files.
+- --coverage
+  `Description:` Use this flag to receive code coverage stats.
+
 ### `npm start` - use this command to run dev server.
 
-  * env - one of `[dev, stage, prod, <custom env>]`. 
-      `Default:` `dev`.
-      `Description:` Set the env type to load specific environment arguments `.env.${type}`
-      #### `Example: npm start env=stage`
-  * url - string. 
-      `Default:` none.
-      `Description:` Use this argument to set feature url.
-      #### `Example: npm start url=http://feature-url.example.com`
-  * isDev - boolean.
-      `Default:` true.
-      `Description:` Use this argument to run project in DEVELOPMENT mode
-      #### `Example: npm start isDev`
+- env - one of `[dev, stage, prod, <custom env>]`.
+  `Default:` `dev`.
+  `Description:` Set the env type to load specific environment arguments `.env.${type}`
+  #### `Example: npm start env=stage`
+- url - string.
+  `Default:` none.
+  `Description:` Use this argument to set feature url.
+  #### `Example: npm start url=http://feature-url.example.com`
+- isDev - boolean.
+  `Default:` true.
+  `Description:` Use this argument to run project in DEVELOPMENT mode
+  #### `Example: npm start isDev`
 
 ### `npm lint` - use this command to execute linter.
-  * --fix - boolean.
-    `Default:` none.
-    `Description:` Use this flag to fix all eslint issues.
+
+- --fix - boolean.
+  `Default:` none.
+  `Description:` Use this flag to fix all eslint issues.
 
 ### `npm build` - use this command to build application.
-  * isDev - boolean.
-      `Default:` true.
-      `Description:` Use this argument to build project in DEVELOPMENT mode
-      #### `Example: npm start isDev`
 
->Note: You can use `yarn` instead of `npm`
+- isDev - boolean.
+  `Default:` true.
+  `Description:` Use this argument to build project in DEVELOPMENT mode
+  #### `Example: npm start isDev`
+
+> Note: You can use `yarn` instead of `npm`
 
 # Folder Structure
+
 ```
   .jest/
     config.ts
@@ -67,6 +72,10 @@ In the project directory, you can run:
     - images
   - templates/
     index.html
+  - tests
+    [SrcFolderPath]
+      [TestFileName].test.ts
+      [TestFileName].mock.ts
   - src/
     - containers
       - base/
@@ -125,15 +134,15 @@ In the project directory, you can run:
     index.tsx
 ```
 
-* `.webpack/` - webpack config files.
-* `.jest/` - jest config files.
-* `assets/` - assets files here(fonts, images, music, videos and etc.).
-* `src/core` - core layer.
-* `src/container` - IoC.
-* `src/data-access` - data-access layer.
-* `src/domain` - business layer.
-* `src/ui` - presentation layer.
-* `src/index.tsx` - application entry point.
-* `templates/` - templates.
+- `.webpack/` - webpack config files.
+- `.jest/` - jest config files.
+- `assets/` - assets files here(fonts, images, music, videos and etc.).
+- `src/core` - core layer.
+- `src/container` - IoC.
+- `src/data-access` - data-access layer.
+- `src/domain` - business layer.
+- `src/ui` - presentation layer.
+- `src/index.tsx` - application entry point.
+- `templates/` - templates.
 
->Note: All environment variables stored in global variable `ENV_CONFIG`
+> Note: All environment variables stored in global variable `ENV_CONFIG`

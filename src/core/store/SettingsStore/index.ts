@@ -1,2 +1,2 @@
-export { SettingsStore } from './SettingsStore'
-export * from './types'
+export { SettingsStore } from './SettingsStore';
+export * from './types';

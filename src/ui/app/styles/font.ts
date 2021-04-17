@@ -1,7 +1,7 @@
-import AcuminProExtraCond from 'assets/fonts/AcuminProExtraCond-Bold.woff2'
-import ProximaNovaSoftBold from 'assets/fonts/ProximaNovaSoft-Bold.woff2'
-import ProximaNovaSoftRegular from 'assets/fonts/ProximaNovaSoft-Regular.woff2'
-import { css } from 'styled-components'
+import AcuminProExtraCond from 'assets/fonts/AcuminProExtraCond-Bold.woff2';
+import ProximaNovaSoftBold from 'assets/fonts/ProximaNovaSoft-Bold.woff2';
+import ProximaNovaSoftRegular from 'assets/fonts/ProximaNovaSoft-Regular.woff2';
+import { css } from 'styled-components';
 
 export const AppFonts = css`
   --fontText: 'ProximaNovaSoftW03';
@@ -23,4 +23,4 @@ export const AppFonts = css`
     font-family: 'ProximaNovaSoftW03';
     src: url(${ProximaNovaSoftRegular}) format('woff2');
   }
-`
+`;

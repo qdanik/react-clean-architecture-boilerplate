@@ -6,6 +6,7 @@
 .env
 .env*.local
 .history
+.vscode
 
 # husky
 .husky/_
