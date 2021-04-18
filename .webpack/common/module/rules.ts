@@ -1,5 +1,5 @@
 import { RuleSetRule } from 'webpack';
-import { OUTPUT_FONTS, OUTPUT_IMAGES, OUTPUT_SOUNDS } from '../../constants'
+import { OUTPUT_FONTS, OUTPUT_IMAGES, OUTPUT_SOUNDS } from '../../constants';
 
 export default (): RuleSetRule[] => [
   {
@@ -9,7 +9,14 @@ export default (): RuleSetRule[] => [
   {
     exclude: /node_modules/,
     test: /\.(ts|tsx)?$/,
-    use: 'ts-loader',
+    use: [
+      {
+        loader: 'ts-loader',
+        options: {
+          configFile: 'tsconfig.prod.json',
+        },
+      },
+    ],
   },
   {
     exclude: /(node_modules)/,
@@ -50,4 +57,4 @@ export default (): RuleSetRule[] => [
       },
     ],
   },
-]
+];

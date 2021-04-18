@@ -1,20 +1,20 @@
-import { StorageKeys } from 'core/storage'
-import { action, computed, makeAutoObservable, observable } from 'mobx'
-import { SettingsTheme } from './types'
+import { StorageKeys } from 'core/storage';
+import { action, computed, makeAutoObservable, observable } from 'mobx';
+import { SettingsTheme } from './types';
 
 export class SettingsStore {
   @observable private _theme: SettingsTheme =
-    (localStorage.getItem(StorageKeys.Theme) as SettingsTheme) || SettingsTheme.Dark
+    (localStorage.getItem(StorageKeys.Theme) as SettingsTheme) || SettingsTheme.Dark;
 
   constructor() {
-    makeAutoObservable(this)
+    makeAutoObservable(this);
   }
 
   @computed getTheme(): SettingsTheme {
-    return this._theme
+    return this._theme;
   }
 
   @action.bound setTheme(value: SettingsTheme): void {
-    this._theme = value
+    this._theme = value;
   }
 }

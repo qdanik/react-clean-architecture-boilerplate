@@ -1,22 +1,18 @@
-import {defaults as defaultConfig} from 'jest-config';
+import { defaults as defaultConfig } from 'jest-config';
 import type { Config } from '@jest/types';
 
-type JestConfig = 
-Partial<
-  Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> &
-  Config.GlobalConfig
+type JestConfig = Partial<
+  Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> & Config.GlobalConfig
 > & {
-  preset: string,
-  moduleNameMapper: Record<string, string>,
-  transform: Record<string, string>,
-}
+  preset: string;
+  moduleNameMapper: Record<string, string | Array<string>>;
+  transform: Record<string, string>;
+};
 
-const config: JestConfig  = {
+const config: JestConfig = {
   preset: 'ts-jest',
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/index.tsx'
-  ],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/index.tsx'],
+  testEnvironment: 'node',
   coverageDirectory: 'coverage',
   coverageThreshold: {
     global: {
@@ -28,23 +24,25 @@ const config: JestConfig  = {
   },
   globals: {
     'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.test.json',
+      tsconfig: '<rootDir>/tsconfig.json',
     },
     DEVELOPMENT: false,
     ENV_CONFIG: {
       TOKEN: 'mockToken',
     },
   },
-  moduleDirectories: ['node_modules', 'node_modules/@types'],
+  moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleFileExtensions: defaultConfig.moduleFileExtensions,
   setupFiles: ['<rootDir>/.jest/setup.ts'],
   rootDir: '../',
+  roots: ['<rootDir>/src'],
   moduleNameMapper: {
     'file-loader?.*': 'GlobalImageStub',
   },
+  testMatch: ['**/*.(test|spec).(ts|tsx)'],
   transform: {
-    '^.+\\.(tsx|ts)?$': 'ts-jest'
+    '^.+\\.(tsx|ts)?$': 'ts-jest',
   },
-}
+};
 
 export default config;

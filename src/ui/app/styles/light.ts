@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components';
 
 export const LightVariables = css`
   &.light {
@@ -19,4 +19,4 @@ export const LightVariables = css`
     --shadow: 0px 0px 5px var(--shadowColor);
     --invertShadow: 0px 0px 5px var(--invertShadowColor);
   }
-`
+`;

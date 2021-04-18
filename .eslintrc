@@ -83,34 +83,7 @@
     "sort-keys-fix/sort-keys-fix": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": ["off", {"semi": false}],
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/member-delimiter-style": [
-      "error",
-      {
-        "multiline": {
-          "delimiter": "none",
-          "requireLast": false
-        },
-        "singleline": {
-          "delimiter": "semi",
-          "requireLast": true
-        },
-        "overrides": {
-          "interface": {
-            "multiline": {
-              "delimiter": "comma",
-              "requireLast": false
-            }
-          },
-          "typeLiteral": {
-            "multiline": {
-              "delimiter": "comma",
-              "requireLast": false
-            }
-          }
-        }
-      }
-    ]
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

@@ -1,1 +1,1 @@
-export { RootStore, MobxStore } from './RootStore'
+export { RootStore, MobxStore } from './RootStore';

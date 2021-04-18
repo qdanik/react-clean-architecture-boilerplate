@@ -1,2 +1,2 @@
-export * from './RootStore'
-export * from './types'
+export * from './RootStore';
+export * from './types';

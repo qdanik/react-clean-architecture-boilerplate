@@ -1,16 +1,16 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
-`
+`;
 
 export const LabelWrapper = styled.label`
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const Label = styled.span`
   display: block;
@@ -19,7 +19,7 @@ export const Label = styled.span`
   color: var(--gray);
   font-size: 16px;
   font-weight: 600;
-`
+`;
 
 export const StyledInput = styled.input`
   position: relative;
@@ -45,4 +45,4 @@ export const StyledInput = styled.input`
     color: var(--placeholder);
     font-weight: 500;
   }
-`
+`;

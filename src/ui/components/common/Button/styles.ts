@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components'
-import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './constants'
-import { getBorderRadiusByVariant } from './helpers'
-import { ButtonVariants, ButtonWrapperProps } from './types'
+import styled, { css } from 'styled-components';
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './constants';
+import { getBorderRadiusByVariant } from './helpers';
+import { ButtonVariants, ButtonWrapperProps } from './types';
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   position: relative;
@@ -38,7 +38,7 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
           color: var(--defaultWhite);
           background-color: var(--orange);
         `}
-`
+`;
 
 export const LoaderWrapper = styled.div`
   position: absolute;
@@ -50,4 +50,4 @@ export const LoaderWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: var(--shadowColor);
-`
+`;

@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
-import { DarkVariables } from './dark'
-import { AppFonts } from './font'
-import { LightVariables } from './light'
+import { createGlobalStyle } from 'styled-components';
+import { DarkVariables } from './dark';
+import { AppFonts } from './font';
+import { LightVariables } from './light';
 
 export const GlobalStyles = createGlobalStyle`
   ${AppFonts};
@@ -40,4 +40,4 @@ export const GlobalStyles = createGlobalStyle`
       cursor: pointer;
     }
   }
-`
+`;

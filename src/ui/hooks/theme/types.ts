@@ -4,6 +4,6 @@ export enum ThemeVariant {
 }
 
 export interface ThemeApi {
-  theme: ThemeVariant,
-  setTheme: (value: ThemeVariant) => void
+  theme: ThemeVariant;
+  setTheme: (value: ThemeVariant) => void;
 }

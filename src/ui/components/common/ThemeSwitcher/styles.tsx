@@ -1,16 +1,16 @@
-import styled from 'styled-components'
-import { SwitcherBubbleProps, SwitcherPosition } from './types'
+import styled from 'styled-components';
+import { SwitcherBubbleProps, SwitcherPosition } from './types';
 
 export const SwitcherWrapper = styled.button`
   position: relative;
-`
+`;
 
 export const SwitcherInner = styled.div`
   height: 28px;
   width: 60px;
   background: var(--gray5);
   border-radius: 15px;
-`
+`;
 
 export const SwitchBubble = styled.span<SwitcherBubbleProps>`
   position: absolute;
@@ -25,4 +25,4 @@ export const SwitchBubble = styled.span<SwitcherBubbleProps>`
   background: var(--orange);
   border-radius: 24px;
   transition: 0.3s;
-`
+`;
