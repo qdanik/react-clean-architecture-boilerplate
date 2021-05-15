@@ -1,5 +1,5 @@
-import { StorageKeys } from '@app/core/storage';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
+import { StorageKeys } from '@app/core/storage';
 import { SettingsTheme } from './settings.typings';
 
 export class SettingsStore {

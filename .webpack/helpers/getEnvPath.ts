@@ -1,15 +1,15 @@
-import { EnvType, WebpackConfig } from '../types'
+import { EnvType, WebpackConfig } from '../types';
 
-export function getEnvPath(config: WebpackConfig): string {
-  const { env = EnvType.dev } = config
+export function getEnvPath(config: WebpackConfig = {}): string {
+  const { env = EnvType.dev } = config;
   switch (env) {
     case EnvType.dev:
-      return '.env'
+      return '.env';
     case EnvType.prod:
-      return '.env.production'
+      return '.env.production';
     case EnvType.stage:
-      return '.env.staging'
+      return '.env.staging';
     default:
-      return `.env.${env}`
+      return `.env.${env}`;
   }
 }

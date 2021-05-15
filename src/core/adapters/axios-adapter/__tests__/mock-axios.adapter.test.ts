@@ -1,5 +1,5 @@
-import { AxiosAdapter } from '@app/core/adapters';
 import axios from 'axios';
+import { AxiosAdapter } from '@app/core/adapters';
 import { mockConfig, mockData, mockUrl } from './axios.adapter.mock';
 
 jest.mock('axios', () => {

@@ -1,6 +1,6 @@
-import { Storage } from '@app/core/storage';
 import { injectable } from 'inversify';
 import reduce from 'lodash/reduce';
+import { Storage } from '@app/core/storage';
 import { COOKIE_REGEX } from './browser-cookie.constants';
 import { correctKey } from './browser-cookie.helpers';
 import { CookieOptions, CookieSetOptions } from './browser-cookie.typings';

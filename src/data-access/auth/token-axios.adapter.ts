@@ -1,8 +1,8 @@
+import { inject, injectable } from 'inversify';
 import { ServiceIdentifier } from '@app/containers/typings';
 import { AxiosAdapter } from '@app/core/adapters';
 import { HttpClient, TokenTypes } from '@app/core/http';
 import { AUTH_STORAGE_KEY, LocalStorageType, Storage } from '@app/core/storage';
-import { inject, injectable } from 'inversify';
 
 export const TokenHttpClientType: ServiceIdentifier<HttpClient> = Symbol('TokenHttpClient');
 

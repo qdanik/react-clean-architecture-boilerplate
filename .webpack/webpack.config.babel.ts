@@ -20,7 +20,7 @@ function getConfigBuilder(type: ConfigType): ConfigBuilder {
   }
 }
 
-export default (config: WebpackConfig): Configuration => {
+export default (config: WebpackConfig = {}): Configuration => {
   const type = getConfigType();
   const builder = getConfigBuilder(type);
 

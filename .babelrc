@@ -3,5 +3,12 @@
     ["@babel/preset-env", { "targets": { "node": "current" } }],
     "@babel/preset-typescript"
   ],
-  "plugins": [["@babel/plugin-syntax-decorators", { "decoratorsBeforeExport": true }]]
+  "env": {
+    "test": {
+      "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }]
+      ]
+    }
+  }
 }

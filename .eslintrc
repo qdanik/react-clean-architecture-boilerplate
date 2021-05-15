@@ -5,6 +5,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
     "plugin:prettier/recommended"
   ],
   "env": {
@@ -25,6 +26,11 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "webpack": {
+        "config": ".webpack/webpack.config.babel.ts"
+      }
     }
   },
   "rules": {
@@ -41,7 +47,7 @@
     ],
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
-    "import/no-unresolved": "off",
+    "import/no-unresolved": "error",
     "import/no-useless-path-segments": "off",
     "import/prefer-default-export": "off",
     "linebreak-style": "off",
@@ -73,6 +79,7 @@
     "object-curly-newline": "off",
     "object-property-newline": "off",
     "prefer-const": "error",
+    "quote-props": ["error", "as-needed"],
     "react/destructuring-assignment": "off",
     "react/forbid-prop-types": "off",
     "react/no-unused-prop-types": "warn",
@@ -84,6 +91,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": "error",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/member-delimiter-style": ["error"]
   }
 }
