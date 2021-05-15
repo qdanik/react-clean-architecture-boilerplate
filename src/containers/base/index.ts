@@ -1,6 +1,6 @@
-import { AxiosAdapter, BrowserCookieAdapter, LocalStorageAdapter } from 'core/adapters';
-import { HttpClientType } from 'core/http';
-import { CookieStorageType, LocalStorageType } from 'core/storage';
+import { AxiosAdapter, BrowserCookieAdapter, LocalStorageAdapter } from '@app/core/adapters';
+import { HttpClientType } from '@app/core/http';
+import { CookieStorageType, LocalStorageType } from '@app/core/storage';
 import { ContainerModule } from 'inversify';
 
 export const baseAdapters = new ContainerModule(bind => {

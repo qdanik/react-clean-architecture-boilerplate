@@ -1,8 +1,2 @@
-import { useEffect } from 'react';
-
-export function useDidMount(callback: (() => () => void) | (() => void)): void {
-  useEffect(() => {
-    return callback();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-}
+export * from './did-mount.hook';
+export * from './theme';

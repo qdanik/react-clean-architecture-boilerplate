@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { RootStore, MobxStore } from 'core/store';
+import { RootStore, MobxStore } from '@app/core/store';
+import { App } from '@app/ui/app.component';
 import React from 'react';
 import ReactDom from 'react-dom';
-import { App } from 'ui';
 
 const store: MobxStore = new RootStore();
 

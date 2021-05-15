@@ -1,4 +1,5 @@
 import { Container } from 'inversify';
+import { authAdapters } from './auth';
 import { baseAdapters } from './base';
 
 export const container = new Container({
@@ -6,3 +7,4 @@ export const container = new Container({
 });
 
 container.load(baseAdapters);
+container.load(authAdapters);

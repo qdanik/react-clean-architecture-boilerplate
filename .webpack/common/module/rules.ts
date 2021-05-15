@@ -1,5 +1,22 @@
 import { RuleSetRule } from 'webpack';
-import { OUTPUT_FONTS, OUTPUT_IMAGES, OUTPUT_SOUNDS } from '../../constants';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { OUTPUT_FONTS, OUTPUT_IMAGES, OUTPUT_SOUNDS, TYPESCRIPT_CONFIG } from '../../constants';
+
+const EsbuildLoader = (loader: string = 'tsx'): RuleSetRule => ({
+  loader: 'esbuild-loader',
+  options: {
+    loader,
+    tsconfigRaw: TYPESCRIPT_CONFIG,
+  },
+});
+
+const FileLoader = (output: string, limit: number | false = 10000): RuleSetRule => ({
+  loader: 'file-loader',
+  options: {
+    limit,
+    name: output,
+  },
+});
 
 export default (): RuleSetRule[] => [
   {
@@ -7,54 +24,45 @@ export default (): RuleSetRule[] => [
     use: [{ loader: 'html-loader' }],
   },
   {
+    test: /\.css$/,
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  },
+  {
     exclude: /node_modules/,
     test: /\.(ts|tsx)?$/,
-    use: [
-      {
-        loader: 'ts-loader',
-        options: {
-          configFile: 'tsconfig.prod.json',
-        },
-      },
-    ],
+    use: [EsbuildLoader()],
   },
   {
     exclude: /(node_modules)/,
-    loader: 'babel-loader',
     test: /\.(js|jsx)?$/,
+    use: [EsbuildLoader('jsx')],
   },
   {
     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    use: ['babel-loader', '@svgr/webpack'],
-  },
-  {
-    test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
     use: [
+      EsbuildLoader(),
       {
-        loader: 'file-loader',
+        loader: '@svgr/webpack',
         options: {
-          limit: 10000,
-          name: OUTPUT_FONTS,
+          svgoConfig: {
+            plugins: {
+              removeViewBox: false,
+            },
+          },
         },
       },
     ],
   },
   {
+    test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+    use: [FileLoader(OUTPUT_FONTS)],
+  },
+  {
     test: /\.(png|gif|jpg|jpeg|webp)(\?v=\d+\.\d+\.\d+)?$/,
-    use: [
-      {
-        loader: 'file-loader',
-        options: { name: OUTPUT_IMAGES },
-      },
-    ],
+    use: [FileLoader(OUTPUT_IMAGES)],
   },
   {
     test: /\.(mp3)(\?v=\d+\.\d+\.\d+)?$/,
-    use: [
-      {
-        loader: 'file-loader',
-        options: { name: OUTPUT_SOUNDS },
-      },
-    ],
+    use: [FileLoader(OUTPUT_SOUNDS, false)],
   },
 ];

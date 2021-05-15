@@ -1,34 +1,21 @@
-import TerserPlugin from 'terser-webpack-plugin'
-import {Configuration} from 'webpack'
+import TerserPlugin from 'terser-webpack-plugin';
+import { ESBuildMinifyPlugin } from 'esbuild-loader';
+import { Configuration } from 'webpack';
+import { MinifyPluginOptions } from 'esbuild-loader/dist/interfaces';
 
-const TerserPluginOptions = {
-  extractComments: false,
-  parallel: true,
-  terserOptions: {
-    compress: {
-      arguments: true,
-      drop_console: true,
-      drop_debugger: true,
-      unsafe: true,
-    },
-    ie8: false,
-    output: {
-      comments: false,
-      quote_style: 1,
-    },
-    parse: {
-      html5_comments: false,
-      shebang: false,
-    },
-    safari10: false,
-  },
-}
+const MinifyConfig: MinifyPluginOptions = {
+  minify: true,
+  minifyWhitespace: true,
+  minifySyntax: true,
+  treeShaking: true,
+  css: true,
+};
 
 export default () => {
   const config: Configuration = {
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin(TerserPluginOptions)],
+      minimizer: [new ESBuildMinifyPlugin(MinifyConfig)],
       splitChunks: {
         cacheGroups: {
           common: {
@@ -50,7 +37,7 @@ export default () => {
         },
       },
     },
-  }
+  };
 
-  return config.optimization
-}
+  return config.optimization;
+};

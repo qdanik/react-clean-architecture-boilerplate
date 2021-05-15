@@ -1,15 +1,16 @@
-import { resolve } from 'path'
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpack, { WebpackPluginFunction, WebpackPluginInstance } from 'webpack'
-import WebpackBar from 'webpackbar'
-import { DEV_TEMPLATE_PATH, OUTPUT_PATH, TEMPLATE_PATH } from '../constants'
-import { getEnvConfig } from '../helpers/getEnvConfig'
-import { WebpackConfig } from '../types'
+import { resolve } from 'path';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import webpack, { WebpackPluginFunction, WebpackPluginInstance } from 'webpack';
+import WebpackBar from 'webpackbar';
+import { DEV_TEMPLATE_PATH, OUTPUT_PATH, TEMPLATE_PATH } from '../constants';
+import { getEnvConfig } from '../helpers/getEnvConfig';
+import { WebpackConfig } from '../types';
 
-type WebpackPlugin = WebpackPluginFunction | WebpackPluginInstance
+type WebpackPlugin = WebpackPluginFunction | WebpackPluginInstance;
 
-type WebpackPlugins = WebpackPlugin[]
+type WebpackPlugins = WebpackPlugin[];
 
 const StartPlugins: WebpackPlugins = [
   new HtmlWebpackPlugin({
@@ -18,7 +19,7 @@ const StartPlugins: WebpackPlugins = [
     template: resolve(DEV_TEMPLATE_PATH),
   }) as WebpackPlugin,
   new webpack.HotModuleReplacementPlugin(),
-]
+];
 
 const BuildPlugins: WebpackPlugins = [
   new HtmlWebpackPlugin({
@@ -30,10 +31,10 @@ const BuildPlugins: WebpackPlugins = [
   new CleanWebpackPlugin({
     cleanOnceBeforeBuildPatterns: ['js/*.*', 'assets/**/*.*'],
   }),
-]
+];
 
 export default (config: WebpackConfig): WebpackPlugins => {
-  const envPlugins: WebpackPlugins = config.WEBPACK_SERVE ? StartPlugins : BuildPlugins
+  const envPlugins: WebpackPlugins = config.WEBPACK_SERVE ? StartPlugins : BuildPlugins;
 
   return [
     ...envPlugins,
@@ -42,5 +43,5 @@ export default (config: WebpackConfig): WebpackPlugins => {
       ENV_CONFIG: JSON.stringify(getEnvConfig(config)),
     }),
     new WebpackBar({}),
-  ]
-}
+  ];
+};
