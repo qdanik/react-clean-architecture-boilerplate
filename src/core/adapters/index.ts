@@ -1,3 +1,3 @@
-export * from './AxiosAdapter';
-export * from './BrowserCookieAdapter';
-export * from './LocalStorageAdapter';
+export * from './axios-adapter';
+export * from './browser-cookie-adapter';
+export * from './local-storage-adapter';

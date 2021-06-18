@@ -9,14 +9,17 @@
     "allowJs": false,
     "sourceMap": true,
     "checkJs": false,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
     "jsx": "react",
-    "lib": ["es6", "es7", "dom"],
+    "lib": ["es6", "es7", "dom", "esnext"],
     "paths": {
-      "assets/*": ["assets/*"],
-      "*": ["src/*"]
+      "*": ["src/*"],
+      "assets/*": ["assets/*"]
     },
     "types": ["reflect-metadata", "@types/jest"],
     "typeRoots": ["node_modules/@types", "./src/typings"]
