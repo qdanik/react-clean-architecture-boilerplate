@@ -1,15 +1,9 @@
 import 'reflect-metadata';
-import { RootStore, MobxStore } from 'core/store';
 import React from 'react';
 import ReactDom from 'react-dom';
-import { App } from 'ui';
-
-const store: MobxStore = new RootStore();
+import { App } from 'ui/app.component';
 
 function Root(): React.ReactElement {
-  // eslint-disable-next-line no-console
-  console.log(store);
-
   return <App />;
 }
 

@@ -79,70 +79,103 @@ In the project directory, you can run:
   - src/
     - containers
       - base/
-      - [ContainerModule]/
+      - [auth]/
+      - [users]/
+      - [container-name]/
+      - index.ts <- loading all you containers here
     - core/
-      - [core features]
+      - [core features] <- other folders that contain only implementation definition which can be implemented in the adapters or in the other parts (ex. Storage, Http)
       - helpers/
-          [HelperName].ts
-      - utils/
-          [UtilName].ts
+          [name].helper.ts
       - adapters/
-        - [AdapterName]/
-            [AdapterName].ts
-            constants.ts?
-            helpers.ts?
-            types.ts?
+        - [adapter-name]/
+            [adapter-name].adapter.ts
+            [adapter-name].constants.ts?
+            [adapter-name].helpers.ts?
+            [adapter-name].typings.ts?
       - store/
-        - RootStore/
-            RootStore.ts
-        - [StoreName]/
-            [StoreName].ts
-        - shared/
-            [SharedStoreName].ts
-    - data-access/
-      - [DomainName]
-          [DomainNameRepository]Impl.ts
+        - _shared/
+            [shared-store-name].store.ts
+        - root-store/
+            root.store.ts
+        - [store-name]/
+            [store-name].store.ts
+            [store-name].typings.ts
+    - data-access/ <- Contain data access implementations
+      - [data-access-name]
+          [data-access-name].adapter.ts // should implement domain(or other) repository (ex. class [data-access-name] implements [domain-name].repo.ts {})
     - domain/
-      - [DomainName]/
+      - [domain-name]/
         - entities/
-            [EntityName].ts
+            [name].entity.ts <- should contain domain entity
         - repository/
-            [RepositoryName]Repository.ts
+            [name].repo.ts <- should contain interface for the data-access implementation
         - services/
-            [ServiceName]Service.ts
+            [name].service.ts <- should implement use-case
         - usecase/
-            [UseCaseName]UseCase.ts
-    - typings/
+            [name].use-case.ts  <- should contain interface for the service implementation
+    - typings/ <- Common Application Types
         [target].d.ts
         global.d.ts
     - ui/
-      - hooks/
-      - app/
-        - styles/
-        [index|app].ts
-      - presenters/
-        - [ModuleName|PageName]/
-          [ModuleName|PageName]Presenter.ts
       - components/
-        - common/
-        - [AnotherComponents]/
+        - common/ <- Dumb components
+        - [smart-component-name]/ <- Smart component that contains other dumb components
+          - [name].components.ts <- Our [Name]Component
+          - [name].styles.ts <- All styled components must be declared here
+          - [name].typings.ts <- Types or Interfaces must be declared here
+      - hooks/
+        - did-mount.hook.ts
+        - [name].hook.ts
+      - hoc/
+          - header.hoc.ts
+          - [name].hoc.ts
+      - ioc <- IoC implementation for the UI Layer
       - modules/
-        - [ModuleName]/
+        - [module-name]/ <- Contains a mix of smart and dumb components and has communication with domain layer via presenter
+          - [name].presenter.ts <- Place for the logical part to be used by the current module
+          - [name].components.ts <- Showing results using own module presenter
+          - [name].styles.ts
+          - [name].typings.ts
+          - [name].constants.ts <- module constant values
+          - [name].helpers.ts <- module helpers
       - pages/
-        - [PageName]/
+        - [page-name]/ <- Contains a mix of modules and has communication with domain layer via presenter
+          - [name].presenter.ts
+          - [name].components.ts
+          - [name].styles.ts
       - routes/
     index.tsx
 ```
 
+### Namings
+
+`Folder Namings`: Use `kebab-case` format
+`File Namings`: Alls files should include target name like (auth) and implementation responsibility like (component, helper, styles) as result we should receive (auth.component.ts, auth.store.ts, auth.styles.ts and etc.)
+`Hooks`: Starting with keyword `use` and using format `camelCase` (useSomeHook)
+`Constants`: CONSTANT_CASE, SCREAMING_KEBAB_CASE
+`Functions, Variables, class Methods or Properties`: camelCase (token, userName, getUser, findUser)
+`Classes, Types, Interfaces, Enums`: PascalCase (AuthService, AuthRepository, UserMapper, AppStore)
+`Private Properties or Methods`: Starting with `underline` and using format `camelCase` (\_userName, \_email, \_someDataName)
+
+### App Layers
+
+`Domain Layer`: Shouldn't has intersections with UI layer. How we should communicate with Domain? We should include our domain implementations into our Containers and inject these implementations into our components using `useInjection` hook from `IoC`. All containers type must be declared in implementation file using generic `ServiceIdentifier<T>` from containers/typings. (ex. const AuthServiceType: ServiceIdentifier<AuthUseCase> = Symbol('AuthService')) we do not have dependencies on `implementations` like (AuthService or AuthUseCaseImpl), only on the `interfaces` (AuthUseCase).
+`Core layer`: Contains main part of application which can will be included in container layer. `Store` also should be included in container as `singleton`.
+`Container Layer`: It is 'bridge' between all layers
+`UI Layer`: Is responsible for the UI part, for everything that user can see in his browser
+
+- `.husky/` - husky config files.
 - `.webpack/` - webpack config files.
 - `.jest/` - jest config files.
 - `assets/` - assets files here(fonts, images, music, videos and etc.).
 - `src/core` - core layer.
-- `src/container` - IoC.
+- `src/container` - containers(IoC) layer.
 - `src/data-access` - data-access layer.
 - `src/domain` - business layer.
+- `src/mappers` - entity mappers.
 - `src/ui` - presentation layer.
 - `src/index.tsx` - application entry point.
-- `templates/` - templates.
+- `templates/` - html templates.
 
 > Note: All environment variables stored in global variable `ENV_CONFIG`
