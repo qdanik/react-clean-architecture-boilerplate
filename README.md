@@ -150,20 +150,21 @@ In the project directory, you can run:
 
 ### Namings
 
-`Folder Namings`: Use `kebab-case` format
-`File Namings`: Alls files should include target name like (auth) and implementation responsibility like (component, helper, styles) as result we should receive (auth.component.ts, auth.store.ts, auth.styles.ts and etc.)
-`Hooks`: Starting with keyword `use` and using format `camelCase` (useSomeHook)
-`Constants`: CONSTANT_CASE, SCREAMING_KEBAB_CASE
+- `Folder Namings`: Use `kebab-case` format
+- `File Namings`: Alls files should include target name like (auth) and implementation responsibility like (component, helper, styles) as result we should receive (auth.component.ts, auth.store.ts, auth.styles.ts and etc.)
+- `Hooks`: Starting with keyword `use` and using format `camelCase` (useSomeHook)
+- `Constants`: CONSTANT_CASE, SCREAMING_KEBAB_CASE
 `Functions, Variables, class Methods or Properties`: camelCase (token, userName, getUser, findUser)
-`Classes, Types, Interfaces, Enums`: PascalCase (AuthService, AuthRepository, UserMapper, AppStore)
-`Private Properties or Methods`: Starting with `underline` and using format `camelCase` (\_userName, \_email, \_someDataName)
+- `Classes, Types, Interfaces, Enums`: PascalCase (AuthService, AuthRepository, UserMapper, AppStore)
+- `Private Properties or Methods`: Starting with `underline` and using format `camelCase` (\_userName, \_email, \_someDataName)
 
 ### App Layers
 
-`Domain Layer`: Shouldn't has intersections with UI layer. How we should communicate with Domain? We should include our domain implementations into our Containers and inject these implementations into our components using `useInjection` hook from `IoC`. All containers type must be declared in implementation file using generic `ServiceIdentifier<T>` from containers/typings. (ex. const AuthServiceType: ServiceIdentifier<AuthUseCase> = Symbol('AuthService')) we do not have dependencies on `implementations` like (AuthService or AuthUseCaseImpl), only on the `interfaces` (AuthUseCase).
-`Core layer`: Contains main part of application which can will be included in container layer. `Store` also should be included in container as `singleton`.
-`Container Layer`: It is 'bridge' between all layers
-`UI Layer`: Is responsible for the UI part, for everything that user can see in his browser
+- `Domain Layer`: Shouldn't has intersections with UI layer. How we should communicate with Domain? We should include our domain implementations into our Containers and inject these implementations into our components using `useInjection` hook from `IoC`. All containers type must be declared in implementation file using generic `ServiceIdentifier<T>` from containers/typings. (ex. const AuthServiceType: ServiceIdentifier<AuthUseCase> = Symbol('AuthService')) we do not have dependencies on `implementations` like (AuthService or AuthUseCaseImpl), only on the `interfaces` (AuthUseCase).
+- `Core layer`: Contains main part of application which can will be included in container layer. `Store` also should be included in container as `singleton`.
+- `Container Layer`: It is 'bridge' between all layers
+- `UI Layer`: Is responsible for the UI part, for everything that user can see in his browser
+### Folder Describes
 
 - `.husky/` - husky config files.
 - `.webpack/` - webpack config files.
