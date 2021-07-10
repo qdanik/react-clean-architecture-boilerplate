@@ -1,8 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { injectable } from 'inversify';
-import { HttpClient, HttpErrorCallback } from 'core/http';
+import { Injectable } from 'containers/core';
+import {
+  HttpClient,
+  HttpFulfilledInterceptor,
+  HttpInterceptorManager,
+  HttpRejectInterceptor,
+} from 'core/http';
 
-@injectable()
+@Injectable()
 export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
   protected _http: AxiosInstance;
 
@@ -52,7 +57,17 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     return this._http.put<T, R>(url, data, config);
   }
 
-  setErrorHandler(errorCallback: HttpErrorCallback): void {
-    this._http.interceptors.response.use(response => response, errorCallback);
-  }
+  setRequestInterceptors: HttpInterceptorManager = (
+    requestInterceptor?: HttpFulfilledInterceptor,
+    errorInterceptor?: HttpRejectInterceptor,
+  ): number => {
+    return this._http.interceptors.request.use(requestInterceptor, errorInterceptor);
+  };
+
+  setResponseInterceptors: HttpInterceptorManager = (
+    responseInterceptor?: HttpFulfilledInterceptor,
+    errorInterceptor?: HttpRejectInterceptor,
+  ): number => {
+    return this._http.interceptors.response.use(responseInterceptor, errorInterceptor);
+  };
 }

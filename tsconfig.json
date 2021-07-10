@@ -24,5 +24,6 @@
     "types": ["reflect-metadata", "@types/jest"],
     "typeRoots": ["node_modules/@types", "./src/typings"]
   },
-  "exclude": ["node_modules", "dist", "coverage"]
+  "include": ["./assets", "./src"],
+  "exclude": ["node_modules", "dist", "coverage", "configs"]
 }

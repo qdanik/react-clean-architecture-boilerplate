@@ -1,11 +1,11 @@
-import { injectable } from 'inversify';
 import reduce from 'lodash/reduce';
+import { Injectable } from 'containers/core';
 import { Storage } from 'core/storage';
 import { COOKIE_REGEX } from './browser-cookie.constants';
 import { correctKey } from './browser-cookie.helpers';
 import { CookieOptions, CookieSetOptions } from './browser-cookie.typings';
 
-@injectable()
+@Injectable()
 export class BrowserCookieAdapter implements Storage {
   get cookie(): string {
     return document.cookie;
