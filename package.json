@@ -5,7 +5,7 @@
     "email": "qdanik@yandex.ru",
     "url": "https://vk.com/qdanik"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "src/presentation/web/index.tsx",
   "scripts": {
     "vite": "vite --config ./configs/vite/config.ts",

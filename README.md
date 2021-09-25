@@ -1,17 +1,26 @@
-# Architecture
+<h3 align="center">
+  React Project Template
+</h3>
 
-Create Web App use Clean Architecture + React + Mobx.
+<p align="center">
+  Layered Architecture for Enterprise <a href="https://facebook.github.io/react">React</a> Projects
+</p>
 
-# Docker
+## Quick Overview
 
-`docker-compose build` - build or rebuild image
+Layered Architecture for developing web/mobile/desktop applications using JavaScript. You can use React/Angular/Vue/Svelte + Typescript for developing.
 
-`docker-compose up` - start docker container
+## Docs
 
-`docker-compose down` - halt docker container
+  - [Startup](./docs/SCRIPTS.md "Project Startup Documentation")
+  - [Architecture](./docs/ARCHITECTURE.md "Project Architecture Documentation")
+  - [Code Conventions](./docs/CODE_CONVENTIONS.md "Project Code Conventions") *In progress*
+  - [Style Guides](./docs/CODE_CONVENTIONS.md "Project Code Conventions") *In progress*
 
+## Contributing
 
-# Documentation
+You are welcome to contribute to this project, just open a Pull Request.
 
-## [Project Script](./docs/SCRIPTS.md "Project Scripts Documentation")
-## [Project Architecture](./docs/ARCHITECTURE.md "Project Architecture Documentation")
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
