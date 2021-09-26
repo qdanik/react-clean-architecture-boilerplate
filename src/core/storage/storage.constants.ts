@@ -1,2 +1,5 @@
-// TODO: shldbe declared near the AuthStorage implementation
-export const AUTH_STORAGE_KEY = 'auth-key';
+import { ServiceIdentifier } from 'containers/core';
+import { Storage } from './storage';
+
+export const CookieStorageType: ServiceIdentifier<Storage> = Symbol('CookieStorage');
+export const LocalStorageType: ServiceIdentifier<Storage> = Symbol('LocalStorage');

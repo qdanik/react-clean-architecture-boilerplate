@@ -1,10 +1,3 @@
-import { Container } from 'inversify';
-import { authAdapters } from './auth';
-import { baseAdapters } from './base';
+import { containers } from './containers';
 
-export const container = new Container({
-  autoBindInjectable: true,
-});
-
-container.load(baseAdapters);
-container.load(authAdapters);
+export const AppContainer = containers;
