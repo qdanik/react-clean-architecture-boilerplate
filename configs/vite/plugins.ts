@@ -1,8 +1,8 @@
-import reactRefresh from '@vitejs/plugin-react-refresh';
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
 import viteCompression from 'vite-plugin-compression';
 import reactSvgPlugin from 'vite-plugin-react-svg';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import react from '@vitejs/plugin-react'
 
 const BasePlugins = [
   importToCDN({
@@ -26,7 +26,24 @@ const BasePlugins = [
   }),
 ];
 
-export const DevPlugins = [...BasePlugins, reactRefresh()];
+export const DevPlugins = [
+  ...BasePlugins,
+  react({
+    include: '**/*.tsx',
+    exclude: 'node_modules/**',
+    babel: {
+      plugins: [
+        ['babel-plugin-styled-components', {
+          displayName: true,
+          fileName: false,
+        }],
+      ],
+      parserOpts: {
+        plugins: ['decorators-legacy']
+      }
+    }
+  }),
+];
 
 export const BuildPlugins = [
   ...BasePlugins,

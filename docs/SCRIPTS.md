@@ -1,36 +1,35 @@
-# Available Scripts
+# Project Scripts
 
-In the project directory, you can run:
+All available scripts for project.
 
-### `npm install` - install all dependencies;
+ `yarn` - install dependencies;
 
-### `npm start` - run dev server;
+## Running Application
 
-### `npm preview` - run build preview server;
+ `yarn start` - run dev server;
 
-### `npm build` - build your application;
+ `yarn preview` - run build preview server;
 
-### `npm lint` - check project using eslint and tslint;
+ `yarn build` - build your application.
 
-### `npm eslint` - check project using eslint;
+## Running Linters
 
-- --fix - boolean.
-  `Default:` none.
-  `Description:` Will fix all possible eslint issues.
+`yarn lint` - check project using eslint and tslint;
 
-### `npm tslint` - check project using tslint;
+`yarn eslint` - check project using eslint;
 
-### `npm test` - run all project tests;
+- `yarn eslint --fix` - fix all possible eslint issues;
 
-- --updateSnapshot
-  `Description:` Will update every snapshot that fails during this test run.
-- --watch
-  `Description:` Track changes and rerun tests related to changed files.
-- --coverage
-  `Description:` Collect code coverage.
+`yarn tslint` - check project using tslint.
 
-### `npm test:ci` - run all project tests and collect coverage;
+## Running Tests
 
-### `npm test:ci` - run all project tests and collect coverage;
+`yarn test` - run all project tests;
 
-> Note: You can use `yarn` instead of `npm`
+- `yarn test --updateSnapshot` - update every snapshot that fails during this test run;
+
+- `yarn test --watch` - watch for changes and re-run tests;
+
+- `yarn test --coverage` - collect code coverage by tests;
+
+`yarn test:ci` - run all project tests and collect coverage.
