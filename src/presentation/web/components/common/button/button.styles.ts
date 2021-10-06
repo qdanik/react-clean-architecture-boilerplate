@@ -12,8 +12,8 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   height: ${({ height = DEFAULT_HEIGHT }) => height};
   width: ${({ width = DEFAULT_WIDTH }) => width};
   padding: 4px 5px 0;
-  font-family: var(--fontActions);
-  font-size: 28px;
+  font-size: 20px;
+  font-weight: 600;
   text-transform: uppercase;
   border-radius: ${({ variant = ButtonVariants.Round }) => getBorderRadiusByVariant(variant)};
   transition: box-shadow 0.2s;
@@ -24,19 +24,19 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
     !isLoading &&
     css`
       &:hover {
-        box-shadow: var(--invertShadow);
+        box-shadow: lightgray;
       }
     `}
 
   ${({ disabled }) =>
     disabled
       ? css`
-          color: var(--gray2);
-          background-color: var(--gray5);
+          color: gray;
+          background-color: lightgray;
         `
       : css`
-          color: var(--defaultWhite);
-          background-color: var(--orange);
+          color: white;
+          background-color: orange;
         `}
 `;
 
@@ -49,5 +49,5 @@ export const LoaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--shadowColor);
+  background-color: lightgray;
 `;

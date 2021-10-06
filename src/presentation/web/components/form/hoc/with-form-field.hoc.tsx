@@ -9,20 +9,39 @@ export type FieldProps = {
   options?: RegisterOptions;
 };
 
-export type FormFieldProps<TValue> = FormFieldApi<TValue> & FormFieldState<TValue>;
+type FormFieldProps<TValue extends any = any> = {
+  field: {
+    api: FormFieldApi;
+    state: FormFieldState<TValue>;
+  };
+};
 
-export function withFormField<TProps extends FieldProps, TValue>(
-  WrappedComponent: FunctionComponent<TProps & FormFieldProps<TValue>>,
-): FunctionComponent<TProps> {
-  const WithFormField: FunctionComponent<TProps> = (props: TProps): ReactElement => {
+export type FormComponentProps<
+  Props extends FieldProps,
+  TValue extends any = any,
+> = Partial<Props> & FormFieldProps<TValue>;
+
+type GetComponentProps<TProps> = TProps extends FormComponentProps<infer Props>
+  ? Partial<Props>
+  : TProps;
+
+export function withFormField<WrappedProps extends FormComponentProps<FieldProps>, TValue>(
+  WrappedComponent: FunctionComponent<WrappedProps>,
+): FunctionComponent<GetComponentProps<WrappedProps>> {
+  const WithFormField: FunctionComponent<GetComponentProps<WrappedProps>> = (
+    props: GetComponentProps<WrappedProps>,
+  ): ReactElement => {
     const { name, options } = props;
     const [fieldState, fieldApi] = useFormField<TValue>(name, options);
-
-    return React.createElement(WrappedComponent, {
+    const elementProps = {
       ...props,
-      ...fieldState,
-      ...fieldApi,
-    });
+      field: {
+        api: fieldApi,
+        state: fieldState,
+      },
+    } as WrappedProps;
+
+    return React.createElement(WrappedComponent, elementProps);
   };
   WithFormField.displayName = `withFormField(${getDisplayName(WrappedComponent)})`;
 

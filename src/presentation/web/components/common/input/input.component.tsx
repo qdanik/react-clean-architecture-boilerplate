@@ -3,12 +3,18 @@ import { Wrapper, Label, StyledInput } from './input.styles';
 import { InputProps } from './input.typings';
 
 export const Input = (props: InputProps): React.ReactElement<InputProps> => {
-  const { label, value, onChange, placeholder, ...rest } = props;
+  const { label, value, onChange, placeholder, inputRef, ...rest } = props;
 
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <StyledInput onChange={onChange} value={value} placeholder={placeholder} {...rest} />
+      <StyledInput
+        onChange={onChange}
+        value={value || ''}
+        placeholder={placeholder}
+        ref={inputRef}
+        {...rest}
+      />
     </Wrapper>
   );
 };

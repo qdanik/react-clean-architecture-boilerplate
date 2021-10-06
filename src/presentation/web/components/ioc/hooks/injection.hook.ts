@@ -1,4 +1,4 @@
-import { ServiceIdentifier } from 'containers/core';
+import { ServiceIdentifier } from 'containers/config';
 import { useContainer } from './container.hook';
 
 export function useInjection<T>(identifier: ServiceIdentifier<T>): T {

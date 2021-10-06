@@ -1,4 +1,4 @@
-import { ServiceIdentifier } from 'containers/core';
+import { ServiceIdentifier } from 'containers/config';
 import { AuthToken } from '../entities/auth-token.entity';
 
 export const AuthRepoType: ServiceIdentifier<AuthRepository> = Symbol('AuthRepo');

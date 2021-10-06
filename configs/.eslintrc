@@ -102,6 +102,7 @@
     "prettier/prettier": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/member-delimiter-style": "error"
+    "@typescript-eslint/member-delimiter-style": "error",
+    "@typescript-eslint/array-type": "error"
   }
 }

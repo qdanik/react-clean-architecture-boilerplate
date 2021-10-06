@@ -1,5 +1,5 @@
 import type { Config } from '@jest/types';
-import globalOptions from '../vite/define';
+import {BuildDefine} from '../vite/define';
 
 type JestConfig = Partial<
   Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> & Config.GlobalConfig
@@ -32,7 +32,7 @@ const config: JestConfig = {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
     },
-    ...globalOptions,
+    ...BuildDefine,
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleNameMapper: {
