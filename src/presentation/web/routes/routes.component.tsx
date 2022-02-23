@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Logo from 'assets/images/logo.svg';
 import { Main } from './routes.styled';
 import { Route } from '../components';
-import { Auth } from '../modules/auth';
+import { AuthPage } from '../pages';
 
 export const Routes = (): React.ReactElement => {
   return (
@@ -14,7 +14,7 @@ export const Routes = (): React.ReactElement => {
           <Main>
             <Logo width="200px" height="200px" />
             <h1>Hello World</h1>
-            <Auth />
+            <AuthPage />
           </Main>
         </Route>
       </Switch>

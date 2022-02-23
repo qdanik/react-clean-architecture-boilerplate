@@ -1,13 +1,10 @@
 import React from 'react';
-import { AuthPresenterType } from 'presentation/presenters/auth';
-import { useInjection } from 'presentation/web/components';
 import { Form, Button, Input } from 'presentation/web/components/form';
+import { AuthProps } from './auth.typings';
 
-export function Auth(): React.ReactElement {
-  const authPresenter = useInjection(AuthPresenterType);
-
+export function Auth({ presenter }: AuthProps): React.ReactElement {
   return (
-    <Form entity={authPresenter.form}>
+    <Form entity={presenter.form}>
       <Input label="Login" name="login" />
       <Button>sign in</Button>
     </Form>

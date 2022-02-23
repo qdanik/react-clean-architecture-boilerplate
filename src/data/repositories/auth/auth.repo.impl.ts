@@ -1,7 +1,7 @@
 import { Injectable } from 'containers/config';
+import { AuthTokenDto } from 'data/dto/auth/auth-token.dto';
 import { AuthToken } from 'domain/auth/entities/auth-token.entity';
 import { AuthRepository } from 'domain/auth/repository/auth.repo';
-import { AuthTokenDto } from 'dto/auth/auth-token.dto';
 import { TokenResponse } from './token.response';
 
 @Injectable()

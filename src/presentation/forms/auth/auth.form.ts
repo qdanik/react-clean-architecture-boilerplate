@@ -6,8 +6,10 @@ import { AuthService, AuthServiceType } from 'domain/auth/services';
 import { ChangeForm } from '../base.form';
 import { BaseFormImpl } from '../base.form.impl';
 
+export type AuthFormSubmitResponse = Promise<AuthToken>;
+
 @Injectable()
-export class AuthForm extends BaseFormImpl<AuthFormFields> {
+export class AuthForm extends BaseFormImpl<AuthFormFields, AuthFormSubmitResponse> {
   constructor(@Inject(AuthServiceType) private readonly _authService: AuthService) {
     super();
   }
@@ -23,7 +25,7 @@ export class AuthForm extends BaseFormImpl<AuthFormFields> {
     });
   }
 
-  handleSubmit = (values: AuthFormFields): Promise<AuthToken> => {
+  handleSubmit = (values: AuthFormFields): AuthFormSubmitResponse => {
     return this._authService.login(values?.login, values?.password);
   };
 

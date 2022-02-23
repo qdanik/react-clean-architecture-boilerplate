@@ -4,7 +4,9 @@ import { Form, FormType } from 'core/form';
 import { BaseForm, ChangeForm } from './base.form';
 
 @Injectable()
-export abstract class BaseFormImpl<Fields> implements BaseForm<Fields> {
+export abstract class BaseFormImpl<Fields, SubmitResponse>
+  implements BaseForm<Fields, SubmitResponse>
+{
   @Inject(FormType) api: Form<Fields>;
 
   getInitialValues(): Fields {
@@ -19,7 +21,7 @@ export abstract class BaseFormImpl<Fields> implements BaseForm<Fields> {
     throw new Error(`Method onChange is not implemented!`);
   };
 
-  handleSubmit = (values?: Fields): any | Promise<any> => {
+  handleSubmit = (values?: Fields): SubmitResponse => {
     throw new Error('Method onSubmit is not implemented');
   };
 }

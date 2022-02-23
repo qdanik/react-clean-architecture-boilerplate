@@ -4,7 +4,7 @@ export type ChangeForm<Fields> = {
   fields?: Fields;
 };
 
-export interface BaseForm<Fields> {
+export interface BaseForm<Fields, SubmitResponse> {
   api: Form<Fields>;
 
   getInitialValues(): Fields;
@@ -13,5 +13,5 @@ export interface BaseForm<Fields> {
 
   handleChange(values?: Fields): ChangeForm<Fields>;
 
-  handleSubmit(values?: Fields): any | Promise<any>;
+  handleSubmit(values?: Fields): SubmitResponse;
 }
