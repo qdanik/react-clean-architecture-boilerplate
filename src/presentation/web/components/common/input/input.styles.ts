@@ -22,22 +22,22 @@ export const StyledInput = styled.input`
   max-height: 70px;
   padding: 15px;
   margin: 2px 0;
-  color: var(--gray);
+  color: black;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: 15px;
-  background-color: var(--gray3);
+  background-color: lightgray;
   border: 1px solid transparent;
   transition: border 0.2s;
   outline: none;
 
   &:focus {
-    border: 1px solid var(--orange) !important;
+    border: 1px solid orange !important;
   }
 
   &::-webkit-input-placeholder {
-    color: var(--placeholder);
+    color: gray;
     font-weight: 500;
   }
 `;

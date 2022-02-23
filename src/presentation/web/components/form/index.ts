@@ -1,2 +1,2 @@
-export { Form } from './form.component';
-export { Button as FormButton } from './components/button.component';
+export * from './form.component';
+export * from './components';

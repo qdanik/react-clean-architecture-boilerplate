@@ -34,18 +34,6 @@ export interface HttpResponse<T = any> {
   config: HttpRequestConfig;
 }
 
-export type HttpRejectInterceptor = {
-  (error: Error): Error;
-  <TError>(error: TError): TError;
-};
-
-export type HttpFulfilledInterceptor = {
-  <V>(value: V): V;
-  <V>(value: V): Promise<V>;
-};
-
-export type HttpInterceptorManager = {
-  (): number;
-  (onFulfilled: HttpFulfilledInterceptor): number;
-  (onFulfilled: HttpFulfilledInterceptor, onRejected: HttpRejectInterceptor): number;
-};
+export interface AbortPromise<T> extends Promise<T> {
+  abort?: () => void;
+}

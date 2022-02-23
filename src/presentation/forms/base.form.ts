@@ -1,13 +1,17 @@
-export type ChangeForm<Fields, Result = unknown> = {
-  fields?: Fields;
-} & Result;
+import { Form } from 'core/form';
 
-export interface BaseForm<Fields, SubmitResult = any, ChangeResult = unknown> {
+export type ChangeForm<Fields> = {
+  fields?: Fields;
+};
+
+export interface BaseForm<Fields> {
+  api: Form<Fields>;
+
   getInitialValues(): Fields;
 
-  getValidationSchema(): any;
+  validationSchema(): any;
 
-  onChange(values: Fields): ChangeForm<Fields, ChangeResult>;
+  handleChange(values?: Fields): ChangeForm<Fields>;
 
-  onSubmit(values: Fields): Promise<SubmitResult>;
+  handleSubmit(values?: Fields): any | Promise<any>;
 }

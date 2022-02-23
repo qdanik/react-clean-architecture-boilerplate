@@ -1,5 +1,5 @@
-import { Inject, Injectable } from 'containers/core';
-import { AuthRepoType } from 'data-access/auth';
+import { Inject, Injectable } from 'containers/config';
+import { AuthRepoType } from 'data/repositories/auth';
 import { AuthService } from './auth.service';
 import { AuthToken } from '../entities/auth-token.entity';
 import { AuthRepository } from '../repository/auth.repo';

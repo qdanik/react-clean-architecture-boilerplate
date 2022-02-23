@@ -1,5 +1,5 @@
 import { baseAdapters } from './base';
-import { Container } from './core';
+import { Container } from './config';
 
 export const containers = new Container({
   autoBindInjectable: true,

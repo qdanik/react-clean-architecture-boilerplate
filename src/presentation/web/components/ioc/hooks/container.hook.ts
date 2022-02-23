@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Container } from 'containers/core';
+import { Container } from 'containers/config';
 import { Context } from '../ioc.constants';
 
 export function useContainer(): Container {

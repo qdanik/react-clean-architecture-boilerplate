@@ -1,5 +1,8 @@
-import { ServiceIdentifier } from 'containers/core';
+import { ServiceIdentifier } from 'containers/config';
 import { Storage } from './storage';
 
-export const CookieStorageType: ServiceIdentifier<Storage> = Symbol('CookieStorage');
-export const LocalStorageType: ServiceIdentifier<Storage> = Symbol('LocalStorage');
+export const StorageType: ServiceIdentifier<Storage> = Symbol('Storage');
+
+export const CookieStorageName = Symbol('CookieStorage');
+export const LocalStorageName = Symbol('LocalStorage');
+export const SessionStorageName = Symbol('SessionStorage');
