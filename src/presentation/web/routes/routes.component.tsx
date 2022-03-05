@@ -1,23 +1,27 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Routes, BrowserRouter as Router } from 'react-router-dom';
 import Logo from 'assets/images/logo.svg';
 import { Main } from './routes.styled';
 import { Route } from '../components';
+import { withI18n, useTranslation } from '../components/i18n';
 import { AuthPage } from '../pages';
 
-export const Routes = (): React.ReactElement => {
+const RoutesComponent = (): React.ReactElement => {
+  const { t } = useTranslation();
+
   return (
     <Router>
-      <Switch>
+      <Routes>
         <Route path="/">
           <Main>
             <Logo width="200px" height="200px" />
-            <h1>Hello World</h1>
+            <h1>{t('default:welcome')}</h1>
             <AuthPage />
           </Main>
         </Route>
-      </Switch>
+      </Routes>
     </Router>
   );
 };
+
+export const AppRoutes = withI18n(RoutesComponent);

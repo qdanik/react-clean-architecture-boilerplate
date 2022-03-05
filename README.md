@@ -50,7 +50,7 @@ Layered Architecture for developing web/mobile/desktop applications using JavaSc
   - [ViteJs](https://vitejs.dev/)
 
 ## System Requirements
-- [Node.js 14+](https://nodejs.org/en/download/)
+- [Node.js 16+](https://nodejs.org/en/download/)
 - [yarn](https://yarnpkg.com/en)
 
 ## Contributing

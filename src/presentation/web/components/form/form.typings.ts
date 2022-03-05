@@ -16,7 +16,7 @@ type FormChildren<TFieldValues> =
   | { (formApi: UseFormReturn<TFieldValues>): ReactNode | ReactNode[] };
 
 export type FormProps<TFieldValues> = {
-  entity: BaseForm<TFieldValues>;
+  entity: BaseForm<TFieldValues, any>;
   children: FormChildren<TFieldValues>;
 };
 
