@@ -5,15 +5,14 @@
 .env
 .env*.local
 .history
-.vscode
 
 # husky
-.husky/_
-.husky/.gitignore
+configs/husky/_
+configs/husky/.gitignore
 
-/dist
-/coverage
-/node_modules
+dist
+coverage
+node_modules
 
 package-lock.json
 yarn-error.log
