@@ -1,6 +1,6 @@
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
 import viteCompression from 'vite-plugin-compression';
-import reactSvgPlugin from 'vite-plugin-react-svg';
+import reactSvgPlugin from './plugins/react-svg';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react'
 
@@ -12,15 +12,13 @@ const BasePlugins = [
   reactSvgPlugin({
     defaultExport: 'component',
     expandProps: 'end',
-    memo: false,
-    ref: false,
+    memo: true,
+    ref: true,
     replaceAttrValues: null,
     svgProps: null,
     svgo: true,
     svgoConfig: {
-      plugins: {
-        removeViewBox: false,
-      },
+      removeViewBox: false,
     },
     titleProp: false,
   }),

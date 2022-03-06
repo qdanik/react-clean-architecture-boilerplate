@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { FunctionComponent, ReactElement } from 'react';
-import DotsLoader from 'assets/images/dots-loader.svg';
+// import DotsLoader from 'assets/images/dots-loader.svg';
 import { getDisplayName } from 'presentation/web/hoc/hoc.helpers';
 import { useTranslation } from './i18n.hook';
 
@@ -9,7 +9,7 @@ export function withI18n<T>(WrappedComponent: FunctionComponent<T>): FunctionCom
     const { adapter } = useTranslation();
 
     if (adapter.isLoading()) {
-      return <DotsLoader fill="#ff9922" />;
+      return null;
     }
 
     return (

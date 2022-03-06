@@ -1,6 +1,6 @@
 import isFunction from 'lodash/isFunction';
 import React, { useCallback } from 'react';
-import DotsLoader from 'assets/images/dots-loader.svg';
+// import DotsLoader from 'assets/images/dots-loader.svg';
 import { ButtonWrapper, LoaderWrapper } from './button.styles';
 import { ButtonProps } from './button.typings';
 
@@ -17,11 +17,7 @@ export function Button(props: ButtonProps): React.ReactElement {
 
   return (
     <ButtonWrapper {...rest} disabled={disabled} isLoading={loading} onClick={handleClick}>
-      {loading && (
-        <LoaderWrapper>
-          <DotsLoader />
-        </LoaderWrapper>
-      )}
+      {loading && <LoaderWrapper>{/* <DotsLoader /> */}</LoaderWrapper>}
       {children}
     </ButtonWrapper>
   );

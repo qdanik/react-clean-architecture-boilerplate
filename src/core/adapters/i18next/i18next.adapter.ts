@@ -11,7 +11,7 @@ export class I18nextAdapter implements I18n<i18next> {
 
   @observable private _loading = true;
 
-  @observable private _changeLanguage = false;
+  @observable private _language: I18nLanguages = I18nLanguages.en;
 
   constructor() {
     makeAutoObservable(this);
@@ -22,8 +22,10 @@ export class I18nextAdapter implements I18n<i18next> {
     this._loading = value;
   };
 
-  @action private _setChangeLanguage = (value: boolean): void => {
-    this._changeLanguage = value;
+  @action private _setLanguage = async (value: I18nLanguages): Promise<void> => {
+    await this._instance.changeLanguage(value);
+    await this._instance.reloadResources();
+    this._language = value;
   };
 
   private initialize = async (): Promise<void> => {
@@ -84,29 +86,23 @@ export class I18nextAdapter implements I18n<i18next> {
     return this._loading;
   };
 
-  @computed isChanged = (): boolean => {
-    return this._changeLanguage;
-  };
-
   getInstance = (): i18next => {
     return this._instance;
   };
 
-  getLanguage = (): I18nLanguages => {
-    return this._instance.language as I18nLanguages;
+  @computed getLanguage = (): I18nLanguages => {
+    return this._language || (this._instance.language as I18nLanguages);
   };
 
   changeLanguage = async (language: I18nLanguages): Promise<boolean> => {
     try {
-      this._setChangeLanguage(true);
-      await this._instance.changeLanguage(language);
-      await this._instance.reloadResources();
+      await this._setLanguage(language);
 
       return true;
     } catch (error) {
+      await this._setLanguage(I18nLanguages.en);
+
       return false;
-    } finally {
-      this._setChangeLanguage(false);
     }
   };
 }
