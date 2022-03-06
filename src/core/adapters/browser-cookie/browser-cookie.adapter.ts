@@ -3,16 +3,16 @@ import { Injectable } from 'containers/config';
 import { Storage } from 'core/storage';
 import { COOKIE_REGEX } from './browser-cookie.constants';
 import { correctKey } from './browser-cookie.helpers';
-import { CookieOptions, CookieSetOptions } from './browser-cookie.typings';
+import { CookieOptions } from './browser-cookie.typings';
 
 @Injectable()
 export class BrowserCookieAdapter implements Storage {
   get cookie(): string {
-    return document.cookie;
+    return window.document.cookie;
   }
 
   set cookie(value: string) {
-    document.cookie = value;
+    window.document.cookie = value;
   }
 
   get(key: string): string {
@@ -25,6 +25,7 @@ export class BrowserCookieAdapter implements Storage {
 
   remove(key: string): this {
     this.set(key, '', {
+      expires: null,
       maxAge: -1,
     });
 
@@ -32,14 +33,6 @@ export class BrowserCookieAdapter implements Storage {
   }
 
   set(key: string, value: string, options = {} as CookieOptions): void {
-    const nextOptions: CookieSetOptions = {
-      path: '/',
-    };
-
-    if (options.expires instanceof Date) {
-      nextOptions.expires = options.expires.toUTCString();
-    }
-
     const cookieKeyValue = this._getKeyValue(key, value);
     const cookieOptions = this._convertOptions(options);
 
@@ -48,12 +41,19 @@ export class BrowserCookieAdapter implements Storage {
 
   private _convertOptions(options: CookieOptions): string {
     return reduce(
-      options,
+      {
+        path: '/',
+        ...options,
+      },
       (acc, value, key) => {
         const prepend = `${acc}; ${correctKey(key)}`;
 
-        if (value instanceof Boolean) {
+        if (value === true) {
           return prepend;
+        }
+
+        if (value instanceof Date) {
+          return `${prepend}=${value.toUTCString()}`;
         }
 
         return `${prepend}=${value}`;

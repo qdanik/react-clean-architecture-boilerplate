@@ -1,5 +1,5 @@
-export namespace TokenResponse {
-  export interface Data {
+export namespace AuthResponse {
+  export interface Login {
     access_token: string;
     token_type: string;
     refresh_token: string;

@@ -3,7 +3,7 @@ import { InjectNamed, Injectable, PostConstruct } from 'containers/config';
 import { AxiosAdapter } from 'core/adapters';
 import { HttpTokenTypes } from 'core/http';
 import { Storage, StorageType, LocalStorageName } from 'core/storage';
-import { AUTH_TOKENS } from 'domain/auth/auth.typings';
+import { AUTH_TOKENS } from 'domain/auth';
 
 type AxiosRequestHeaders = AxiosRequestConfig['headers'];
 

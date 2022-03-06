@@ -1,3 +1,1 @@
-import { containers } from './containers';
-
-export const AppContainer = containers;
+export { container as AppContainer } from './containers';

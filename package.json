@@ -5,7 +5,7 @@
     "email": "qdanik@yandex.ru",
     "url": "https://vk.com/qdanik"
   },
-  "version": "2.1.0",
+  "version": "2.2.0",
   "main": "src/presentation/web/index.tsx",
   "scripts": {
     "vite": "vite --config ./configs/vite/config.ts",
@@ -35,6 +35,7 @@
     "mobx-react": "7.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "7.27.1",
     "react-router": "6.2.2",
     "react-router-dom": "6.2.2",

@@ -1,7 +1,8 @@
+import { TFunction } from 'i18next';
 import { Inject, Injectable } from 'containers/config';
-import { AuthFormFields } from 'domain/auth/entities/auth-form-fields.entity';
-import { AuthFormType } from 'presentation/forms/auth';
-import { AuthFormSubmitResponse } from 'presentation/forms/auth/auth.form';
+import { I18n, I18nType } from 'core/i18n';
+import { AuthFormFields } from 'domain/auth';
+import { AuthFormType, AuthFormSubmitResponse } from 'presentation/forms/auth';
 import { BaseForm } from 'presentation/forms/base.form';
 import { AuthPresenter } from './auth.presenter';
 
@@ -9,9 +10,14 @@ import { AuthPresenter } from './auth.presenter';
 export class AuthPresenterImpl implements AuthPresenter {
   constructor(
     @Inject(AuthFormType) private readonly _form: BaseForm<AuthFormFields, AuthFormSubmitResponse>,
+    @Inject(I18nType) private readonly _i18n: I18n,
   ) {}
 
   public get form(): BaseForm<AuthFormFields, AuthFormSubmitResponse> {
     return this._form;
+  }
+
+  public get t(): TFunction {
+    return this._i18n.getInstance().t;
   }
 }

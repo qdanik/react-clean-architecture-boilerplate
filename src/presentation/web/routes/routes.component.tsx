@@ -2,7 +2,8 @@ import React from 'react';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Logo from 'assets/images/logo.svg';
 import { Main } from './routes.styled';
-import { withI18n, useTranslation } from '../components/i18n';
+import { useTranslation } from '../components/i18n';
+import { withI18n } from '../hoc';
 import { AuthPage } from '../pages';
 
 const RoutesComponent = (): React.ReactElement => {

@@ -1,11 +1,11 @@
 import languageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
-import { injectable } from 'inversify';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
+import { Injectable } from 'containers/config';
 import { I18n, I18nLanguages, i18nNamespaces } from 'core/i18n';
 import i18nextInstance, { i18n as i18next, ReadCallback } from 'i18next';
 
-@injectable()
+@Injectable()
 export class I18nextAdapter implements I18n<i18next> {
   private _instance: i18next = i18nextInstance;
 
@@ -82,12 +82,12 @@ export class I18nextAdapter implements I18n<i18next> {
     return this._instance.isInitialized;
   };
 
-  @computed isLoading = (): boolean => {
-    return this._loading;
-  };
-
   getInstance = (): i18next => {
     return this._instance;
+  };
+
+  @computed isLoading = (): boolean => {
+    return this._loading;
   };
 
   @computed getLanguage = (): I18nLanguages => {

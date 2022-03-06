@@ -9,12 +9,15 @@ type JestConfig = Partial<
   transform: Record<string, string>;
 };
 
+process.env.TZ = 'UTC'
+
 const config: JestConfig = {
-  collectCoverageFrom: ['<rootDir>/src/{domain,data-access,core}/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/{domain,data,presentation,core}/**/*.ts'],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules',
     '<rootDir>/configs',
+    '<rootDir>/assets',
     '<rootDir>/src/presentation/web/index.tsx',
     '<rootDir>/src/presentation/web/app.component.tsx',
     '.d.ts',
@@ -31,6 +34,11 @@ const config: JestConfig = {
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
+    },
+    window: {
+      document: {
+        cookie: ''
+      }
     },
     ...BuildDefine,
   },

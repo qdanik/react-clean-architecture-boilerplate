@@ -10,13 +10,18 @@ import {
   SessionStorageAdapter,
   ReactHookFormAdapter,
   I18nextAdapter,
+  WebLoggerAdapter,
 } from 'core/adapters';
 import { FormType } from 'core/form';
 import { HttpClientAdapterType, HttpClientType } from 'core/http';
 import { I18nType } from 'core/i18n';
+import { LoggerType } from 'core/logger';
+import { MobxStoreImpl, MobxStoreType } from 'core/mobx-store';
 import { StorageType, CookieStorageName, LocalStorageName, SessionStorageName } from 'core/storage';
 
-export const baseAdapters = new ContainerModule(bind => {
+export const coreModules = new ContainerModule(bind => {
+  bind(LoggerType).to(WebLoggerAdapter);
+  bind(MobxStoreType).to(MobxStoreImpl).inSingletonScope();
   bind(StorageType).to(BrowserCookieAdapter).whenTargetNamed(CookieStorageName);
   bind(StorageType).to(LocalStorageAdapter).whenTargetNamed(LocalStorageName);
   bind(StorageType).to(SessionStorageAdapter).whenTargetNamed(SessionStorageName);

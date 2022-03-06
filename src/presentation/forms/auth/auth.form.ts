@@ -1,8 +1,6 @@
 import * as yup from 'yup';
 import { Inject, Injectable } from 'containers/config';
-import { AuthFormFields } from 'domain/auth/entities/auth-form-fields.entity';
-import { AuthToken } from 'domain/auth/entities/auth-token.entity';
-import { AuthService, AuthServiceType } from 'domain/auth/services';
+import { AuthFormFields, AuthService, AuthServiceType, AuthToken } from 'domain/auth';
 import { ChangeForm } from '../base.form';
 import { BaseFormImpl } from '../base.form.impl';
 

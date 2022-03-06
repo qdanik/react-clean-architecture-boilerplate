@@ -12,5 +12,3 @@ export type CookieOptions<ExpireType = Date> = Partial<{
   secure: boolean;
   httpOnly: boolean;
 }>;
-
-export type CookieSetOptions = CookieOptions<string>;

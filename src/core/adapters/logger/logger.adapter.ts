@@ -20,12 +20,14 @@ export class WebLoggerAdapter implements Logger {
     console.warn(...args);
   }
 
-  info(...args: any[]): void {
+  info(module: string, ...args: any[]): void {
     if (!DEV) {
       return;
     }
 
+    console.group(`[${module}]`);
     console.log(...args);
+    console.groupEnd();
   }
 
   debug(...args: any[]): void {

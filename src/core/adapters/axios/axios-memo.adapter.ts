@@ -1,4 +1,4 @@
-import { AxiosAdapter, AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import { Inject, Injectable, Named } from 'containers/config';
 import { AbortPromise, HttpClientAdapter, HttpClientAdapterType } from 'core/http';
 import { AxiosAbortName } from './axios-abort.adapter';
@@ -24,18 +24,26 @@ export class AxiosMemoAdapter implements HttpClientAdapter<AxiosRequestConfig> {
     });
   }
 
-  execute: AxiosAdapter = (config: AxiosRequestConfig): AbortPromise<any> => {
+  execute = (config: AxiosRequestConfig): AbortPromise<any> => {
     const key = AxiosMemoAdapter.getKey(config);
     try {
-      if (!this._requests.has(key)) {
-        this._requests.set(key, this._abortAdapter.execute(config));
+      const execute = () => this._abortAdapter.execute(config);
+
+      if (config.headers?.cached) {
+        if (!this._requests.has(key)) {
+          this._requests.set(key, execute());
+        }
+
+        return this._requests.get(key);
       }
 
-      return this._requests.get(key);
+      if (this._requests.has(key)) {
+        this._requests.delete(key);
+      }
+
+      return execute();
     } catch (e) {
       return Promise.reject(e);
-    } finally {
-      this._requests.delete(key);
     }
   };
 }

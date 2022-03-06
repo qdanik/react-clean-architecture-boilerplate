@@ -1,4 +1,4 @@
-import { AuthPresenter } from 'presentation/presenters/auth/auth.presenter';
+import { AuthPresenter } from 'presentation/presenters/auth';
 
 export interface AuthProps {
   presenter: AuthPresenter;

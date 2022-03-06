@@ -1,8 +1,8 @@
-import { baseAdapters } from './base';
 import { Container } from './config';
+import { coreModules } from './core';
 
-export const containers = new Container({
+export const container = new Container({
   autoBindInjectable: true,
 });
 
-containers.load(baseAdapters);
+container.load(coreModules);
