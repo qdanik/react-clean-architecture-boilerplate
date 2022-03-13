@@ -12,7 +12,7 @@ type JestConfig = Partial<
 process.env.TZ = 'UTC'
 
 const config: JestConfig = {
-  collectCoverageFrom: ['<rootDir>/src/{domain,data,presentation,core}/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/{domain,data,core}/**/*.ts'],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules',
@@ -22,6 +22,7 @@ const config: JestConfig = {
     '<rootDir>/src/presentation/web/app.component.tsx',
     '.d.ts',
     '.mock.ts',
+    'index.ts',
   ],
   coverageThreshold: {
     global: {
@@ -35,12 +36,8 @@ const config: JestConfig = {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
     },
-    window: {
-      document: {
-        cookie: ''
-      }
-    },
     ...BuildDefine,
+    UI_VERSION: '0.0.123'
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleNameMapper: {
