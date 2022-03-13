@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['14.x']
+        node-version: ['16.x']
     steps:
       - uses: actions/checkout@v1
       - name: Setting up Node.js (v${{ matrix.node-version }}.x)
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['14.x']
+        node-version: ['16.x']
       fail-fast: false
     steps:
       - uses: actions/checkout@v1
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['14.x']
+        node-version: ['16.x']
     steps:
       - uses: actions/checkout@v1
       - name: Setting up Node.js (v${{ matrix.node-version }}.x)
