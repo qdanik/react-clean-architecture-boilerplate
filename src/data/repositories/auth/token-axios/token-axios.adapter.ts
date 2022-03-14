@@ -3,7 +3,7 @@ import { InjectNamed, Injectable, PostConstruct } from 'containers/config';
 import { AxiosAdapter } from 'core/adapters';
 import { HttpTokenTypes } from 'core/http';
 import { Storage, StorageType, LocalStorageName } from 'core/storage';
-import { AUTH_TOKENS } from 'domain/auth';
+import { AuthTokens } from 'domain/auth';
 
 type AxiosRequestHeaders = AxiosRequestConfig['headers'];
 
@@ -24,7 +24,7 @@ export class TokenAxiosAdapter extends AxiosAdapter {
   }
 
   private _getHeaders(headers: AxiosRequestHeaders = {}): AxiosRequestHeaders {
-    const accessToken = this._storage.get(AUTH_TOKENS.ACCESS);
+    const accessToken = this._storage.get(AuthTokens.ACCESS);
 
     if (!accessToken) {
       throw new Error('Access token not found!');

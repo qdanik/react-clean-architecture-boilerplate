@@ -2,8 +2,8 @@ import languageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
 import { Injectable } from 'containers/config';
-import { I18n, I18nLanguages, i18nNamespaces } from 'core/i18n';
-import i18nextInstance, { i18n as i18next, ReadCallback } from 'i18next';
+import { I18n, I18nLanguages, I18nNamespaces } from 'core/i18n';
+import i18nextInstance, { i18n as i18next, ReadCallback, ResourceKey } from 'i18next';
 
 @Injectable()
 export class I18nextAdapter implements I18n<i18next> {
@@ -28,54 +28,47 @@ export class I18nextAdapter implements I18n<i18next> {
     this._language = value;
   };
 
-  private initialize = async (): Promise<void> => {
-    try {
-      this._setLoading(true);
-      await this._instance
-        .use(resourcesToBackend(this._loadResources))
-        .use(languageDetector)
-        .init({
-          appendNamespaceToMissingKey: true,
-          cleanCode: true,
-          contextSeparator: '_',
-          debug: DEV,
-          defaultNS: i18nNamespaces.common,
-          fallbackLng: I18nLanguages.en,
-          fallbackNS: i18nNamespaces.default,
-          initImmediate: true,
-          keySeparator: '.',
-          lng: I18nLanguages.en,
-          missingKeyNoValueFallbackToKey: true,
-          ns: Object.values(i18nNamespaces),
-          nsSeparator: ':',
-          pluralSeparator: '_',
-          preload: [I18nLanguages.en],
-          resources: {},
-          saveMissing: true,
-          simplifyPluralSuffix: true,
-          supportedLngs: Object.values(I18nLanguages),
-        });
-      await this._instance.reloadResources();
-    } catch (error) {
-      return Promise.reject(error);
-    } finally {
-      this._setLoading(false);
-    }
+  private initialize = (): void => {
+    this._setLoading(true);
+    this._instance
+      .use(resourcesToBackend(this._loadResources))
+      .use(languageDetector)
+      .init({
+        appendNamespaceToMissingKey: true,
+        cleanCode: true,
+        contextSeparator: '_',
+        debug: DEV,
+        defaultNS: I18nNamespaces.common,
+        fallbackLng: I18nLanguages.en,
+        fallbackNS: I18nNamespaces.default,
+        initImmediate: true,
+        keySeparator: '.',
+        lng: I18nLanguages.en,
+        missingKeyNoValueFallbackToKey: true,
+        ns: Object.values(I18nNamespaces),
+        nsSeparator: ':',
+        pluralSeparator: '_',
+        preload: [I18nLanguages.en],
+        resources: {},
+        saveMissing: true,
+        simplifyPluralSuffix: true,
+        supportedLngs: Object.values(I18nLanguages),
+      })
+      .then(() => this._instance.reloadResources())
+      .catch((error: Error) => Promise.reject(error))
+      .finally(() => {
+        this._setLoading(false);
+      });
   };
 
-  private _loadResources = async (
-    language: string,
-    namespace: string,
-    callback: ReadCallback,
-  ): Promise<void> => {
-    try {
-      const resources = await import(`../../../../assets/locales/${language}/${namespace}.json`);
-      callback(null, resources);
-    } catch (error) {
-      callback(error, null);
-
-      return Promise.reject(error);
-    }
+  private _loadResources = (language: string, namespace: string, callback: ReadCallback): void => {
+    import(`../../../../assets/locales/${language}/${namespace}.json`)
+      .then((resources: ResourceKey) => {
+        callback(null, resources);
+      })
+      .catch((error: Error) => {
+        callback(error, null);
+      });
   };
 
   isInitialized = (): boolean => {

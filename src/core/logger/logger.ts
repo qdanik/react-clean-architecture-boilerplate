@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface Logger {
-  error(...args: any[]): void;
-  warn(...args: any[]): void;
-  info(module: string, ...args: any[]): void;
-  debug(...args: any[]): void;
-  trace(...args: any[]): void;
+  error<Args extends any[]>(...args: Args): void;
+  warn<Args extends any[]>(...args: Args): void;
+  info<Args extends any[]>(module: string, ...args: Args): void;
+  debug<Args extends any[]>(...args: Args): void;
+  trace<Args extends any[]>(...args: Args): void;
 }

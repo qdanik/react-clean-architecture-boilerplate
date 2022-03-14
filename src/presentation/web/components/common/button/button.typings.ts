@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum ButtonVariants {
   Round = 'round',
   HalfRound = 'halfRound',
@@ -20,7 +22,7 @@ export enum ButtonType {
 }
 
 export interface ButtonProps extends Omit<ButtonWrapperProps, 'isLoading'> {
-  children: any;
+  children: React.ReactNode;
   type?: ButtonType;
   loading?: boolean;
 }

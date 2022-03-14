@@ -6,38 +6,40 @@ import { DEFAULT_NOTIFICATION_DELAY, NotificationType } from '../notification.ty
 
 @Injectable()
 export class NotificationServiceImpl implements NotificationService {
-  constructor(@Inject(NotificationDaoType) private readonly _notifications: NotificationDao) {}
+  constructor(@Inject(NotificationDaoType) private readonly notifications: NotificationDao) {}
 
-  private _closeWithDelay(entity: Notification, duration: number = DEFAULT_NOTIFICATION_DELAY) {
-    setTimeout(this.close, duration, entity);
+  #closeWithDelay(entity: Notification, duration: number = DEFAULT_NOTIFICATION_DELAY) {
+    setTimeout(() => {
+      this.close(entity);
+    }, duration);
   }
 
-  private _add(entity: Notification, type: NotificationType): Notification {
+  #add(entity: Notification, type: NotificationType): Notification {
     const notification = entity.setType(type);
 
-    this._notifications.save(notification);
-    this._closeWithDelay(notification);
+    this.notifications.save(notification);
+    this.#closeWithDelay(notification);
 
     return notification;
   }
 
   success(entity: Notification): Notification {
-    return this._add(entity, NotificationType.Success);
+    return this.#add(entity, NotificationType.Success);
   }
 
   error(entity: Notification): Notification {
-    return this._add(entity, NotificationType.Error);
+    return this.#add(entity, NotificationType.Error);
   }
 
   warn(entity: Notification): Notification {
-    return this._add(entity, NotificationType.Warn);
+    return this.#add(entity, NotificationType.Warn);
   }
 
   info(entity: Notification): Notification {
-    return this._add(entity, NotificationType.Info);
+    return this.#add(entity, NotificationType.Info);
   }
 
   close(entity: Notification): void {
-    this._notifications.remove(entity);
+    this.notifications.remove(entity);
   }
 }

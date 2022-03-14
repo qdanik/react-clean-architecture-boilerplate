@@ -13,8 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
+      - run: npm install --frozen-lockfile
+      - run: npm run lint
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -28,8 +28,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn test:ci
+      - run: npm install --frozen-lockfile
+      - run: npm run test:ci
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -42,5 +42,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
+      - run: npm install --frozen-lockfile
+      - run: npm run build

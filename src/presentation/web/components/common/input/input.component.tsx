@@ -2,7 +2,7 @@ import React from 'react';
 import { Wrapper, Label, StyledInput } from './input.styles';
 import { InputProps } from './input.typings';
 
-export const Input = (props: InputProps): React.ReactElement<InputProps> => {
+export function Input(props: InputProps): React.ReactElement<InputProps> {
   const { label, value, onChange, placeholder, inputRef, ...rest } = props;
 
   return (
@@ -17,4 +17,4 @@ export const Input = (props: InputProps): React.ReactElement<InputProps> => {
       />
     </Wrapper>
   );
-};
+}

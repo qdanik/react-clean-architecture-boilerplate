@@ -40,7 +40,7 @@ describe('AxiosAbortAdapters', () => {
       params: { pages: 2 },
       url: 'example.com',
     };
-    const response: AbortPromise<any> = axiosAbortAdapter.execute(config);
+    const response: AbortPromise<unknown> = axiosAbortAdapter.execute(config);
     expect(response?.abort).toBeInstanceOf(Function);
     response.abort();
     expect(spyAbortController).toHaveBeenCalled();

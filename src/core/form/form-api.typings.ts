@@ -1,6 +1,7 @@
 import { PropertyPath, PropertyPathValue, GetNestedValue } from 'typings';
 
-export type FormApiErrors = Record<string, string>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type FormApiErrors = Record<string, any>;
 
 export type FormValue<
   ReturnValue,

@@ -6,7 +6,7 @@ import { useTranslation } from '../components/i18n';
 import { withI18n } from '../hoc';
 import { AuthPage } from '../pages';
 
-const RoutesComponent = (): React.ReactElement => {
+function RoutesComponent(): React.ReactElement {
   const { t } = useTranslation();
 
   return (
@@ -25,6 +25,6 @@ const RoutesComponent = (): React.ReactElement => {
       </Routes>
     </BrowserRouter>
   );
-};
+}
 
 export const AppRoutes = withI18n(RoutesComponent);

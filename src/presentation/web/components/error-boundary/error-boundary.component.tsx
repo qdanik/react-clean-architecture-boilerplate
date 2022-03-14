@@ -4,7 +4,7 @@ import { ErrorBoundaryProps, ErrorBoundaryState } from './error-boundary.typings
 import { useInjection } from '../ioc';
 
 class ErrorBoundaryComponent extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props) {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }

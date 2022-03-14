@@ -6,7 +6,7 @@ export type NestedValue<TValue extends PropertyValues = PropertyValues> = {
 
 export type GetNestedValue<T> = T extends NestedValue<infer U>
   ? U
-  : T extends readonly any[] | Record<any, unknown>
+  : T extends readonly unknown[] | Record<string, unknown>
   ? {
       [K in keyof T]: GetNestedValue<T[K]>;
     }
@@ -14,8 +14,8 @@ export type GetNestedValue<T> = T extends NestedValue<infer U>
 
 export type Primitive = null | undefined | string | number | boolean | symbol | bigint;
 
-export type IsTuple<T extends readonly any[]> = number extends T['length'] ? false : true;
-export type TupleKey<T extends readonly any[]> = Exclude<keyof T, keyof any[]>;
+export type IsTuple<T extends readonly unknown[]> = number extends T['length'] ? false : true;
+export type TupleKey<T extends readonly unknown[]> = Exclude<keyof T, keyof unknown[]>;
 export type ArrayKey = number;
 
 export type PathImpl<K extends string | number, V> = V extends Primitive
@@ -49,11 +49,12 @@ export type ArrayPath<T> = T extends readonly (infer V)[]
       [K in keyof T]-?: ArrayPathImpl<K & string, T[K]>;
     }[keyof T];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PropertyValues = Record<string, any>;
 
 export type PropertyPath<TPropertyValues extends PropertyValues> = Path<TPropertyValues>;
 
-export type PathValue<T, P extends Path<T> | ArrayPath<T>> = T extends any
+export type PathValue<T, P extends Path<T> | ArrayPath<T>> = T extends unknown
   ? P extends `${infer K}.${infer R}`
     ? K extends keyof T
       ? R extends Path<T[K]>

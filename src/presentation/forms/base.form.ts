@@ -1,17 +1,17 @@
 import { Form } from 'core/form';
 
-export type ChangeForm<Fields> = {
-  fields?: Fields;
+export type ChangeForm<Values> = {
+  fields?: Values;
 };
 
-export interface BaseForm<Fields, SubmitResponse> {
-  api: Form<Fields>;
+export interface BaseForm<Values, SubmitResponse, ValidationSchema = unknown> {
+  api: Form<Values>;
 
-  getInitialValues(): Fields;
+  getInitialValues(): Values;
 
-  validationSchema(): any;
+  validationSchema(): ValidationSchema;
 
-  handleChange(values?: Fields): ChangeForm<Fields>;
+  handleChange(values?: Values): ChangeForm<Values>;
 
-  handleSubmit(values?: Fields): SubmitResponse;
+  handleSubmit(values?: Values): SubmitResponse;
 }

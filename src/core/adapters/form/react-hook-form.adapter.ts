@@ -5,7 +5,7 @@ import { FormApiErrors, FormValue } from 'core/form/form-api.typings';
 import { PropertyPath } from 'typings';
 
 @Injectable()
-export class ReactHookFormAdapter<Values extends any, Context extends UseFormReturn<Values>>
+export class ReactHookFormAdapter<Values, Context extends UseFormReturn<Values>>
   implements Form<Values, Context>
 {
   context: Context;

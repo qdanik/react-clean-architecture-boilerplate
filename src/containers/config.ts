@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable max-classes-per-file */
 import * as inversify from 'inversify';
 import type { interfaces } from 'inversify';
 import { ServiceIdentifierOrFunc } from 'inversify/lib/annotation/lazy_service_identifier';
@@ -19,7 +19,7 @@ export const PostConstruct = inversify.postConstruct;
 
 export const InjectNamed =
   <T>(serviceIdentifier: ServiceIdentifierOrFunc<T>, name: string | number | symbol) =>
-  (target: any, targetKey: string, index?: number): void => {
+  <Target>(target: Target, targetKey: string, index?: number): void => {
     Inject(serviceIdentifier)(target, targetKey, index);
     Named(name)(target, targetKey, index);
   };

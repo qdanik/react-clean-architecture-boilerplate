@@ -9,10 +9,10 @@ export interface ContainerContext {
 
 export interface IoCProps {
   container: Container;
-  children: React.ReactElement<any> | React.ReactElement<any>[];
+  children: React.ReactNode | React.ReactNode[];
 }
 
 export interface InjectContainersProps {
   containers: ContainerModule[];
-  children: React.ReactElement<any> | React.ReactElement<any>[];
+  children: React.ReactNode | React.ReactNode[];
 }

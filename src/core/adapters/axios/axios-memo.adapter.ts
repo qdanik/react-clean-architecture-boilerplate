@@ -1,21 +1,25 @@
-import { AxiosRequestConfig } from 'axios';
 import { Inject, Injectable, Named } from 'containers/config';
-import { AbortPromise, HttpClientAdapter, HttpClientAdapterType } from 'core/http';
+import {
+  AbortPromise,
+  HttpClientAdapter,
+  HttpClientAdapterType,
+  HttpRequestConfig,
+} from 'core/http';
 import { AxiosAbortName } from './axios-abort.adapter';
 
 export const AxiosMemoName = Symbol('AxiosMemo');
 
 @Injectable()
-export class AxiosMemoAdapter implements HttpClientAdapter<AxiosRequestConfig> {
-  private _requests = new Map<string, Promise<any>>();
+export class AxiosMemoAdapter implements HttpClientAdapter<HttpRequestConfig> {
+  private _requests = new Map<string, Promise<unknown>>();
 
   constructor(
     @Inject(HttpClientAdapterType)
     @Named(AxiosAbortName)
-    private readonly _abortAdapter: HttpClientAdapter<AxiosRequestConfig>,
+    private readonly _abortAdapter: HttpClientAdapter<HttpRequestConfig>,
   ) {}
 
-  static getKey(config: AxiosRequestConfig): string {
+  static getKey(config: HttpRequestConfig): string {
     return JSON.stringify({
       data: config?.data,
       method: config?.method,
@@ -24,17 +28,17 @@ export class AxiosMemoAdapter implements HttpClientAdapter<AxiosRequestConfig> {
     });
   }
 
-  execute = (config: AxiosRequestConfig): AbortPromise<any> => {
+  execute = <T>(config: HttpRequestConfig): AbortPromise<T> => {
     const key = AxiosMemoAdapter.getKey(config);
     try {
-      const execute = () => this._abortAdapter.execute(config);
+      const execute = () => this._abortAdapter.execute<T>(config);
 
       if (config.headers?.cached) {
         if (!this._requests.has(key)) {
           this._requests.set(key, execute());
         }
 
-        return this._requests.get(key);
+        return this._requests.get(key) as AbortPromise<T>;
       }
 
       if (this._requests.has(key)) {

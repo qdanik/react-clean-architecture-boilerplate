@@ -31,5 +31,5 @@ export interface HttpClient<THttpConfig extends HttpRequestConfig = HttpRequestC
 }
 
 export interface HttpClientAdapter<C extends HttpRequestConfig> {
-  execute: (config: C) => AbortPromise<any>;
+  execute: <T = unknown>(config: C) => AbortPromise<T>;
 }

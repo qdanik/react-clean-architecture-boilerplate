@@ -12,11 +12,7 @@ export function withI18n<T>(WrappedComponent: FunctionComponent<T>): FunctionCom
       return <DotsLoader fill="#f56733" />;
     }
 
-    return (
-      <>
-        <WrappedComponent {...props} />
-      </>
-    );
+    return <WrappedComponent {...props} />;
   });
   WithI18n.displayName = `WithI18n(${getDisplayName(WrappedComponent)})`;
 

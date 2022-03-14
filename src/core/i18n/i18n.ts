@@ -1,6 +1,6 @@
 import { I18nLanguages } from './i18n.typings';
 
-export interface I18n<InstanceType = any> {
+export interface I18n<InstanceType = unknown> {
   getInstance(): InstanceType;
   isInitialized(): boolean;
   isLoading(): boolean;

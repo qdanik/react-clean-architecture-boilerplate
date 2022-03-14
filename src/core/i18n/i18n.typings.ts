@@ -3,7 +3,7 @@ export enum I18nLanguages {
   ru = 'ru',
 }
 
-export enum i18nNamespaces {
+export enum I18nNamespaces {
   default = 'default',
   common = 'common',
   button = 'button',

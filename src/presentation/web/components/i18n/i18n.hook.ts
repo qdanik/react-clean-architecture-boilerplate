@@ -1,14 +1,14 @@
-import { i18n as i18next } from 'i18next';
+import { i18n as I18NextType } from 'i18next';
 import { I18n, I18nLanguages, I18nType } from 'core/i18n';
 import { useInjection } from '..';
 
 export function useTranslation(): {
-  t: i18next['t'];
-  i18n: i18next;
+  t: I18NextType['t'];
+  i18n: I18NextType;
   adapter: I18n;
   language: I18nLanguages;
 } {
-  const i18next: I18n<i18next> = useInjection(I18nType);
+  const i18next: I18n<I18NextType> = useInjection(I18nType);
   const instance = i18next.getInstance();
 
   return {

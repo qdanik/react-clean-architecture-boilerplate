@@ -56,7 +56,7 @@ export class BrowserCookieAdapter implements Storage {
           return `${prepend}=${value.toUTCString()}`;
         }
 
-        return `${prepend}=${value}`;
+        return `${prepend}=${String(value)}`;
       },
       '',
     );

@@ -18,8 +18,8 @@ Layered Architecture for developing web/mobile/desktop applications using JavaSc
 ## Getting started
 
 - Clone repository
-- Run `yarn` to install dependencies
-- Run `yarn build` to build project
+- Run `npm install` to install dependencies
+- Run `npm run build` to build project
 
 ## Docs
 
@@ -51,7 +51,6 @@ Layered Architecture for developing web/mobile/desktop applications using JavaSc
 
 ## System Requirements
 - [Node.js 16+](https://nodejs.org/en/download/)
-- [yarn](https://yarnpkg.com/en)
 
 ## Contributing
 

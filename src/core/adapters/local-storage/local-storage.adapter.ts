@@ -10,9 +10,9 @@ export class LocalStorageAdapter implements Storage {
   }
 
   private _getStorageCallback(callback: () => void) {
-    return (event: StorageEvent) => {
+    return (event: StorageEvent): void => {
       if (event.storageArea !== this._storage) {
-        return false;
+        return;
       }
 
       callback();

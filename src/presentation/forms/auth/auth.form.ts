@@ -1,10 +1,17 @@
 import * as yup from 'yup';
+import { AnyObject, ObjectShape, OptionalObjectSchema, TypeOfShape } from 'yup/lib/object';
 import { Inject, Injectable } from 'containers/config';
 import { AuthFormFields, AuthService, AuthServiceType, AuthToken } from 'domain/auth';
 import { ChangeForm } from '../base.form';
 import { BaseFormImpl } from '../base.form.impl';
 
 export type AuthFormSubmitResponse = Promise<AuthToken>;
+
+export type ValidationSchema = OptionalObjectSchema<
+  ObjectShape,
+  AnyObject,
+  TypeOfShape<ObjectShape>
+>;
 
 @Injectable()
 export class AuthForm extends BaseFormImpl<AuthFormFields, AuthFormSubmitResponse> {
@@ -16,7 +23,7 @@ export class AuthForm extends BaseFormImpl<AuthFormFields, AuthFormSubmitRespons
     return new AuthFormFields(null, null);
   }
 
-  validationSchema(): any {
+  validationSchema(): ValidationSchema {
     return yup.object().shape({
       login: yup.string().required().nullable().email().label('Login'),
       password: yup.string().required().nullable().label('Password'),

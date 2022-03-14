@@ -1,3 +1,3 @@
-export enum AUTH_TOKENS {
+export enum AuthTokens {
   ACCESS = 'ACCESS_TOKEN',
 }

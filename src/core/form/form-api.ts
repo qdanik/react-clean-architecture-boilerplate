@@ -4,7 +4,7 @@ import { FormApiErrors, FormValue } from './form-api.typings';
 
 export const FormType: ServiceIdentifier<Form> = Symbol('FormType');
 
-export interface Form<Values extends any = any, Context extends any = any> {
+export interface Form<Values = unknown, Context = unknown> {
   setContext(value: Context): void;
 
   getValue<

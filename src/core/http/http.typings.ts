@@ -16,21 +16,34 @@ export enum HttpTokenTypes {
   Basic = 'Basic',
 }
 
+export type HttpHeaders = Record<string, string | number | boolean>;
+
+export type HttpParams = Record<string, string>;
+
+export interface HttpResponseData {
+  [index: number]:
+    | string
+    | null
+    | boolean
+    | number
+    | Record<string, HttpResponseData>
+    | Array<HttpResponseData>;
+}
+
 export type HttpRequestConfig = Partial<{
   url: string;
   method: string | HttpMethods;
   baseURL: string;
-  headers: any;
-  params: any;
-  paramsSerializer: any;
-  data: any;
+  headers: HttpHeaders;
+  params: HttpParams;
+  data: HttpResponseData;
 }>;
 
-export interface HttpResponse<T = any> {
+export interface HttpResponse<T = HttpResponseData> {
   data: T;
   status: number;
   statusText: string;
-  headers: any;
+  headers: HttpHeaders;
   config: HttpRequestConfig;
 }
 

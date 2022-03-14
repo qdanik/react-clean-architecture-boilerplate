@@ -36,26 +36,35 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     };
   };
 
-  delete<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): AbortPromise<R> {
+  delete<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): AbortPromise<R> {
     return this._http.delete<T, R>(url, config);
   }
 
-  get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): AbortPromise<R> {
+  get<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): AbortPromise<R> {
     return this._http.get<T, R>(url, config);
   }
 
-  head<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): AbortPromise<R> {
+  head<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): AbortPromise<R> {
     return this._http.head<T, R>(url, config);
   }
 
-  options<T = any, R = AxiosResponse<T>>(
+  options<T = unknown, R = AxiosResponse<T>>(
     url: string,
     config?: AxiosRequestConfig,
   ): AbortPromise<R> {
     return this._http.options<T, R>(url, config);
   }
 
-  patch<T = any, D = any, R = AxiosResponse<T>>(
+  patch<T = unknown, D = unknown, R = AxiosResponse<T>>(
     url: string,
     data?: D,
     config?: AxiosRequestConfig,
@@ -63,7 +72,7 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     return this._http.patch<T, R>(url, data, config);
   }
 
-  post<T = any, D = any, R = AxiosResponse<T>>(
+  post<T = unknown, D = unknown, R = AxiosResponse<T>>(
     url: string,
     data?: D,
     config?: AxiosRequestConfig,
@@ -71,7 +80,7 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     return this._http.post<T, R>(url, data, config);
   }
 
-  put<T = any, D = any, R = AxiosResponse<T>>(
+  put<T = unknown, D = unknown, R = AxiosResponse<T>>(
     url: string,
     data?: D,
     config?: AxiosRequestConfig,
