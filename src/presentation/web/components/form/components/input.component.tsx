@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Input as BaseInput, InputProps } from 'presentation/web/components/common';
+
 import { FieldProps, FormComponentProps, withFormField } from '../hoc/with-form-field.hoc';
 
 export const Input = withFormField(function FormInput(

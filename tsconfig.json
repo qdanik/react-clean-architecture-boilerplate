@@ -16,14 +16,41 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "lib": ["es6", "es7", "dom", "esnext"],
+    "lib": [
+      "es6",
+      "es7",
+      "dom",
+      "esnext"
+    ],
     "paths": {
-      "*": ["src/*"],
-      "assets/*": ["assets/*"]
+      "*": [
+        "src/*"
+      ],
+      "assets/*": [
+        "assets/*"
+      ]
     },
-    "types": ["reflect-metadata", "@types/jest", "vite/client"],
-    "typeRoots": ["node_modules/@types", "./src/typings"]
+    "types": [
+      "reflect-metadata",
+      "@types/jest",
+      "vite/client"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "./src/typings"
+    ]
   },
-  "include": ["./assets", "./src"],
-  "exclude": ["node_modules", "dist", "coverage", "configs"]
+  "include": [
+    "./assets",
+    "./src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist-web",
+    "dist-mobile",
+    "coverage",
+    "docker",
+    "docs",
+    ".*"
+  ]
 }

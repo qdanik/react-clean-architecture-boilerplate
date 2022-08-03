@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Inject, Injectable } from 'containers/config';
 import { Form, FormType } from 'core/form';
+
 import { BaseForm, ChangeForm } from './base.form';
 
 @Injectable()

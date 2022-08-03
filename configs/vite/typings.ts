@@ -1,0 +1,1 @@
+export type BuildMode = 'web' | 'mobile';

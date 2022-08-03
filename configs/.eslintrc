@@ -4,7 +4,9 @@
     "@typescript-eslint",
     "prettier",
     "sort-keys-fix",
-    "import"
+    "import",
+    "simple-import-sort",
+    "unused-imports"
   ],
   "extends": [
     "airbnb",
@@ -14,7 +16,8 @@
     "plugin:prettier/recommended",
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:path/recommended"
   ],
   "env": {
     "browser": true,
@@ -61,24 +64,8 @@
     "configs/*"
   ],
   "rules": {
-    "import/order": [
-      "error",
-      {
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "index",
-          "sibling",
-          "parent"
-        ]
-      }
-    ],
     "guard-for-in": "off",
+    "import/order": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "error",
@@ -96,6 +83,7 @@
     "no-sequences": "off",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
+    "no-unused-vars": "off",
     "no-useless-constructor": "off",
     "no-shadow": "off",
     "no-prototype-builtins": "off",
@@ -119,6 +107,7 @@
       "error",
       "as-needed"
     ],
+    "prettier/prettier": "error",
     "react/destructuring-assignment": "off",
     "react/forbid-prop-types": "off",
     "react/no-unused-prop-types": "warn",
@@ -130,7 +119,23 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": "off",
-    "prettier/prettier": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [ "^react$", "^react", "^@?\\w", "^__mocks__(/.*|$)" ],
+          [ "^(containers|core|data|domain|presentation|typings)(/.*|$)" ],
+          [
+            "^\\.\\.(?!/?$)",
+            "^\\.\\./?$",
+            "^\\./(?=.*/)(?!/?$)",
+            "^\\.(?!/?$)",
+            "^\\./?$"
+          ],
+          ["^\\u0000"]
+        ]
+      }
+    ],
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unnecessary-type-constraint": "off",
@@ -139,6 +144,7 @@
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
-    "@typescript-eslint/unbound-method": "off"
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }

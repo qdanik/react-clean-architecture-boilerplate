@@ -1,8 +1,9 @@
 import { Inject, Injectable } from 'containers/config';
 import { NotificationDao, NotificationDaoType } from 'data/dao/notification';
-import { NotificationService } from './notification.service';
+
 import { Notification } from '../entities/notification.entity';
 import { DEFAULT_NOTIFICATION_DELAY, NotificationType } from '../notification.typings';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class NotificationServiceImpl implements NotificationService {

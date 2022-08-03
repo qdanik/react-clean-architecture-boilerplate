@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+
 import './themes.less';
 
 export const GlobalStyles = createGlobalStyle`

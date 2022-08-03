@@ -1,5 +1,6 @@
 import React from 'react';
-import { Wrapper, Label, StyledInput } from './input.styles';
+
+import { Label, StyledInput, Wrapper } from './input.styles';
 import { InputProps } from './input.typings';
 
 export function Input(props: InputProps): React.ReactElement<InputProps> {

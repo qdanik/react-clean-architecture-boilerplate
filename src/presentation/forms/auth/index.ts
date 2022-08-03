@@ -1,8 +1,9 @@
 import { AppContainer } from 'containers';
 import { ServiceIdentifier } from 'containers/config';
 import { AuthFormFields, AuthToken } from 'domain/auth';
-import { AuthForm, AuthFormSubmitResponse } from './auth.form';
+
 import { BaseForm } from '../base.form';
+import { AuthForm, AuthFormSubmitResponse } from './auth.form';
 
 const AuthFormType: ServiceIdentifier<BaseForm<AuthFormFields, Promise<AuthToken>>> =
   Symbol('AuthForm');

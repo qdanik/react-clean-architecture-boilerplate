@@ -1,4 +1,5 @@
 import { HttpRequestConfig } from 'core/http';
+
 import { ErrorCodes, StatusCodes } from '../error.typings';
 
 export class Error {

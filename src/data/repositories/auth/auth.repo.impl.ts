@@ -2,6 +2,7 @@ import { Inject, Injectable } from 'containers/config';
 import { Logger, LoggerType } from 'core/logger';
 import { AuthTokenDto } from 'data/dto/auth';
 import { AuthToken } from 'domain/auth';
+
 import { AuthRepo } from './auth.repo';
 import { AuthResponse } from './auth.response';
 

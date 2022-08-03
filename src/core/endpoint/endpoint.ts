@@ -1,4 +1,5 @@
 import { buildUrl } from 'core/utils';
+
 import { EndpointInterface } from './endpoint.typings';
 
 export class Endpoint<T extends string = never> implements EndpointInterface<T> {

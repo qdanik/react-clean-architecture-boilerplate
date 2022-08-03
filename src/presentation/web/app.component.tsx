@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { AppContainer } from 'containers';
 import { AppRoutes } from 'presentation/web/routes';
+
 import { IoC } from './components/ioc';
 import { GlobalStyles } from './styles';
 

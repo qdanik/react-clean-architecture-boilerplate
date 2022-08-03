@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Container, ContainerModule } from 'containers/config';
 
 export type InjectContainers = ContainerModule | ContainerModule[];

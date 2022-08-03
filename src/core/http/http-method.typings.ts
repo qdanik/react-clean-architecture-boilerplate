@@ -1,4 +1,4 @@
-import { AbortPromise, HttpResponse } from './http.typings';
+import { HttpResponse } from './http.typings';
 
 export type HttpRejectInterceptor = {
   (error: Error): Error;
@@ -17,59 +17,59 @@ export type HttpInterceptorManager = {
 };
 
 export interface HttpClientPostMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TData = unknown>(url: string, data: TData): AbortPromise<HttpResponse<TResponse>>;
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TData = unknown>(url: string, data: TData): Promise<HttpResponse<TResponse>>;
   <TResponse, TData = unknown, TConfig = THttpConfig>(
     url: string,
     data: TData,
     config: TConfig,
-  ): AbortPromise<HttpResponse<TResponse>>;
+  ): Promise<HttpResponse<TResponse>>;
 }
 
 export interface HttpClientGetMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): AbortPromise<
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): Promise<
     HttpResponse<TResponse>
   >;
 }
 
 export interface HttpClientPutMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TData = unknown>(url: string, data: TData): AbortPromise<HttpResponse<TResponse>>;
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TData = unknown>(url: string, data: TData): Promise<HttpResponse<TResponse>>;
   <TResponse, TData = unknown, TConfig = THttpConfig>(
     url: string,
     data: TData,
     config: TConfig,
-  ): AbortPromise<HttpResponse<TResponse>>;
+  ): Promise<HttpResponse<TResponse>>;
 }
 
 export interface HttpClientDeleteMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): AbortPromise<
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): Promise<
     HttpResponse<TResponse>
   >;
 }
 
 export interface HttpClientHeadMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): AbortPromise<
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): Promise<
     HttpResponse<TResponse>
   >;
 }
 
 export interface HttpClientOptionsMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): AbortPromise<
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TConfig = THttpConfig>(url: string, config: TConfig): Promise<
     HttpResponse<TResponse>
   >;
 }
 
 export interface HttpClientPatchMethod<THttpConfig> {
-  <TResponse>(url: string): AbortPromise<HttpResponse<TResponse>>;
-  <TResponse, TData = unknown>(url: string, data: TData): AbortPromise<HttpResponse<TResponse>>;
+  <TResponse>(url: string): Promise<HttpResponse<TResponse>>;
+  <TResponse, TData = unknown>(url: string, data: TData): Promise<HttpResponse<TResponse>>;
   <TResponse, TData = unknown, TConfig = THttpConfig>(
     url: string,
     data: TData,
     config: TConfig,
-  ): AbortPromise<HttpResponse<TResponse>>;
+  ): Promise<HttpResponse<TResponse>>;
 }

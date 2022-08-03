@@ -1,9 +1,11 @@
 import { i18n as I18NextType, TFunction } from 'i18next';
+
 import { Inject, Injectable } from 'containers/config';
 import { I18n, I18nType } from 'core/i18n';
 import { AuthFormFields } from 'domain/auth';
-import { AuthFormType, AuthFormSubmitResponse } from 'presentation/forms/auth';
+import { AuthFormSubmitResponse, AuthFormType } from 'presentation/forms/auth';
 import { BaseForm } from 'presentation/forms/base.form';
+
 import { AuthPresenter } from './auth.presenter';
 
 @Injectable()

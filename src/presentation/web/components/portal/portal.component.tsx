@@ -1,5 +1,6 @@
 import { ReactPortal, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+
 import { PortalProps } from './portal.typings';
 
 export const Portal = ({ target, children }: PortalProps): ReactPortal => {

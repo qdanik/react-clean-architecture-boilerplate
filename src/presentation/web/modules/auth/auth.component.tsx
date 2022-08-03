@@ -1,5 +1,7 @@
 import React from 'react';
-import { Form, Button, Input } from 'presentation/web/components/form';
+
+import { Button, Form, Input } from 'presentation/web/components/form';
+
 import { AuthProps } from './auth.typings';
 
 export function Auth({ presenter }: AuthProps): React.ReactElement {

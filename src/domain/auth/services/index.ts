@@ -1,5 +1,6 @@
 import { AppContainer } from 'containers';
 import { ServiceIdentifier } from 'containers/config';
+
 import { AuthService } from './auth.service';
 import { AuthServiceImpl } from './auth.service.impl';
 

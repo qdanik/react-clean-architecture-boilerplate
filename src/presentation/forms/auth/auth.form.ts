@@ -1,7 +1,9 @@
 import * as yup from 'yup';
 import { AnyObject, ObjectShape, OptionalObjectSchema, TypeOfShape } from 'yup/lib/object';
+
 import { Inject, Injectable } from 'containers/config';
 import { AuthFormFields, AuthService, AuthServiceType, AuthToken } from 'domain/auth';
+
 import { ChangeForm } from '../base.form';
 import { BaseFormImpl } from '../base.form.impl';
 

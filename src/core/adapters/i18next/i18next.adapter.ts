@@ -1,9 +1,10 @@
+import i18nextInstance, { i18n as i18next, ReadCallback, ResourceKey } from 'i18next';
 import languageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
+
 import { Injectable } from 'containers/config';
 import { I18n, I18nLanguages, I18nNamespaces } from 'core/i18n';
-import i18nextInstance, { i18n as i18next, ReadCallback, ResourceKey } from 'i18next';
 
 @Injectable()
 export class I18nextAdapter implements I18n<i18next> {

@@ -1,5 +1,3 @@
-
-   
 const { transform } = require('@svgr/core');
 const { readFileSync } = require('fs');
 

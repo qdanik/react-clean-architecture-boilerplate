@@ -1,4 +1,8 @@
+import { AxiosPromise } from 'axios';
+
 import { ServiceIdentifier } from 'containers/config';
+
+import { HttpRequestConfig } from './http.typings';
 import {
   HttpClientDeleteMethod,
   HttpClientGetMethod,
@@ -9,7 +13,6 @@ import {
   HttpClientPutMethod,
   HttpInterceptorManager,
 } from './http-method.typings';
-import { HttpRequestConfig, AbortPromise } from './http.typings';
 
 export const HttpClientType: ServiceIdentifier<HttpClient> = Symbol('HttpClient');
 export const HttpClientAdapterType: ServiceIdentifier<HttpClientAdapter<HttpRequestConfig>> =
@@ -31,5 +34,5 @@ export interface HttpClient<THttpConfig extends HttpRequestConfig = HttpRequestC
 }
 
 export interface HttpClientAdapter<C extends HttpRequestConfig> {
-  execute: <T = unknown>(config: C) => AbortPromise<T>;
+  execute: <T = unknown>(config: C) => AxiosPromise<T>;
 }

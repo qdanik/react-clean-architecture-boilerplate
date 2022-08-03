@@ -1,4 +1,5 @@
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
+
 import { AxiosAbortAdapter } from '../axios-abort.adapter';
 import { AxiosMemoAdapter } from '../axios-memo.adapter';
 

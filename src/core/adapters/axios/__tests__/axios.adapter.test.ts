@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { mockData, mockUrl } from './axios.adapter.mock';
+
+import { AxiosAdapter } from '../axios.adapter';
 import { AxiosAbortAdapter } from '../axios-abort.adapter';
 import { AxiosMemoAdapter } from '../axios-memo.adapter';
-import { AxiosAdapter } from '../axios.adapter';
+import { mockData, mockUrl } from './axios.adapter.mock';
 
 jest.mock('axios', () => {
   const mockAxios = {

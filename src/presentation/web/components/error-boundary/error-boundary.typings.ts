@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { Logger } from 'core/logger';
 
 export type ErrorBoundaryProps = {

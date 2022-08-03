@@ -1,5 +1,6 @@
 import type { Config } from '@jest/types';
-import {BuildDefine} from '../vite/define';
+import { BuildDefine } from '../vite/define';
+import { resolve } from 'path';
 
 type JestConfig = Partial<
   Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> & Config.GlobalConfig
@@ -9,7 +10,7 @@ type JestConfig = Partial<
   transform: Record<string, string>;
 };
 
-process.env.TZ = 'UTC'
+process.env.TZ = 'UTC';
 
 const config: JestConfig = {
   collectCoverageFrom: ['<rootDir>/src/{domain,data,core}/**/*.ts'],
@@ -42,13 +43,13 @@ const config: JestConfig = {
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/.jest/__mock__/fileTransformer.js',
+      '<rootDir>/.jest/plugins/fileTransformer.js',
   },
   preset: 'ts-jest',
-  rootDir: '../../',
+  rootDir: resolve(process.cwd()),
   roots: ['<rootDir>/src'],
   setupFiles: ['<rootDir>/configs/jest/setup.ts'],
-  testRegex: ['.test.ts$', '.spec.ts$'],
+  testRegex: ['.test.ts$', '.spec.ts$', '.test.tsx$', '.spec.tsx$'],
   transform: {
     '^.+\\.(tsx|ts)?$': 'ts-jest',
   },

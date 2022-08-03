@@ -1,6 +1,9 @@
+import React, { ReactElement } from 'react';
+import { DefaultValues, FormProvider, useForm } from 'react-hook-form';
 import compose from 'lodash/fp/compose';
-import React, { ReactElement, useEffect } from 'react';
-import { DeepPartial, FormProvider, UnpackNestedValue, useForm } from 'react-hook-form';
+
+import { useDidMount } from 'presentation/web/hooks';
+
 import { FormProps } from './form.typings';
 
 export function Form<TFieldValues, TFieldResponse>(
@@ -8,20 +11,19 @@ export function Form<TFieldValues, TFieldResponse>(
 ): ReactElement<FormProps<TFieldValues, TFieldResponse>> {
   const { children, entity } = props;
   const form = useForm<TFieldValues>({
-    defaultValues: entity.getInitialValues() as UnpackNestedValue<DeepPartial<TFieldValues>>,
+    defaultValues: entity.getInitialValues() as DefaultValues<TFieldValues>,
   });
   const { handleSubmit } = form;
 
   const onSubmit = () => {
     handleSubmit(data => {
-      entity.handleSubmit(data as TFieldValues);
+      entity.handleSubmit(data);
     });
   };
 
-  useEffect(() => {
+  useDidMount(() => {
     entity.api.setContext(form);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return (
     <FormProvider {...form}>
