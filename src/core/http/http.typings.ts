@@ -46,7 +46,3 @@ export interface HttpResponse<T = HttpResponseData> {
   headers: HttpHeaders;
   config: HttpRequestConfig;
 }
-
-export interface AbortPromise<T> extends Promise<T> {
-  abort?: () => void;
-}

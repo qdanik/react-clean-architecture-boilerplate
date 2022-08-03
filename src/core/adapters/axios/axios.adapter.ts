@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import { Inject, Injectable, Named, PostConstruct } from 'containers/config';
 import {
-  AbortPromise,
   HttpClient,
   HttpClientAdapter,
   HttpClientAdapterType,
@@ -9,6 +9,7 @@ import {
   HttpInterceptorManager,
   HttpRejectInterceptor,
 } from 'core/http';
+
 import { AxiosMemoName } from './axios-memo.adapter';
 
 @Injectable()
@@ -36,31 +37,19 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     };
   };
 
-  delete<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  delete<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
     return this._http.delete<T, R>(url, config);
   }
 
-  get<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  get<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
     return this._http.get<T, R>(url, config);
   }
 
-  head<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  head<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
     return this._http.head<T, R>(url, config);
   }
 
-  options<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  options<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
     return this._http.options<T, R>(url, config);
   }
 
@@ -68,7 +57,7 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     url: string,
     data?: D,
     config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  ): Promise<R> {
     return this._http.patch<T, R>(url, data, config);
   }
 
@@ -76,7 +65,7 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     url: string,
     data?: D,
     config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  ): Promise<R> {
     return this._http.post<T, R>(url, data, config);
   }
 
@@ -84,7 +73,7 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     url: string,
     data?: D,
     config?: AxiosRequestConfig,
-  ): AbortPromise<R> {
+  ): Promise<R> {
     return this._http.put<T, R>(url, data, config);
   }
 

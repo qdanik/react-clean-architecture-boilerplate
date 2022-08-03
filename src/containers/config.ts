@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
-import * as inversify from 'inversify';
 import type { interfaces } from 'inversify';
+import * as inversify from 'inversify';
 import { ServiceIdentifierOrFunc } from 'inversify/lib/annotation/lazy_service_identifier';
 
 export type ServiceIdentifier<T> = interfaces.ServiceIdentifier<T>;

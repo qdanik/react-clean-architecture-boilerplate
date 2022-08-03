@@ -1,4 +1,5 @@
 import { ServiceIdentifier } from 'containers/config';
+
 import { Storage } from './storage';
 
 export const StorageType: ServiceIdentifier<Storage> = Symbol('Storage');

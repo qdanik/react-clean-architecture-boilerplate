@@ -1,4 +1,5 @@
 import { AppContainer } from 'containers';
+
 import { NotificationDao } from './notification.dao';
 import { NotificationDaoImpl } from './notification.dao.impl';
 import { NotificationDaoType } from './notification.types';

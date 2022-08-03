@@ -1,10 +1,11 @@
 import React from 'react';
-import { Routes, BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Logo from 'assets/images/logo.svg';
-import { Main } from './routes.styled';
+
 import { useTranslation } from '../components/i18n';
 import { withI18n } from '../hoc';
 import { AuthPage } from '../pages';
+import { Main } from './routes.styled';
 
 function RoutesComponent(): React.ReactElement {
   const { t } = useTranslation();

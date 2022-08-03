@@ -1,21 +1,24 @@
+import { FieldPath, FieldPathValue } from 'react-hook-form';
+
 import { ServiceIdentifier } from 'containers/config';
-import { PropertyPath } from 'typings';
-import { FormApiErrors, FormValue } from './form-api.typings';
+
+import { FormApiErrors } from './form-api.typings';
 
 export const FormType: ServiceIdentifier<Form> = Symbol('FormType');
 
-export interface Form<Values = unknown, Context = unknown> {
+export interface Form<Values = object, Context = unknown> {
   setContext(value: Context): void;
 
   getValue<
-    TFieldName extends PropertyPath<Values> = PropertyPath<Values>,
-    TFieldValue extends FormValue<Values, TFieldName> = FormValue<Values, TFieldName>,
+    TFieldName extends FieldPath<Values> = FieldPath<Values>,
+    TFieldValue extends FieldPathValue<Values, TFieldName> = FieldPathValue<Values, TFieldName>,
   >(
     name: TFieldName,
   ): TFieldValue;
+
   setValue<
-    TFieldName extends PropertyPath<Values> = PropertyPath<Values>,
-    TFieldValue extends FormValue<Values, TFieldName> = FormValue<Values, TFieldName>,
+    TFieldName extends FieldPath<Values> = FieldPath<Values>,
+    TFieldValue extends FieldPathValue<Values, TFieldName> = FieldPathValue<Values, TFieldName>,
   >(
     name: TFieldName,
     value: TFieldValue,

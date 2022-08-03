@@ -7,7 +7,7 @@ const ENV_CONFIG = {
 const DEFAULT_DEFINE = {
   ENV_CONFIG,
   UI_VERSION: JSON.stringify(pkg.version)
-}
+};
 
 export const DevDefine = {
   ...DEFAULT_DEFINE,

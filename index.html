@@ -8,12 +8,12 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic"
       rel="stylesheet"
     />
-    <title>React Example Project</title>
+    <title><%- title %> Example Project</title>
   </head>
   <body>
     <div id="root"></div>
     <div id="portals"></div>
     <noscript><h2>Your browser doesn't support JavaScript.</h2></noscript>
-    <script type="module" src="/src/presentation/web/index.tsx"></script>
+    <%- injectScript %>
   </body>
 </html>

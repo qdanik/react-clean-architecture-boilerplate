@@ -1,6 +1,7 @@
 import { Inject, Injectable } from 'containers/config';
 import { MobxStore, MobxStoreType } from 'core/mobx-store';
 import { Notification } from 'domain/notification';
+
 import { NotificationDao } from './notification.dao';
 
 @Injectable()

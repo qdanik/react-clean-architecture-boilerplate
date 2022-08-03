@@ -1,8 +1,9 @@
-import { Injectable, Inject } from 'containers/config';
-import { NotificationServiceType, NotificationService, Notification } from 'domain/notification';
-import { ErrorService } from './error.service';
+import { Inject, Injectable } from 'containers/config';
+import { Notification, NotificationService, NotificationServiceType } from 'domain/notification';
+
 import { Error } from '../entities/error.entity';
 import { ErrorResponse } from '../error.typings';
+import { ErrorService } from './error.service';
 
 @Injectable()
 export class ErrorServiceImpl implements ErrorService {

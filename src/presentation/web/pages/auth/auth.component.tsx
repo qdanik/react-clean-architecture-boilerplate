@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { AuthPresenterType } from 'presentation/presenters/auth';
 import { useInjection } from 'presentation/web/components';
 import { withErrorBoundary } from 'presentation/web/hoc';

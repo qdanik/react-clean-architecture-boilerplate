@@ -1,9 +1,3 @@
 {
-  "auth": {
-    "form": {
-      "labels" : {
-        "login": "Input login"
-      }
-    }
-  }
+  "auth.form.labels.login": "Input login"
 }

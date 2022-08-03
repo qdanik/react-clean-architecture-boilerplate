@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import { AbortPromise } from 'core/http';
+import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
+
 import { AxiosAbortAdapter } from '../axios-abort.adapter';
 
 jest.mock('axios', () => {
@@ -40,7 +40,7 @@ describe('AxiosAbortAdapters', () => {
       params: { pages: 2 },
       url: 'example.com',
     };
-    const response: AbortPromise<unknown> = axiosAbortAdapter.execute(config);
+    const response: AxiosPromise<unknown> = axiosAbortAdapter.execute(config);
     expect(response?.abort).toBeInstanceOf(Function);
     response.abort();
     expect(spyAbortController).toHaveBeenCalled();

@@ -11,6 +11,7 @@ configs/husky/_
 configs/husky/.gitignore
 
 dist
+dist*
 coverage
 node_modules
 

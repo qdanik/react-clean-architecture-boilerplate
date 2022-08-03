@@ -1,5 +1,6 @@
 import { AppContainer } from 'containers';
 import { ServiceIdentifier } from 'containers/config';
+
 import { ErrorService } from './error.service';
 import { ErrorServiceImpl } from './error.service.impl';
 

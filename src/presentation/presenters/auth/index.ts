@@ -1,5 +1,6 @@
 import { AppContainer } from 'containers';
 import { ServiceIdentifier } from 'containers/config';
+
 import type { AuthPresenter } from './auth.presenter';
 import { AuthPresenterImpl } from './auth.presenter.impl';
 

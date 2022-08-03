@@ -1,6 +1,8 @@
 import reduce from 'lodash/reduce';
+
 import { Injectable } from 'containers/config';
 import { Storage } from 'core/storage';
+
 import { COOKIE_REGEX } from './browser-cookie.constants';
 import { correctKey } from './browser-cookie.helpers';
 import { CookieOptions } from './browser-cookie.typings';

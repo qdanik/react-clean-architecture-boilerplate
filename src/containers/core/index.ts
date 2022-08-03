@@ -1,4 +1,5 @@
 import { ContainerModule } from 'inversify';
+
 import {
   AxiosAbortAdapter,
   AxiosAbortName,
@@ -6,10 +7,10 @@ import {
   AxiosMemoAdapter,
   AxiosMemoName,
   BrowserCookieAdapter,
-  LocalStorageAdapter,
-  SessionStorageAdapter,
-  ReactHookFormAdapter,
   I18nextAdapter,
+  LocalStorageAdapter,
+  ReactHookFormAdapter,
+  SessionStorageAdapter,
   WebLoggerAdapter,
 } from 'core/adapters';
 import { FormType } from 'core/form';
@@ -17,7 +18,7 @@ import { HttpClientAdapterType, HttpClientType } from 'core/http';
 import { I18nType } from 'core/i18n';
 import { LoggerType } from 'core/logger';
 import { MobxStoreImpl, MobxStoreType } from 'core/mobx-store';
-import { StorageType, CookieStorageName, LocalStorageName, SessionStorageName } from 'core/storage';
+import { CookieStorageName, LocalStorageName, SessionStorageName, StorageType } from 'core/storage';
 
 export const coreModules = new ContainerModule(bind => {
   bind(LoggerType).to(WebLoggerAdapter);

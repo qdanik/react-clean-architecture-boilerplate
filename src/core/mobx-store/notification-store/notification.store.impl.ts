@@ -1,5 +1,7 @@
-import { observable, makeAutoObservable, action, computed } from 'mobx';
+import { action, computed, makeAutoObservable, observable } from 'mobx';
+
 import { Notification } from 'domain/notification';
+
 import { NotificationStore } from './notification.store';
 
 export class NotificationStoreImpl implements NotificationStore {

@@ -1,10 +1,8 @@
+import { AxiosPromise } from 'axios';
+
 import { Inject, Injectable, Named } from 'containers/config';
-import {
-  AbortPromise,
-  HttpClientAdapter,
-  HttpClientAdapterType,
-  HttpRequestConfig,
-} from 'core/http';
+import { HttpClientAdapter, HttpClientAdapterType, HttpRequestConfig } from 'core/http';
+
 import { AxiosAbortName } from './axios-abort.adapter';
 
 export const AxiosMemoName = Symbol('AxiosMemo');
@@ -28,7 +26,7 @@ export class AxiosMemoAdapter implements HttpClientAdapter<HttpRequestConfig> {
     });
   }
 
-  execute = <T>(config: HttpRequestConfig): AbortPromise<T> => {
+  execute = <T>(config: HttpRequestConfig): AxiosPromise<T> => {
     const key = AxiosMemoAdapter.getKey(config);
     try {
       const execute = () => this._abortAdapter.execute<T>(config);
@@ -38,7 +36,7 @@ export class AxiosMemoAdapter implements HttpClientAdapter<HttpRequestConfig> {
           this._requests.set(key, execute());
         }
 
-        return this._requests.get(key) as AbortPromise<T>;
+        return this._requests.get(key) as AxiosPromise<T>;
       }
 
       if (this._requests.has(key)) {

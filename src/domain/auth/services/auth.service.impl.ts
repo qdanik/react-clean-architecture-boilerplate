@@ -1,7 +1,8 @@
 import { Inject, Injectable } from 'containers/config';
-import { AuthRepoType, AuthRepo } from 'data/repositories/auth';
-import { AuthService } from './auth.service';
+import { AuthRepo, AuthRepoType } from 'data/repositories/auth';
+
 import { AuthToken } from '../entities/auth-token.entity';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthServiceImpl implements AuthService {
