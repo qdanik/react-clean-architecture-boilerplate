@@ -18,7 +18,7 @@ function RoutesComponent(): React.ReactElement {
           element={
             <Main>
               <Logo width="200px" height="200px" />
-              <h1>{t('default:welcome')}</h1>
+              <h1>{t('welcome')}</h1>
               <AuthPage />
             </Main>
           }

@@ -4,7 +4,7 @@ import reactSvgPlugin from './plugins/react-svg';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';
 import { PluginOption } from 'vite';
-import { BuildMode } from './typings';
+import { VitePlatform } from './typings';
 import { createHtmlPlugin } from 'vite-plugin-html';
 
 const BasePlugins = [
@@ -27,7 +27,7 @@ const BasePlugins = [
   }),
 ];
 
-export const DevPlugins = [
+export const getDevPlugins = (platform: VitePlatform): PluginOption[] => [
   ...BasePlugins,
   react({
     include: '**/*.tsx',
@@ -44,9 +44,18 @@ export const DevPlugins = [
       }
     }
   }),
+  createHtmlPlugin({
+    minify: false,
+    inject: {
+      data: {
+        title: platform.toUpperCase(),
+        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`
+      }
+    }
+  }),
 ];
 
-export const BuildPlugins = (mode: BuildMode): PluginOption[] => [
+export const getBuildPlugins = (platform: VitePlatform): PluginOption[] => [
   ...BasePlugins,
   viteCompression({
     filter: (file: string): boolean => file.includes('.js'),
@@ -55,8 +64,8 @@ export const BuildPlugins = (mode: BuildMode): PluginOption[] => [
     minify: false,
     inject: {
       data: {
-        title: mode.toUpperCase(),
-        injectScript: `<script type="module" src="/src/presentation/${mode}/index.tsx"></script>`
+        title: platform.toUpperCase(),
+        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`
       }
     }
   }),

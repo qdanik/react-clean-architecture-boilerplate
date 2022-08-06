@@ -1,11 +1,11 @@
 import { BuildOptions } from 'vite';
-import { BuildMode } from './typings';
+import { VitePlatform } from './typings';
 
-export const buildConfig = (mode: BuildMode): BuildOptions => ({
+export const getBuildConfig = (platform: VitePlatform): BuildOptions => ({
   chunkSizeWarningLimit: 1000,
   rollupOptions: {
     output: {
-      dir: `dist-${mode}`,
+      dir: `dist-${platform}`,
       manualChunks: (id: string | string[]): string | void => {
         if (id.includes('node_modules')) {
           return 'vendor';
@@ -13,8 +13,8 @@ export const buildConfig = (mode: BuildMode): BuildOptions => ({
         if (id.includes('common')) {
           return 'common';
         }
-        if (id.includes(mode)) {
-          return mode;
+        if (id.includes(platform)) {
+          return platform;
         }
       },
       assetFileNames: (assetInfo) => {

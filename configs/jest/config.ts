@@ -1,6 +1,4 @@
 import type { Config } from '@jest/types';
-import { BuildDefine } from '../vite/define';
-import { resolve } from 'path';
 
 type JestConfig = Partial<
   Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> & Config.GlobalConfig
@@ -37,7 +35,8 @@ const config: JestConfig = {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
     },
-    ...BuildDefine,
+    DEV: false,
+    AUTH_TOKEN: '<token>',
     UI_VERSION: '0.0.123'
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
@@ -46,7 +45,7 @@ const config: JestConfig = {
       '<rootDir>/.jest/plugins/fileTransformer.js',
   },
   preset: 'ts-jest',
-  rootDir: resolve(process.cwd()),
+  rootDir: '../../',
   roots: ['<rootDir>/src'],
   setupFiles: ['<rootDir>/configs/jest/setup.ts'],
   testRegex: ['.test.ts$', '.spec.ts$', '.test.tsx$', '.spec.tsx$'],

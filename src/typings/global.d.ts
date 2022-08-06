@@ -1,7 +1,3 @@
-import { Env } from './config';
-
-declare global {
-  const ENV_CONFIG: Env;
-  const UI_VERSION: string;
-  const DEV: boolean;
-}
+declare const AUTH_TOKEN: string;
+declare const UI_VERSION: string;
+declare const DEV: boolean;

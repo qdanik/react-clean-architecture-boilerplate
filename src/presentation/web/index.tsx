@@ -1,15 +1,10 @@
+import 'reflect-metadata';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { App } from 'presentation/web/app.component';
 
-import 'reflect-metadata';
-
-const container = document.getElementById('app');
+const container = document.getElementById('root');
 const root = createRoot(container);
 
-function Root(): React.ReactElement {
-  return <App />;
-}
-
-root.render(<Root />);
+root.render(<App />);

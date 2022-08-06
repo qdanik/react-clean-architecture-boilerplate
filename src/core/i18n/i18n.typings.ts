@@ -4,7 +4,5 @@ export enum I18nLanguages {
 }
 
 export enum I18nNamespaces {
-  default = 'default',
-  common = 'common',
-  button = 'button',
+  translation = 'translation',
 }

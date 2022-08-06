@@ -1,28 +1,21 @@
 import { ServerOptions } from 'vite';
+import { ViteEnvConfig } from './typings';
 
-const SERVER_HOST = '127.0.0.1';
-const SERVER_PORT = 3000;
-const SERVER_URL = '<PROXY_SERVER_URL>';
-const SERVER_PROXIES = ['/token'];
-
-const proxy = SERVER_PROXIES.reduce(
-  (acc, url) => ({
-    ...acc,
-    [url]: {
-      changeOrigin: true,
-      rewrite: (path: string): string => path,
-      secure: true,
-      target: SERVER_URL,
-    },
-  }),
-  {},
-);
-
-const serverConfig: ServerOptions = {
-  host: SERVER_HOST,
+export const getServerConfig = (env: ViteEnvConfig): ServerOptions => ({
+  host: env.DEV_SERVER_HOST,
   open: true,
-  port: SERVER_PORT,
-  proxy,
-};
+  port: Number(env.DEV_SERVER_PORT),
+  proxy: (env.BACKEND_PROXIES.split(',') || []).reduce(
+    (acc, url) => ({
+      ...acc,
+      [url]: {
+        changeOrigin: true,
+        rewrite: (path: string): string => path,
+        secure: true,
+        target: env.BACKEND_URL,
+      },
+    }),
+    {},
+  ),
+});
 
-export default serverConfig;

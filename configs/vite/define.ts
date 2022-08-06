@@ -1,20 +1,18 @@
 import pkg from '../../package.json';
+import { ViteEnvConfig } from './typings';
 
-const ENV_CONFIG = {
-  TOKEN: '<token>',
-};
 
-const DEFAULT_DEFINE = {
-  ENV_CONFIG,
-  UI_VERSION: JSON.stringify(pkg.version)
-};
+const getDefaultDefines = (env: ViteEnvConfig) => ({
+  UI_VERSION: JSON.stringify(pkg.version),
+  AUTH_TOKEN: JSON.stringify(env.AUTH_TOKEN),
+});
 
-export const DevDefine = {
-  ...DEFAULT_DEFINE,
+export const getDevDefines = (env: ViteEnvConfig) => ({
+  ...getDefaultDefines(env),
   DEV: true,
-};
+});
 
-export const BuildDefine = {
-  ...DEFAULT_DEFINE,
+export const getBuildDefines = (env: ViteEnvConfig) => ({
+  ...getDefaultDefines(env),
   DEV: false,
-};
+});

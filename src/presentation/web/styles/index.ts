@@ -1,6 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-
 import './themes.less';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   body {

@@ -37,20 +37,25 @@ export class I18nextAdapter implements I18n<i18next> {
       .init({
         appendNamespaceToMissingKey: true,
         cleanCode: true,
-        contextSeparator: '_',
+        contextSeparator: '__',
         debug: DEV,
-        defaultNS: I18nNamespaces.common,
+        defaultNS: I18nNamespaces.translation,
         fallbackLng: I18nLanguages.en,
-        fallbackNS: I18nNamespaces.default,
         initImmediate: true,
-        keySeparator: '.',
+
+        interpolation: {
+          escapeValue: false,
+        },
+        keySeparator: false,
         lng: I18nLanguages.en,
         missingKeyNoValueFallbackToKey: true,
         ns: Object.values(I18nNamespaces),
         nsSeparator: ':',
+
         pluralSeparator: '_',
         preload: [I18nLanguages.en],
         resources: {},
+
         saveMissing: true,
         simplifyPluralSuffix: true,
         supportedLngs: Object.values(I18nLanguages),
@@ -64,8 +69,8 @@ export class I18nextAdapter implements I18n<i18next> {
 
   private _loadResources = (language: string, namespace: string, callback: ReadCallback): void => {
     import(`../../../../assets/locales/${language}/${namespace}.json`)
-      .then((resources: ResourceKey) => {
-        callback(null, resources);
+      .then((file: { default: ResourceKey }) => {
+        callback(null, file.default);
       })
       .catch((error: Error) => {
         callback(error, null);
