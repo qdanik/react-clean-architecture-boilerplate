@@ -2,7 +2,7 @@ import { i18n as I18NextType } from 'i18next';
 
 import { I18n, I18nLanguages, I18nType } from 'core/i18n';
 
-import { useInjection } from '..';
+import { useInjection } from '../ioc';
 
 export function useTranslation(): {
   t: I18NextType['t'];

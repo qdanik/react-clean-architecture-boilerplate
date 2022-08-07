@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import isFunction from 'lodash/isFunction';
 
-// import DotsLoader from 'assets/images/dots-loader.svg';
 import { ButtonWrapper, LoaderWrapper } from './button.styles';
 import { ButtonProps } from './button.typings';
 

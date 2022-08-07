@@ -18,7 +18,7 @@ export class AuthRepoImpl implements AuthRepo {
       scope: 'app',
       token_type: 'example',
     };
-    this._logger.info('AuthRepoImpl/login', mockResponse);
+    this._logger.info('AuthRepoImpl.login', mockResponse);
 
     return Promise.resolve(AuthTokenDto.mapToEntity(mockResponse));
   }

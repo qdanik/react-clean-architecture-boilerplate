@@ -12,7 +12,7 @@ const defaultConfig = {
 };
 
 const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => {
-  const path = `.env.${platform}.${mode}`;
+  const path = `./configs/env/.env.${platform}.${mode}`;
   const isDev = mode === 'dev';
   const result = DotEnv.config({ path, debug: isDev });
 

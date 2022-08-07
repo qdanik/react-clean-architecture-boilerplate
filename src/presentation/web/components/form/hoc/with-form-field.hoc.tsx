@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import { RegisterOptions } from 'react-hook-form';
 
-import { getDisplayName } from 'presentation/web/hoc/hoc.helpers';
+import { getDisplayName } from 'presentation/shared';
 
 import { FormFieldApi, FormFieldName, FormFieldState } from '../form.typings';
 import { useFormField } from '../hooks/use-form-field.hooks';

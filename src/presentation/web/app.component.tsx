@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { AppContainer } from 'containers';
+import { IoC } from 'presentation/shared';
 import { AppRoutes } from 'presentation/web/routes';
 
-import { IoC } from './components/ioc';
 import { GlobalStyles } from './styles';
 
 export function App(): React.ReactElement {

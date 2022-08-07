@@ -4,7 +4,7 @@ import { useFormState } from 'react-hook-form';
 import { Button as BaseButton } from 'presentation/web/components/common';
 import { ButtonProps } from 'presentation/web/components/common/button/button.typings';
 
-export function Button(props: ButtonProps): React.ReactElement {
+export function FormButton(props: ButtonProps): React.ReactElement {
   const formik = useFormState();
 
   const disabled = useMemo(() => !formik.isValid, [formik.isValid]);

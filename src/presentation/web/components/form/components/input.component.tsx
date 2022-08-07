@@ -4,7 +4,7 @@ import { Input as BaseInput, InputProps } from 'presentation/web/components/comm
 
 import { FieldProps, FormComponentProps, withFormField } from '../hoc/with-form-field.hoc';
 
-export const Input = withFormField(function FormInput(
+export const FormInput = withFormField(function FormInput(
   props: FormComponentProps<InputProps & FieldProps>,
 ): React.ReactElement {
   const { label, placeholder, onChange, field, ...rest } = props;

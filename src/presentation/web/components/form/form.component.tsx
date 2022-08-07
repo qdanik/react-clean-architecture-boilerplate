@@ -1,8 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { DefaultValues, FormProvider, useForm } from 'react-hook-form';
 import compose from 'lodash/fp/compose';
-
-import { useDidMount } from 'presentation/web/hooks';
 
 import { FormProps } from './form.typings';
 
@@ -21,9 +19,10 @@ export function Form<TFieldValues, TFieldResponse>(
     });
   };
 
-  useDidMount(() => {
+  useEffect(() => {
     entity.api.setContext(form);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <FormProvider {...form}>
