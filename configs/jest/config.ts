@@ -37,6 +37,7 @@ const config: JestConfig = {
     },
     DEV: false,
     AUTH_TOKEN: '<token>',
+    APP_PLATFORM: 'web',
     UI_VERSION: '0.0.123'
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],

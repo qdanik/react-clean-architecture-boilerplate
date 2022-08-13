@@ -34,14 +34,14 @@ export default defineConfig(({ command, mode = 'dev' }) => {
         ...defaultConfig,
         mode: 'production',
         build: getBuildConfig(platform),
-        define: getBuildDefines(envConfig),
+        define: getBuildDefines(envConfig, platform),
         plugins: getBuildPlugins(platform),
       };
     default:
       return {
         ...defaultConfig,
         server: getServerConfig(envConfig),
-        define: getDevDefines(envConfig),
+        define: getDevDefines(envConfig, platform),
         plugins: getDevPlugins(platform),
       };
   }
