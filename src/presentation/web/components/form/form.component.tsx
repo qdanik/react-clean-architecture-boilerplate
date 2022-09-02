@@ -9,20 +9,19 @@ export function Form<TFieldValues, TFieldResponse>(
 ): ReactElement<FormProps<TFieldValues, TFieldResponse>> {
   const { children, entity } = props;
   const form = useForm<TFieldValues>({
-    defaultValues: entity.getInitialValues() as DefaultValues<TFieldValues>,
+    defaultValues: (entity?.getInitialValues() || {}) as DefaultValues<TFieldValues>,
   });
   const { handleSubmit } = form;
 
   const onSubmit = () => {
     handleSubmit(data => {
-      entity.handleSubmit(data);
+      entity?.handleSubmit(data);
     });
   };
 
   useEffect(() => {
-    entity.api.setContext(form);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    entity?.api?.setContext(form);
+  }, [entity?.api, form]);
 
   return (
     <FormProvider {...form}>

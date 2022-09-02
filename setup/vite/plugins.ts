@@ -22,7 +22,12 @@ const BasePlugins = [
     svgProps: null,
     svgo: true,
     svgoConfig: {
-      removeViewBox: false,
+      plugins: [
+        {
+          active: false,
+          name: 'removeViewBox',
+        },
+      ],
     },
     titleProp: false,
   }),

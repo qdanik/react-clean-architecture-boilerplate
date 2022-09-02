@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth.module should match snapshot 1`] = `
+.c3 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  height: 52px;
+  width: 100%;
+  padding: 4px 5px 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 52px;
+  -webkit-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  overflow: hidden;
+  color: gray;
+  background-color: lightgray;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.c1 {
+  display: block;
+  margin-left: 15px;
+  margin-bottom: 2px;
+  color: var(--gray);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.c2 {
+  position: relative;
+  display: block;
+  max-height: 70px;
+  padding: 15px;
+  margin: 2px 0;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 15px;
+  background-color: lightgray;
+  border: 1px solid transparent;
+  -webkit-transition: border 0.2s;
+  transition: border 0.2s;
+  outline: none;
+}
+
+.c2:focus {
+  border: 1px solid orange !important;
+}
+
+.c2::-webkit-input-placeholder {
+  color: gray;
+  font-weight: 500;
+}
+
+<form>
+  <logo.svg
+    style="display: block; height: 100px; margin: 10px auto; width: 100px;"
+  />
+  <label
+    class="c0"
+  >
+    <span
+      class="c1"
+    />
+    <input
+      class="c2"
+      name="login"
+      value=""
+    />
+  </label>
+  <button
+    class="c3"
+    disabled=""
+  />
+</form>
+`;

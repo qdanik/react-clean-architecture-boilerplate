@@ -42,15 +42,18 @@ const config: JestConfig = {
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/.jest/plugins/fileTransformer.ts',
+    'assets/(.*)': '<rootDir>/assets/$1',
   },
   preset: 'ts-jest',
   rootDir: '../../',
   roots: ['<rootDir>/src'],
   setupFiles: ['<rootDir>/setup/jest/setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/setup/jest/setup-after-env.ts'],
+  testEnvironment: 'jsdom',
   testRegex: ['.test.ts$', '.spec.ts$', '.test.tsx$', '.spec.tsx$'],
   transform: {
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/setup/jest/plugins/fileTransformer.js',
     '^.+\\.(tsx|ts)?$': 'ts-jest',
   },
 };
