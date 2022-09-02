@@ -1,11 +1,12 @@
-import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
-import viteCompression from 'vite-plugin-compression';
-import reactSvgPlugin from './plugins/react-svg';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';
 import { PluginOption } from 'vite';
-import { VitePlatform } from './typings';
+import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
+import viteCompression from 'vite-plugin-compression';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+import reactSvgPlugin from './plugins/react-svg';
+import { VitePlatform } from './typings';
 
 const BasePlugins = [
   importToCDN({
@@ -30,28 +31,31 @@ const BasePlugins = [
 export const getDevPlugins = (platform: VitePlatform): PluginOption[] => [
   ...BasePlugins,
   react({
-    include: '**/*.tsx',
-    exclude: 'node_modules/**',
     babel: {
-      plugins: [
-        ['babel-plugin-styled-components', {
-          displayName: true,
-          fileName: false,
-        }],
-      ],
       parserOpts: {
-        plugins: ['decorators-legacy']
-      }
-    }
+        plugins: ['decorators-legacy'],
+      },
+      plugins: [
+        [
+          'babel-plugin-styled-components',
+          {
+            displayName: true,
+            fileName: false,
+          },
+        ],
+      ],
+    },
+    exclude: 'node_modules/**',
+    include: '**/*.tsx',
   }),
   createHtmlPlugin({
-    minify: false,
     inject: {
       data: {
+        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`,
         title: platform.toUpperCase(),
-        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`
-      }
-    }
+      },
+    },
+    minify: false,
   }),
 ];
 
@@ -61,12 +65,12 @@ export const getBuildPlugins = (platform: VitePlatform): PluginOption[] => [
     filter: (file: string): boolean => file.includes('.js'),
   }),
   createHtmlPlugin({
-    minify: false,
     inject: {
       data: {
+        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`,
         title: platform.toUpperCase(),
-        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`
-      }
-    }
+      },
+    },
+    minify: false,
   }),
 ];

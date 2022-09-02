@@ -1,22 +1,23 @@
 import DotEnv from 'dotenv';
 import { defineConfig } from 'vite';
+
 import { getBuildConfig } from './build';
 import { getBuildDefines, getDevDefines } from './define';
 import { getBuildPlugins, getDevPlugins } from './plugins';
 import { getServerConfig } from './server';
 import styles from './styles';
-import { ViteMode, ViteEnvConfig, VitePlatform } from './typings';
+import { ViteEnvConfig, ViteMode, VitePlatform } from './typings';
 
 const defaultConfig = {
   css: styles,
 };
 
 const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => {
-  const path = `./configs/env/.env.${platform}.${mode}`;
+  const path = `./setup/env/.env.${platform}.${mode}`;
   const isDev = mode === 'dev';
-  const result = DotEnv.config({ path, debug: isDev });
+  const result = DotEnv.config({ debug: isDev, path });
 
-  if(result.error) {
+  if (result.error) {
     throw result.error;
   }
 
@@ -32,17 +33,17 @@ export default defineConfig(({ command, mode = 'dev' }) => {
     case 'build':
       return {
         ...defaultConfig,
-        mode: 'production',
         build: getBuildConfig(platform),
         define: getBuildDefines(envConfig, platform),
+        mode: 'production',
         plugins: getBuildPlugins(platform),
       };
     default:
       return {
         ...defaultConfig,
-        server: getServerConfig(envConfig),
         define: getDevDefines(envConfig, platform),
         plugins: getDevPlugins(platform),
+        server: getServerConfig(envConfig),
       };
   }
 });

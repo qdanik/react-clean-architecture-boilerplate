@@ -2,6 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
+    "path",
     "prettier",
     "sort-keys-fix",
     "import",
@@ -16,8 +17,7 @@
     "plugin:prettier/recommended",
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:path/recommended"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "env": {
     "browser": true,
@@ -60,10 +60,13 @@
     "package.json",
     "package-lock.json",
     "yarn.lock",
-    "yarn-error.log",
-    "configs/*"
+    "yarn-error.log"
   ],
   "rules": {
+    "path/no-relative-imports": [
+      "error",
+      { "maxDepth": 2, "suggested": false }
+    ],
     "guard-for-in": "off",
     "import/order": "off",
     "import/extensions": "off",

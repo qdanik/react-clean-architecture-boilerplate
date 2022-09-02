@@ -15,7 +15,7 @@ export class NotificationServiceImpl implements NotificationService {
     }, duration);
   }
 
-  #add(entity: Notification, type: NotificationType): Notification {
+  private _add(entity: Notification, type: NotificationType): Notification {
     const notification = entity.setType(type);
 
     this.notifications.save(notification);
@@ -25,19 +25,19 @@ export class NotificationServiceImpl implements NotificationService {
   }
 
   success(entity: Notification): Notification {
-    return this.#add(entity, NotificationType.Success);
+    return this._add(entity, NotificationType.Success);
   }
 
   error(entity: Notification): Notification {
-    return this.#add(entity, NotificationType.Error);
+    return this._add(entity, NotificationType.Error);
   }
 
   warn(entity: Notification): Notification {
-    return this.#add(entity, NotificationType.Warn);
+    return this._add(entity, NotificationType.Warn);
   }
 
   info(entity: Notification): Notification {
-    return this.#add(entity, NotificationType.Info);
+    return this._add(entity, NotificationType.Info);
   }
 
   close(entity: Notification): void {

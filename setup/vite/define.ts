@@ -1,11 +1,10 @@
 import pkg from '../../package.json';
 import { ViteEnvConfig, VitePlatform } from './typings';
 
-
 const getDefaultDefines = (env: ViteEnvConfig, platform: VitePlatform) => ({
-  UI_VERSION: JSON.stringify(pkg.version),
-  AUTH_TOKEN: JSON.stringify(env.AUTH_TOKEN),
   APP_PLATFORM: JSON.stringify(platform),
+  AUTH_TOKEN: JSON.stringify(env.AUTH_TOKEN),
+  UI_VERSION: JSON.stringify(pkg.version),
 });
 
 export const getDevDefines = (env: ViteEnvConfig, platform: VitePlatform) => ({

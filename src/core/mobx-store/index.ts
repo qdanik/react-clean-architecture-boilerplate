@@ -5,5 +5,5 @@ import { MobxStoreImpl } from './mobx.store.impl';
 
 const MobxStoreType: ServiceIdentifier<MobxStore> = Symbol('MobxStore');
 
-export type { MobxStore };
 export { MobxStoreImpl, MobxStoreType };
+export type { MobxStore };

@@ -1,4 +1,5 @@
 import { ServerOptions } from 'vite';
+
 import { ViteEnvConfig } from './typings';
 
 export const getServerConfig = (env: ViteEnvConfig): ServerOptions => ({
@@ -18,4 +19,3 @@ export const getServerConfig = (env: ViteEnvConfig): ServerOptions => ({
     {},
   ),
 });
-

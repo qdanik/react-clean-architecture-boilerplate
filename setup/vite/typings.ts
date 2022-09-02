@@ -7,4 +7,4 @@ export type ViteEnvConfig = {
   DEV_SERVER_PORT: string;
   BACKEND_URL: string;
   BACKEND_PROXIES: string;
-}
+};

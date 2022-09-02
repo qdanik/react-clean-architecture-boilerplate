@@ -7,8 +7,8 @@
 .history
 
 # husky
-configs/husky/_
-configs/husky/.gitignore
+setup/husky/_
+setup/husky/.gitignore
 
 dist
 dist*

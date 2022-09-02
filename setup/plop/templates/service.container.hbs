@@ -1,0 +1,12 @@
+import { AppContainer } from 'containers';
+import { ServiceIdentifier } from 'containers/config';
+
+import { {{pascalCase serviceName}}Service } from './{{dashCase serviceName}}.service';
+import { {{pascalCase serviceName}}ServiceImpl } from './{{dashCase serviceName}}.service.impl';
+
+const {{pascalCase serviceName}}ServiceType: ServiceIdentifier<{{pascalCase serviceName}}Service> = Symbol('{{pascalCase serviceName}}Service');
+
+AppContainer.bind({{pascalCase serviceName}}ServiceType).to({{pascalCase serviceName}}ServiceImpl);
+
+export { {{pascalCase serviceName}}ServiceImpl, {{pascalCase serviceName}}ServiceType };
+export type { {{pascalCase serviceName}}Service };

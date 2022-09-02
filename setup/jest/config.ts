@@ -15,10 +15,10 @@ const config: JestConfig = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules',
-    '<rootDir>/configs',
+    '<rootDir>/setup',
     '<rootDir>/assets',
-    '<rootDir>/src/presentation/web/index.tsx',
-    '<rootDir>/src/presentation/web/app.component.tsx',
+    '<rootDir>/src/presentation/{mobile,web}/index.tsx',
+    '<rootDir>/src/presentation/{mobile,web}/app.component.tsx',
     '.d.ts',
     '.mock.ts',
     'index.ts',
@@ -32,23 +32,23 @@ const config: JestConfig = {
     },
   },
   globals: {
+    APP_PLATFORM: 'web',
+    AUTH_TOKEN: '<token>',
+    DEV: false,
+    UI_VERSION: '0.0.123',
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
     },
-    DEV: false,
-    AUTH_TOKEN: '<token>',
-    APP_PLATFORM: 'web',
-    UI_VERSION: '0.0.123'
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/.jest/plugins/fileTransformer.js',
+      '<rootDir>/.jest/plugins/fileTransformer.ts',
   },
   preset: 'ts-jest',
   rootDir: '../../',
   roots: ['<rootDir>/src'],
-  setupFiles: ['<rootDir>/configs/jest/setup.ts'],
+  setupFiles: ['<rootDir>/setup/jest/setup.ts'],
   testRegex: ['.test.ts$', '.spec.ts$', '.test.tsx$', '.spec.tsx$'],
   transform: {
     '^.+\\.(tsx|ts)?$': 'ts-jest',

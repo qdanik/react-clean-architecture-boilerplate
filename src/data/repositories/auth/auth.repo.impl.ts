@@ -4,7 +4,7 @@ import { AuthTokenDto } from 'data/dto/auth';
 import { AuthToken } from 'domain/auth';
 
 import { AuthRepo } from './auth.repo';
-import { AuthResponse } from './auth.response';
+import { AuthResponse } from './auth.repo.response';
 
 @Injectable()
 export class AuthRepoImpl implements AuthRepo {
