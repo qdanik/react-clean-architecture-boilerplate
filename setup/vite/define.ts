@@ -1,5 +1,5 @@
 import pkg from '../../package.json';
-import { ViteEnvConfig, VitePlatform } from './typings';
+import { ViteEnvConfig, VitePlatform } from './config.types';
 
 const getDefaultDefines = (env: ViteEnvConfig, platform: VitePlatform) => ({
   APP_PLATFORM: JSON.stringify(platform),

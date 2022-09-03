@@ -18,11 +18,11 @@ export abstract class BaseFormImpl<Values, SubmitResponse, ValidationSchema = un
     throw new Error('Method validationSchema is not implemented');
   }
 
-  handleChange = (values?: Values): ChangeForm<Values> => {
+  handleChange = (_?: Values): ChangeForm<Values> => {
     throw new Error(`Method onChange is not implemented!`);
   };
 
-  handleSubmit = (values?: Values): SubmitResponse => {
+  handleSubmit = (_?: Values): SubmitResponse => {
     throw new Error('Method onSubmit is not implemented');
   };
 }

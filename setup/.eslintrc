@@ -87,6 +87,11 @@
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		],
     "no-useless-constructor": "off",
     "no-shadow": "off",
     "no-prototype-builtins": "off",
@@ -117,6 +122,7 @@
     "react/prefer-stateless-function": "off",
     "react/prop-types": "warn",
     "react/require-default-props": "off",
+    "react/function-component-definition": "off",
     "require-await": "error",
     "sort-keys-fix/sort-keys-fix": "error",
     "react-hooks/rules-of-hooks": "error",
@@ -146,6 +152,7 @@
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-unused-vars": "off"
   }

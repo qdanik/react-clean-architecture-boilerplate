@@ -1,3 +1,3 @@
 export * from './http-client';
-export * from './http.typings';
-export * from './http-method.typings';
+export * from './http.types';
+export * from './http-method.types';

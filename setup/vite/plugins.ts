@@ -6,9 +6,9 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import reactSvgPlugin from './plugins/react-svg';
-import { VitePlatform } from './typings';
+import { VitePlatform } from './config.types';
 
-const BasePlugins = [
+const getBasePlugins = (platform: VitePlatform): PluginOption[] => [
   importToCDN({
     modules: [autoComplete('react'), autoComplete('react-dom')],
   }),
@@ -31,10 +31,21 @@ const BasePlugins = [
     },
     titleProp: false,
   }),
+  createHtmlPlugin({
+    inject: {
+      data: {
+        injectScript: `<script type="module" src="/src/presentation/${
+          platform || 'web'
+        }/index.tsx"></script>`,
+        title: platform.toUpperCase(),
+      },
+    },
+    minify: false,
+  }),
 ];
 
 export const getDevPlugins = (platform: VitePlatform): PluginOption[] => [
-  ...BasePlugins,
+  ...getBasePlugins(platform),
   react({
     babel: {
       parserOpts: {
@@ -53,29 +64,11 @@ export const getDevPlugins = (platform: VitePlatform): PluginOption[] => [
     exclude: 'node_modules/**',
     include: '**/*.tsx',
   }),
-  createHtmlPlugin({
-    inject: {
-      data: {
-        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`,
-        title: platform.toUpperCase(),
-      },
-    },
-    minify: false,
-  }),
 ];
 
 export const getBuildPlugins = (platform: VitePlatform): PluginOption[] => [
-  ...BasePlugins,
+  ...getBasePlugins(platform),
   viteCompression({
     filter: (file: string): boolean => file.includes('.js'),
-  }),
-  createHtmlPlugin({
-    inject: {
-      data: {
-        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`,
-        title: platform.toUpperCase(),
-      },
-    },
-    minify: false,
   }),
 ];

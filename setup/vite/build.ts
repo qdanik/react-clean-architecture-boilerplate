@@ -1,6 +1,6 @@
 import { BuildOptions } from 'vite';
 
-import { VitePlatform } from './typings';
+import { VitePlatform } from './config.types';
 
 export const getBuildConfig = (platform: VitePlatform): BuildOptions => ({
   chunkSizeWarningLimit: 1000,

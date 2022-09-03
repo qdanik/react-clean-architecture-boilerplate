@@ -2,7 +2,7 @@ import { AxiosPromise } from 'axios';
 
 import { ServiceIdentifier } from 'containers/config';
 
-import { HttpRequestConfig } from './http.typings';
+import { HttpRequestConfig } from './http.types';
 import {
   HttpClientDeleteMethod,
   HttpClientGetMethod,
@@ -12,7 +12,7 @@ import {
   HttpClientPostMethod,
   HttpClientPutMethod,
   HttpInterceptorManager,
-} from './http-method.typings';
+} from './http-method.types';
 
 export const HttpClientType: ServiceIdentifier<HttpClient> = Symbol('HttpClient');
 export const HttpClientAdapterType: ServiceIdentifier<HttpClientAdapter<HttpRequestConfig>> =

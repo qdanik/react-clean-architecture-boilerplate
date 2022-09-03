@@ -48,7 +48,7 @@ describe('AxiosAdapters', () => {
   beforeEach(() => {
     axiosAbortAdapter = new AxiosAbortAdapter();
     axiosMemoAdapter = new AxiosMemoAdapter(axiosAbortAdapter);
-    axiosAdapter = new AxiosAdapter(axiosMemoAdapter);
+    axiosAdapter = new AxiosAdapter(axiosMemoAdapter, null);
     axiosAdapter.initialize();
     axiosConfig = axiosAdapter.getConfig();
   });

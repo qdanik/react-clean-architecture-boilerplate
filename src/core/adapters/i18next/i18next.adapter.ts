@@ -68,7 +68,9 @@ export class I18nextAdapter implements I18n<i18next> {
   };
 
   private _loadResources = (language: string, namespace: string, callback: ReadCallback): void => {
-    import(`../../../../assets/locales/${language}/${namespace}.${APP_PLATFORM}.json`)
+    const fileName = APP_PLATFORM ? `${namespace}.${APP_PLATFORM}` : namespace;
+
+    import(`../../../../assets/locales/${language}/${fileName}.json`)
       .then((file: { default: ResourceKey }) => {
         callback(null, file.default);
       })

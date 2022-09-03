@@ -6,9 +6,9 @@ import {
   HttpClientAdapter,
   HttpClientAdapterType,
   HttpFulfilledInterceptor,
-  HttpInterceptorManager,
   HttpRejectInterceptor,
 } from 'core/http';
+import { Logger, LoggerType } from 'core/logger';
 
 import { AxiosMemoName } from './axios-memo.adapter';
 
@@ -19,14 +19,30 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
   constructor(
     @Inject(HttpClientAdapterType)
     @Named(AxiosMemoName)
-    private readonly _memoAdapter: HttpClientAdapter<AxiosRequestConfig>,
+    protected readonly _memoAdapter: HttpClientAdapter<AxiosRequestConfig>,
+    @Inject(LoggerType) private readonly _logger: Logger,
   ) {}
 
   @PostConstruct()
   initialize(): void {
     const config = this.getConfig();
     this._http = axios.create(config);
+    this.setResponseInterceptors<null, HttpRejectInterceptor<AxiosResponse>>(
+      null,
+      this._errorInterceptor,
+    );
   }
+
+  private _errorInterceptor: HttpRejectInterceptor<AxiosResponse> = (
+    error: AxiosResponse,
+  ): Promise<AxiosResponse> => {
+    const {
+      config: { method, url, data = null },
+    } = error;
+    this._logger?.error(`[AxiosAdapter.${method}]`, { data, url });
+
+    return Promise.reject(error);
+  };
 
   getConfig = (): AxiosRequestConfig => {
     const adapter = this._memoAdapter.execute;
@@ -77,16 +93,22 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     return this._http.put<T, R>(url, data, config);
   }
 
-  setRequestInterceptors: HttpInterceptorManager = (
-    requestInterceptor?: HttpFulfilledInterceptor,
-    errorInterceptor?: HttpRejectInterceptor,
+  setRequestInterceptors = <
+    R extends HttpFulfilledInterceptor<unknown> = HttpFulfilledInterceptor,
+    E extends HttpRejectInterceptor<unknown> = HttpRejectInterceptor,
+  >(
+    requestInterceptor: R,
+    errorInterceptor: E,
   ): number => {
     return this._http.interceptors.request.use(requestInterceptor, errorInterceptor);
   };
 
-  setResponseInterceptors: HttpInterceptorManager = (
-    responseInterceptor?: HttpFulfilledInterceptor,
-    errorInterceptor?: HttpRejectInterceptor,
+  setResponseInterceptors = <
+    R extends HttpFulfilledInterceptor<unknown> = HttpFulfilledInterceptor,
+    E extends HttpRejectInterceptor<unknown> = HttpRejectInterceptor,
+  >(
+    responseInterceptor: R,
+    errorInterceptor: E,
   ): number => {
     return this._http.interceptors.response.use(responseInterceptor, errorInterceptor);
   };

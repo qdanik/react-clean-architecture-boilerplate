@@ -1,6 +1,6 @@
 import assign from 'lodash/assign';
 
-import { Endpoint } from 'core/endpoint';
+import { Endpoint } from 'core/http/endpoint';
 
 export const API = {
   login: new Endpoint('/login'),
