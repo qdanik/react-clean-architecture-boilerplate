@@ -1,4 +1,4 @@
-import { NotificationType } from '../notification.typings';
+import { NotificationType } from '../notification.types';
 
 export class Notification {
   private _id: string;

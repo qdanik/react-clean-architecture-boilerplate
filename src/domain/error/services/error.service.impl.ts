@@ -2,7 +2,7 @@ import { Inject, Injectable } from 'containers/config';
 import { Notification, NotificationService, NotificationServiceType } from 'domain/notification';
 
 import { Error } from '../entities/error.entity';
-import { ErrorResponse } from '../error.typings';
+import { ErrorResponse } from '../error.types';
 import { ErrorService } from './error.service';
 
 @Injectable()

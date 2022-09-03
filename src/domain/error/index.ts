@@ -1,3 +1,3 @@
 export * from './entities';
 export * from './services';
-export * from './error.typings';
+export * from './error.types';

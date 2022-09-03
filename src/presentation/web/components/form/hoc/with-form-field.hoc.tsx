@@ -3,7 +3,7 @@ import { RegisterOptions } from 'react-hook-form';
 
 import { getDisplayName } from 'presentation/shared';
 
-import { FormFieldApi, FormFieldName, FormFieldState } from '../form.typings';
+import { FormFieldApi, FormFieldName, FormFieldState } from '../form.types';
 import { useFormField } from '../hooks/use-form-field.hooks';
 
 export type FieldProps = {

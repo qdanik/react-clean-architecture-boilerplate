@@ -1,6 +1,6 @@
 import { buildUrl } from 'core/utils';
 
-import { EndpointInterface } from './endpoint.typings';
+import { EndpointInterface } from './endpoint.types';
 
 export class Endpoint<T extends string = never> implements EndpointInterface<T> {
   constructor(private readonly _baseUrl: string) {}

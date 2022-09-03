@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { DefaultValues, FormProvider, useForm } from 'react-hook-form';
 import compose from 'lodash/fp/compose';
 
-import { FormProps } from './form.typings';
+import { FormProps } from './form.types';
 
 export function Form<TFieldValues, TFieldResponse>(
   props: FormProps<TFieldValues, TFieldResponse>,

@@ -1,3 +1,3 @@
 export * from './entities';
 export * from './services';
-export * from './auth.typings';
+export * from './auth.types';

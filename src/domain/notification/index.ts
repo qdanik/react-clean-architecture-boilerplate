@@ -1,3 +1,3 @@
 export * from './entities';
 export * from './services';
-export * from './notification.typings';
+export * from './notification.types';

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from './button.constants';
 import { getBorderRadiusByVariant } from './button.helpers';
-import { ButtonVariants, ButtonWrapperProps } from './button.typings';
+import { ButtonVariants, ButtonWrapperProps } from './button.types';
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   position: relative;

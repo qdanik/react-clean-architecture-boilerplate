@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Label, StyledInput, Wrapper } from './input.styles';
-import { InputProps } from './input.typings';
+import { InputProps } from './input.types';
 
 export function Input(props: InputProps): React.ReactElement<InputProps> {
   const { label, value, onChange, placeholder, inputRef, ...rest } = props;

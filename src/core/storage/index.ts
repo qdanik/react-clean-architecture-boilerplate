@@ -1,3 +1,3 @@
 export * from './storage';
 export * from './storage.constants';
-export * from './storage.typings';
+export * from './storage.types';

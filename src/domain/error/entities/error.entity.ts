@@ -1,6 +1,6 @@
 import { HttpRequestConfig } from 'core/http';
 
-import { ErrorCodes, StatusCodes } from '../error.typings';
+import { ErrorCodes, StatusCodes } from '../error.types';
 
 export class Error {
   constructor(

@@ -2,7 +2,7 @@ import { FieldPath, FieldPathValue } from 'react-hook-form';
 
 import { ServiceIdentifier } from 'containers/config';
 
-import { FormApiErrors } from './form-api.typings';
+import { FormApiErrors } from './form-api.types';
 
 export const FormType: ServiceIdentifier<Form> = Symbol('FormType');
 

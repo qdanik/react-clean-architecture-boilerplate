@@ -1,16 +1,8 @@
 import { HttpResponse } from './http.types';
 
-export type HttpRejectInterceptor<TError extends unknown = Error> = (
-  error: TError,
-) => TError | Promise<TError>;
-
-export type HttpFulfilledInterceptor<TResult extends unknown = object> = (
-  error: TResult,
-) => TResult | Promise<TResult>;
-
-export type HttpInterceptorManager = (
-  onFulfilled?: HttpFulfilledInterceptor,
-  onRejected?: HttpRejectInterceptor,
+export type HttpInterceptorManager<TResponse> = (
+  onFulfilled?: (value: TResponse) => Promise<TResponse>,
+  onRejected?: (error: TResponse) => Promise<TResponse>,
 ) => number;
 
 export type HttpClientPostMethod<THttpConfig> = <TResponse, TData = unknown, TConfig = THttpConfig>(

@@ -3,7 +3,7 @@ import React, { ErrorInfo, ReactNode } from 'react';
 import { LoggerType } from 'core/logger';
 
 import { useInjection } from '../ioc';
-import { ErrorBoundaryProps, ErrorBoundaryState } from './error-boundary.typings';
+import { ErrorBoundaryProps, ErrorBoundaryState } from './error-boundary.types';
 
 class ErrorBoundaryComponent extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {

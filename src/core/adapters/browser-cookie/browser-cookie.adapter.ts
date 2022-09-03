@@ -5,7 +5,7 @@ import { Storage } from 'core/storage';
 
 import { COOKIE_REGEX } from './browser-cookie.constants';
 import { correctKey } from './browser-cookie.helpers';
-import { CookieOptions } from './browser-cookie.typings';
+import { CookieOptions } from './browser-cookie.types';
 
 @Injectable()
 export class BrowserCookieAdapter implements Storage {

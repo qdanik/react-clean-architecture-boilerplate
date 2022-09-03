@@ -1,4 +1,4 @@
-import { ButtonVariants } from './button.typings';
+import { ButtonVariants } from './button.types';
 
 export const DEFAULT_HEIGHT = '52px';
 export const DEFAULT_WIDTH = '100%';

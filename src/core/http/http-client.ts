@@ -2,7 +2,7 @@ import { AxiosPromise } from 'axios';
 
 import { ServiceIdentifier } from 'containers/config';
 
-import { HttpRequestConfig } from './http.types';
+import { HttpRequestConfig, HttpResponse } from './http.types';
 import {
   HttpClientDeleteMethod,
   HttpClientGetMethod,
@@ -29,8 +29,8 @@ export interface HttpClient<THttpConfig extends HttpRequestConfig = HttpRequestC
   options: HttpClientOptionsMethod<THttpConfig>;
   patch: HttpClientPatchMethod<THttpConfig>;
 
-  setRequestInterceptors: HttpInterceptorManager;
-  setResponseInterceptors: HttpInterceptorManager;
+  setRequestInterceptors: HttpInterceptorManager<HttpResponse>;
+  setResponseInterceptors: HttpInterceptorManager<HttpResponse>;
 }
 
 export interface HttpClientAdapter<C extends HttpRequestConfig> {

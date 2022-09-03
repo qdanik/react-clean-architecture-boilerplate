@@ -1,6 +1,6 @@
 import { useController, useFormContext } from 'react-hook-form';
 
-import { FormFieldHook, FormFieldHookResult, FormFieldName } from '../form.typings';
+import { FormFieldHook, FormFieldHookResult, FormFieldName } from '../form.types';
 
 export const useFormField: FormFieldHook = <TValue>(
   name: FormFieldName,

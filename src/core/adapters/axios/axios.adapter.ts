@@ -5,8 +5,7 @@ import {
   HttpClient,
   HttpClientAdapter,
   HttpClientAdapterType,
-  HttpFulfilledInterceptor,
-  HttpRejectInterceptor,
+  HttpInterceptorManager,
 } from 'core/http';
 import { Logger, LoggerType } from 'core/logger';
 
@@ -27,15 +26,10 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
   initialize(): void {
     const config = this.getConfig();
     this._http = axios.create(config);
-    this.setResponseInterceptors<null, HttpRejectInterceptor<AxiosResponse>>(
-      null,
-      this._errorInterceptor,
-    );
+    this.setResponseInterceptors(null, this._errorInterceptor);
   }
 
-  private _errorInterceptor: HttpRejectInterceptor<AxiosResponse> = (
-    error: AxiosResponse,
-  ): Promise<AxiosResponse> => {
+  private _errorInterceptor = (error: AxiosResponse): Promise<AxiosResponse> => {
     const {
       config: { method, url, data = null },
     } = error;
@@ -93,23 +87,17 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
     return this._http.put<T, R>(url, data, config);
   }
 
-  setRequestInterceptors = <
-    R extends HttpFulfilledInterceptor<unknown> = HttpFulfilledInterceptor,
-    E extends HttpRejectInterceptor<unknown> = HttpRejectInterceptor,
-  >(
-    requestInterceptor: R,
-    errorInterceptor: E,
+  setRequestInterceptors: HttpInterceptorManager<AxiosResponse> = (
+    requestInterceptor,
+    errorInterceptor,
   ): number => {
     return this._http.interceptors.request.use(requestInterceptor, errorInterceptor);
   };
 
-  setResponseInterceptors = <
-    R extends HttpFulfilledInterceptor<unknown> = HttpFulfilledInterceptor,
-    E extends HttpRejectInterceptor<unknown> = HttpRejectInterceptor,
-  >(
-    responseInterceptor: R,
-    errorInterceptor: E,
-  ): number => {
+  setResponseInterceptors: HttpInterceptorManager<AxiosResponse> = (
+    responseInterceptor,
+    errorInterceptor,
+  ) => {
     return this._http.interceptors.response.use(responseInterceptor, errorInterceptor);
   };
 }

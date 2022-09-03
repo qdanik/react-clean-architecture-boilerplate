@@ -3,7 +3,7 @@ import Logo from 'assets/images/logo.svg';
 
 import { Form, FormButton, FormInput } from 'presentation/web/components/form';
 
-import { AuthProps } from './auth.typings';
+import { AuthProps } from './auth.types';
 
 export function Auth({ presenter }: AuthProps): React.ReactElement {
   return (

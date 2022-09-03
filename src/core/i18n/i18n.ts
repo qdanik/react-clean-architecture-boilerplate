@@ -1,4 +1,4 @@
-import { I18nLanguages } from './i18n.typings';
+import { I18nLanguages } from './i18n.types';
 
 export interface I18n<InstanceType = unknown> {
   getInstance(): InstanceType;

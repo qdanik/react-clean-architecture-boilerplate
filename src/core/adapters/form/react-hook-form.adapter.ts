@@ -2,7 +2,7 @@ import { FieldPath, FieldPathValue, UseFormReturn } from 'react-hook-form';
 
 import { Injectable } from 'containers/config';
 import { Form } from 'core/form';
-import { FormApiErrors } from 'core/form/form-api.typings';
+import { FormApiErrors } from 'core/form/form-api.types';
 
 @Injectable()
 export class ReactHookFormAdapter<Values extends object, Context extends UseFormReturn<Values>>
