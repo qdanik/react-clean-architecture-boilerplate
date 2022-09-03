@@ -1,4 +1,3 @@
-// Use this implementation as example
 import { AuthResponse } from 'data/repositories/auth';
 import { AuthToken } from 'domain/auth';
 

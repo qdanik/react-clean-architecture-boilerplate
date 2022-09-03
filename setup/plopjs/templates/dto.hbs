@@ -1,0 +1,7 @@
+import { {{pascalCase entity}} } from 'domain/{{dashCase domainName}}';
+
+export class {{pascalCase entity}}Dto {
+  static mapToEntity(value): {{pascalCase entity}} {
+    return new {{pascalCase entity}}();
+  }
+}

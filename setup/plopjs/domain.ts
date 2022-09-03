@@ -1,10 +1,14 @@
-import { AddActionConfig, PlopGeneratorConfig } from 'plop';
+import { ActionType, PlopGeneratorConfig } from 'plop';
 
-import { DOMAIN_PATH, PROMPTS, SERVICE_DIR, SERVICE_PATH } from './constants';
+import { DOMAIN_PATH, infinityPrompt, PROMPTS } from './constants';
+import { getEntitiesActions } from './entity';
+import { getRepositoriesActions } from './repo';
+import { getServiceActions } from './service';
 
 type Data = {
   domainName: string;
   entities?: string[];
+  hasRepo: boolean;
 };
 
 const config: PlopGeneratorConfig = {
@@ -22,31 +26,8 @@ const config: PlopGeneratorConfig = {
       serviceName: data.domainName,
       services: [data.domainName],
     };
-    const actions: AddActionConfig[] = [
-      {
-        data: actionData,
-        path: `${SERVICE_PATH}.service.ts`,
-        templateFile: './templates/service.hbs',
-        type: 'add',
-      },
-      {
-        data: actionData,
-        path: `${SERVICE_PATH}.service.impl.ts`,
-        templateFile: './templates/service.impl.hbs',
-        type: 'add',
-      },
-      {
-        data: actionData,
-        path: `${SERVICE_PATH}.service.container.ts`,
-        templateFile: './templates/service.container.hbs',
-        type: 'add',
-      },
-      {
-        data: actionData,
-        path: `${SERVICE_DIR}index.ts`,
-        templateFile: './templates/services.index.hbs',
-        type: 'add',
-      },
+
+    const actions: ActionType[] = [
       {
         data: actionData,
         path: `${DOMAIN_PATH}/index.ts`,
@@ -55,57 +36,37 @@ const config: PlopGeneratorConfig = {
       },
     ];
 
-    if (hasEntities) {
-      data.entities.forEach(entity => {
-        actions.push({
-          data: {
-            ...actionData,
-            entity,
-          },
-          path: `${DOMAIN_PATH}/entities/{{dashCase entity}}.entity.ts`,
-          templateFile: './templates/entity.hbs',
-          type: 'add',
-        });
-      });
-
-      actions.push({
-        data: actionData,
-        path: `${DOMAIN_PATH}/entities/index.ts`,
-        templateFile: './templates/entities.index.hbs',
-        type: 'add',
-      });
-    }
-
-    return actions;
+    return [
+      ...actions,
+      ...getEntitiesActions({ actionData, data, hasEntities }),
+      ...getServiceActions({ actionData, data: actionData }),
+      ...getRepositoriesActions({
+        data: {
+          domainName: data.domainName,
+          repositories: [data.domainName],
+        },
+      }),
+    ];
   },
   description: 'Add new domain',
   prompts: async (inquirer): Promise<Data> => {
-    const { domainName, hasEntities } = await inquirer.prompt([
+    const { domainName, hasEntities, hasRepo } = await inquirer.prompt([
       PROMPTS.domainName,
-      PROMPTS.haveEntities,
+      PROMPTS.hasEntities,
+      PROMPTS.hasRepo,
     ]);
 
     if (!hasEntities) {
-      return { domainName };
+      return { domainName, hasRepo };
     }
 
-    const entities = [];
-    async function askEntityName(): Promise<Data> {
-      const { entityName } = await inquirer.prompt([PROMPTS.entityName]);
+    const entities = await infinityPrompt(inquirer, PROMPTS.entityName);
 
-      if (entityName) {
-        entities.push(entityName);
-
-        return askEntityName();
-      }
-
-      return Promise.resolve({
-        domainName,
-        entities,
-      });
-    }
-
-    return askEntityName();
+    return {
+      domainName,
+      entities,
+      hasRepo,
+    };
   },
 };
 

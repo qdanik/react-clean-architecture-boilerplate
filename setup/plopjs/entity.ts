@@ -1,15 +1,71 @@
-import { Actions } from 'node-plop';
-import { PlopGeneratorConfig } from 'plop';
+import { ActionType, PlopGeneratorConfig } from 'plop';
 
-import { DOMAIN_PATH, PROMPTS } from './constants';
+import { DTO_DIR, ENTITIES_DIR, infinityPrompt, PROMPTS } from './constants';
 
 type Data = {
   entities: string[];
   domainName: string;
 };
 
+export const getEntitiesActions = ({ data, actionData, hasEntities = true }): ActionType[] => {
+  if (!hasEntities) {
+    return [];
+  }
+  const actions: ActionType[] = [
+    {
+      data: actionData,
+      path: `${ENTITIES_DIR}index.ts`,
+      skipIfExists: true,
+      template: '',
+      type: 'add',
+    },
+    {
+      data: actionData,
+      path: `${DTO_DIR}index.ts`,
+      skipIfExists: true,
+      template: '',
+      type: 'add',
+    },
+    {
+      data: actionData,
+      path: `${ENTITIES_DIR}index.ts`,
+      pattern: /$/gi,
+      templateFile: './templates/entities.index.hbs',
+      type: 'modify',
+    },
+    {
+      data: actionData,
+      path: `${DTO_DIR}index.ts`,
+      pattern: /$/gi,
+      templateFile: './templates/dto.index.hbs',
+      type: 'modify',
+    },
+  ];
+
+  data.entities.forEach(entity => {
+    const entityData = {
+      ...actionData,
+      entity,
+    };
+    actions.push({
+      data: entityData,
+      path: `${ENTITIES_DIR}{{dashCase entity}}.entity.ts`,
+      templateFile: './templates/entity.hbs',
+      type: 'add',
+    });
+    actions.push({
+      data: entityData,
+      path: `${DTO_DIR}{{dashCase entity}}.dto.ts`,
+      templateFile: './templates/dto.hbs',
+      type: 'add',
+    });
+  });
+
+  return actions;
+};
+
 const config: PlopGeneratorConfig = {
-  actions: (data: Data) => {
+  actions: (data: Data): ActionType[] => {
     const hasEntities = Boolean(data?.entities?.length);
 
     if (!data.domainName) {
@@ -19,54 +75,22 @@ const config: PlopGeneratorConfig = {
     if (!hasEntities) {
       throw Error('Entities is required option.');
     }
-    const actions: Actions = [
-      {
-        data: {
-          domainName: data.domainName,
-          entities: data.entities || [],
-        },
-        path: `${DOMAIN_PATH}/entities/index.ts`,
-        pattern: /$/gi,
-        templateFile: './templates/entities.index.hbs',
-        type: 'modify',
-      },
-    ];
+    const actionData = {
+      domainName: data.domainName,
+      entities: data.entities || [],
+    };
 
-    data.entities.forEach(entity => {
-      actions.push({
-        data: {
-          domainName: data.domainName,
-          entity,
-        },
-        path: `${DOMAIN_PATH}/entities/{{dashCase entity}}.entity.ts`,
-        templateFile: './templates/entity.hbs',
-        type: 'add',
-      });
-    });
-
-    return actions;
+    return getEntitiesActions({ actionData, data });
   },
   description: 'Add new domain entities',
   prompts: async (inquirer): Promise<Data> => {
     const { domainName } = await inquirer.prompt([PROMPTS.domainName]);
-    const entities = [];
+    const entities = await infinityPrompt(inquirer, PROMPTS.entityName);
 
-    async function askEntityName(): Promise<Data> {
-      const { entityName } = await inquirer.prompt([PROMPTS.entityName]);
-
-      if (entityName) {
-        entities.push(entityName);
-
-        return askEntityName();
-      }
-
-      return Promise.resolve({
-        domainName,
-        entities,
-      });
-    }
-
-    return askEntityName();
+    return {
+      domainName,
+      entities,
+    };
   },
 };
 

@@ -1,11 +1,61 @@
-import { Actions } from 'node-plop';
+import { ActionType } from 'node-plop';
 import { PlopGeneratorConfig } from 'plop';
 
-import { PROMPTS, SERVICE_DIR, SERVICE_PATH } from './constants';
+import { infinityPrompt, PROMPTS, SERVICE_DIR, SERVICE_PATH } from './constants';
 
 type Data = {
   services: string[];
   domainName: string;
+};
+
+export const getServiceActions = ({ data, actionData }): ActionType[] => {
+  const actions: ActionType[] = [];
+
+  data.services.forEach(service => {
+    const serviceData = {
+      ...actionData,
+      serviceName: service,
+    };
+    actions.push({
+      abortOnFail: true,
+      data: serviceData,
+      path: `${SERVICE_PATH}.service.ts`,
+      templateFile: './templates/service.hbs',
+      type: 'add',
+    });
+    actions.push({
+      abortOnFail: true,
+      data: serviceData,
+      path: `${SERVICE_PATH}.service.impl.ts`,
+      templateFile: './templates/service.impl.hbs',
+      type: 'add',
+    });
+    actions.push({
+      abortOnFail: true,
+      data: serviceData,
+      path: `${SERVICE_PATH}.service.container.ts`,
+      templateFile: './templates/service.container.hbs',
+      type: 'add',
+    });
+  });
+
+  return [
+    ...actions,
+    {
+      data: actionData,
+      path: `${SERVICE_DIR}/index.ts`,
+      skipIfExists: true,
+      template: '',
+      type: 'add',
+    },
+    {
+      data: actionData,
+      path: `${SERVICE_DIR}/index.ts`,
+      pattern: /$/gi,
+      templateFile: './templates/services.index.hbs',
+      type: 'modify',
+    },
+  ];
 };
 
 const config: PlopGeneratorConfig = {
@@ -19,72 +69,22 @@ const config: PlopGeneratorConfig = {
     if (!hasServices) {
       throw Error('Services is required option.');
     }
-    const actions: Actions = [
-      {
-        data: {
-          domainName: data.domainName,
-          services: data.services || [],
-        },
-        path: `${SERVICE_DIR}/index.ts`,
-        pattern: /$/gi,
-        templateFile: './templates/services.index.hbs',
-        type: 'modify',
-      },
-    ];
+    const actionData = {
+      domainName: data.domainName,
+      services: data.services || [],
+    };
 
-    data.services.forEach(service => {
-      actions.push({
-        data: {
-          domainName: data.domainName,
-          serviceName: service,
-        },
-        path: `${SERVICE_PATH}.service.ts`,
-        templateFile: './templates/service.hbs',
-        type: 'add',
-      });
-      actions.push({
-        data: {
-          domainName: data.domainName,
-          serviceName: service,
-        },
-        path: `${SERVICE_PATH}.service.impl.ts`,
-        templateFile: './templates/service.impl.hbs',
-        type: 'add',
-      });
-      actions.push({
-        data: {
-          domainName: data.domainName,
-          serviceName: service,
-        },
-        path: `${SERVICE_PATH}.service.container.ts`,
-        templateFile: './templates/service.container.hbs',
-        type: 'add',
-      });
-    });
-
-    return actions;
+    return getServiceActions({ actionData, data });
   },
   description: 'Add new domain services',
   prompts: async (inquirer): Promise<Data> => {
     const { domainName } = await inquirer.prompt([PROMPTS.domainName]);
-    const services = [];
+    const services = await infinityPrompt(inquirer, PROMPTS.serviceName);
 
-    async function askServiceName(): Promise<Data> {
-      const { serviceName } = await inquirer.prompt([PROMPTS.serviceName]);
-
-      if (serviceName) {
-        services.push(serviceName);
-
-        return askServiceName();
-      }
-
-      return Promise.resolve({
-        domainName,
-        services,
-      });
-    }
-
-    return askServiceName();
+    return {
+      domainName,
+      services,
+    };
   },
 };
 
