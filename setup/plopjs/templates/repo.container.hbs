@@ -1,0 +1,13 @@
+import { AppContainer } from 'containers';
+import { ServiceIdentifier } from 'containers/config';
+
+import { {{pascalCase repoName}}Repo } from './{{dashCase repoName}}.repo';
+import { {{pascalCase repoName}}RepoImpl } from './{{dashCase repoName}}.repo.impl';
+import { {{pascalCase repoName}}Response } from './{{dashCase repoName}}.repo.response';
+
+const {{pascalCase repoName}}RepoType: ServiceIdentifier<{{pascalCase repoName}}Repo> = Symbol('{{pascalCase repoName}}Repo');
+
+AppContainer.bind({{pascalCase repoName}}RepoType).to({{pascalCase repoName}}RepoImpl);
+
+export { {{pascalCase repoName}}RepoType, {{pascalCase repoName}}RepoImpl };
+export type { {{pascalCase repoName}}Repo, {{pascalCase repoName}}Response };

@@ -1,0 +1,19 @@
+import { Inject, Injectable } from 'containers/config';
+import { HttpClient, HttpClientType } from 'core/http';
+import { Logger, LoggerType } from 'core/logger';
+
+import { {{pascalCase repoName}}Repo } from './{{dashCase repoName}}.repo';
+
+@Injectable()
+export class {{pascalCase repoName}}RepoImpl implements {{pascalCase repoName}}Repo {
+  constructor(
+    @Inject(LoggerType) private readonly _logger: Logger,
+    @Inject(HttpClientType) private readonly _http: HttpClient,
+  ) {}
+
+  example(): Promise<void> {
+    this._logger.info('{{pascalCase repoName}}Repo.example', { ping: true });
+
+    return Promise.resolve();
+  }
+}

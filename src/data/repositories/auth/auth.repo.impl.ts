@@ -1,4 +1,5 @@
 import { Inject, Injectable } from 'containers/config';
+import { HttpClient, HttpClientType } from 'core/http';
 import { Logger, LoggerType } from 'core/logger';
 import { AuthTokenDto } from 'data/dto/auth';
 import { AuthToken } from 'domain/auth';
@@ -8,7 +9,10 @@ import { AuthResponse } from './auth.repo.response';
 
 @Injectable()
 export class AuthRepoImpl implements AuthRepo {
-  constructor(@Inject(LoggerType) private readonly _logger: Logger) {}
+  constructor(
+    @Inject(LoggerType) private readonly _logger: Logger,
+    @Inject(HttpClientType) private readonly _http: HttpClient,
+  ) {}
 
   login(login: string, password: string): Promise<AuthToken> {
     const mockResponse: AuthResponse.Login = {

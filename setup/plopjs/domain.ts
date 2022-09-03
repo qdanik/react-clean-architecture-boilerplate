@@ -1,28 +1,9 @@
 import { AddActionConfig, PlopGeneratorConfig } from 'plop';
 
-const ROOT_PATH = '../../';
-const DOMAIN_PATH = `${ROOT_PATH}src/domain/{{dashCase name}}`;
-
-const PROMPTS = {
-  domainName: {
-    message: 'Domain name:',
-    name: 'name',
-    type: 'input',
-  },
-  entityName: {
-    message: 'Entity name (Press enter to skip):',
-    name: 'entityName',
-    type: 'input',
-  },
-  haveEntities: {
-    message: 'Does your service have entities?',
-    name: 'hasEntities',
-    type: 'confirm',
-  },
-};
+import { DOMAIN_PATH, PROMPTS, SERVICE_DIR, SERVICE_PATH } from './constants';
 
 type Data = {
-  name: string;
+  domainName: string;
   entities?: string[];
 };
 
@@ -30,39 +11,39 @@ const config: PlopGeneratorConfig = {
   actions: (data: Data) => {
     const hasEntities = Boolean(data?.entities?.length);
 
-    if (!data.name) {
+    if (!data.domainName) {
       throw Error('Domain Name is required option.');
     }
 
     const actionData = {
+      domainName: data.domainName,
       entities: data.entities || [],
       hasEntities,
-      name: data.name,
-      serviceName: data.name,
-      services: [data.name],
+      serviceName: data.domainName,
+      services: [data.domainName],
     };
     const actions: AddActionConfig[] = [
       {
         data: actionData,
-        path: `${DOMAIN_PATH}/services/{{dashCase name}}.service.ts`,
+        path: `${SERVICE_PATH}.service.ts`,
         templateFile: './templates/service.hbs',
         type: 'add',
       },
       {
         data: actionData,
-        path: `${DOMAIN_PATH}/services/{{dashCase name}}.service.impl.ts`,
+        path: `${SERVICE_PATH}.service.impl.ts`,
         templateFile: './templates/service.impl.hbs',
         type: 'add',
       },
       {
         data: actionData,
-        path: `${DOMAIN_PATH}/services/{{dashCase name}}.service.container.ts`,
+        path: `${SERVICE_PATH}.service.container.ts`,
         templateFile: './templates/service.container.hbs',
         type: 'add',
       },
       {
         data: actionData,
-        path: `${DOMAIN_PATH}/services/index.ts`,
+        path: `${SERVICE_DIR}index.ts`,
         templateFile: './templates/services.index.hbs',
         type: 'add',
       },
@@ -99,10 +80,13 @@ const config: PlopGeneratorConfig = {
   },
   description: 'Add new domain',
   prompts: async (inquirer): Promise<Data> => {
-    const { name, hasEntities } = await inquirer.prompt([PROMPTS.domainName, PROMPTS.haveEntities]);
+    const { domainName, hasEntities } = await inquirer.prompt([
+      PROMPTS.domainName,
+      PROMPTS.haveEntities,
+    ]);
 
     if (!hasEntities) {
-      return { name };
+      return { domainName };
     }
 
     const entities = [];
@@ -116,8 +100,8 @@ const config: PlopGeneratorConfig = {
       }
 
       return Promise.resolve({
+        domainName,
         entities,
-        name,
       });
     }
 

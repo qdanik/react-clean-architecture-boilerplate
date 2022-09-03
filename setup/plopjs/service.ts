@@ -1,32 +1,18 @@
 import { Actions } from 'node-plop';
 import { PlopGeneratorConfig } from 'plop';
 
-const ROOT_PATH = '../../';
-const DOMAIN_PATH = `${ROOT_PATH}src/domain/{{dashCase name}}`;
-
-const PROMPTS = {
-  domainName: {
-    message: 'Domain name:',
-    name: 'name',
-    type: 'input',
-  },
-  serviceName: {
-    message: 'Service name (Press enter to skip):',
-    name: 'serviceName',
-    type: 'input',
-  },
-};
+import { PROMPTS, SERVICE_DIR, SERVICE_PATH } from './constants';
 
 type Data = {
   services: string[];
-  name: string;
+  domainName: string;
 };
 
 const config: PlopGeneratorConfig = {
   actions: (data: Data) => {
     const hasServices = Boolean(data?.services?.length);
 
-    if (!data.name) {
+    if (!data.domainName) {
       throw Error('Domain Name is required option.');
     }
 
@@ -36,10 +22,10 @@ const config: PlopGeneratorConfig = {
     const actions: Actions = [
       {
         data: {
-          name: data.name,
+          domainName: data.domainName,
           services: data.services || [],
         },
-        path: `${DOMAIN_PATH}/services/index.ts`,
+        path: `${SERVICE_DIR}/index.ts`,
         pattern: /$/gi,
         templateFile: './templates/services.index.hbs',
         type: 'modify',
@@ -49,28 +35,28 @@ const config: PlopGeneratorConfig = {
     data.services.forEach(service => {
       actions.push({
         data: {
-          name: data.name,
+          domainName: data.domainName,
           serviceName: service,
         },
-        path: `${DOMAIN_PATH}/services/{{dashCase serviceName}}.service.ts`,
+        path: `${SERVICE_PATH}.service.ts`,
         templateFile: './templates/service.hbs',
         type: 'add',
       });
       actions.push({
         data: {
-          name: data.name,
+          domainName: data.domainName,
           serviceName: service,
         },
-        path: `${DOMAIN_PATH}/services/{{dashCase serviceName}}.service.impl.ts`,
+        path: `${SERVICE_PATH}.service.impl.ts`,
         templateFile: './templates/service.impl.hbs',
         type: 'add',
       });
       actions.push({
         data: {
-          name: data.name,
+          domainName: data.domainName,
           serviceName: service,
         },
-        path: `${DOMAIN_PATH}/services/{{dashCase serviceName}}.service.container.ts`,
+        path: `${SERVICE_PATH}.service.container.ts`,
         templateFile: './templates/service.container.hbs',
         type: 'add',
       });
@@ -80,7 +66,7 @@ const config: PlopGeneratorConfig = {
   },
   description: 'Add new domain services',
   prompts: async (inquirer): Promise<Data> => {
-    const { name } = await inquirer.prompt([PROMPTS.domainName]);
+    const { domainName } = await inquirer.prompt([PROMPTS.domainName]);
     const services = [];
 
     async function askServiceName(): Promise<Data> {
@@ -93,7 +79,7 @@ const config: PlopGeneratorConfig = {
       }
 
       return Promise.resolve({
-        name,
+        domainName,
         services,
       });
     }

@@ -1,32 +1,18 @@
 import { Actions } from 'node-plop';
 import { PlopGeneratorConfig } from 'plop';
 
-const ROOT_PATH = '../../';
-const DOMAIN_PATH = `${ROOT_PATH}src/domain/{{dashCase name}}`;
-
-const PROMPTS = {
-  domainName: {
-    message: 'Domain name:',
-    name: 'name',
-    type: 'input',
-  },
-  entityName: {
-    message: 'Entity name (Press enter to skip):',
-    name: 'entityName',
-    type: 'input',
-  },
-};
+import { DOMAIN_PATH, PROMPTS } from './constants';
 
 type Data = {
   entities: string[];
-  name: string;
+  domainName: string;
 };
 
 const config: PlopGeneratorConfig = {
   actions: (data: Data) => {
     const hasEntities = Boolean(data?.entities?.length);
 
-    if (!data.name) {
+    if (!data.domainName) {
       throw Error('Domain Name is required option.');
     }
 
@@ -36,8 +22,8 @@ const config: PlopGeneratorConfig = {
     const actions: Actions = [
       {
         data: {
+          domainName: data.domainName,
           entities: data.entities || [],
-          name: data.name,
         },
         path: `${DOMAIN_PATH}/entities/index.ts`,
         pattern: /$/gi,
@@ -49,8 +35,8 @@ const config: PlopGeneratorConfig = {
     data.entities.forEach(entity => {
       actions.push({
         data: {
+          domainName: data.domainName,
           entity,
-          name: data.name,
         },
         path: `${DOMAIN_PATH}/entities/{{dashCase entity}}.entity.ts`,
         templateFile: './templates/entity.hbs',
@@ -62,7 +48,7 @@ const config: PlopGeneratorConfig = {
   },
   description: 'Add new domain entities',
   prompts: async (inquirer): Promise<Data> => {
-    const { name } = await inquirer.prompt([PROMPTS.domainName]);
+    const { domainName } = await inquirer.prompt([PROMPTS.domainName]);
     const entities = [];
 
     async function askEntityName(): Promise<Data> {
@@ -75,8 +61,8 @@ const config: PlopGeneratorConfig = {
       }
 
       return Promise.resolve({
+        domainName,
         entities,
-        name,
       });
     }
 

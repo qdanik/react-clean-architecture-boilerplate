@@ -2,8 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es6",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "listFiles": false,
     "allowJs": true,
@@ -52,6 +52,7 @@
     "coverage",
     "docker",
     "docs",
+    "./setup/jest/plugins",
     ".*"
   ]
 }
