@@ -27,7 +27,6 @@ Layered Architecture for developing web/mobile/desktop applications using JavaSc
   - [Project Scripts](./docs/SCRIPTS.md "Project Scripts Documentation")
   - [Architecture](./docs/ARCHITECTURE.md "Project Architecture Documentation")
   - [Code Conventions](./docs/CODE_CONVENTIONS.md "Project Code Conventions") *In progress*
-  - [Style Guides](./docs/CODE_CONVENTIONS.md "Project Style Guides") *In progress*
 
 ## Technologies Used
 - Core

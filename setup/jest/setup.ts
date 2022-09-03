@@ -1,1 +1,2 @@
-// override another methods here
+// render
+export * from '@testing-library/react';

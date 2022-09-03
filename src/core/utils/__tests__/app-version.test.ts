@@ -13,15 +13,6 @@ describe('AppVersionUtil', () => {
     jest.restoreAllMocks();
   });
 
-  it('should not send info about current version to console', () => {
-    const prevDocument = globalThis.document;
-    globalThis.document = undefined;
-    appVersion();
-
-    expect(spyConsoleInfo).not.toHaveBeenCalled();
-    globalThis.document = prevDocument;
-  });
-
   it('should send info about current version to console', () => {
     appVersion();
 

@@ -6,11 +6,17 @@ All available scripts for project.
 
 ## Running Application
 
- `npm run start` - run dev server;
+* type - web | mobile. Default: web;
+
+ `npm run start:[type]` - run dev server;
 
  `npm run preview` - run build preview server;
 
- `npm run build` - build your application.
+ `npm run build:[web|mobile]` - build target application.
+
+ `npm run build` - build all applications.
+
+ `npm run start:stage` - run dev server with staged ENV config;
 
 ## Running Linters
 
@@ -26,10 +32,8 @@ All available scripts for project.
 
 `npm run test` - run all project tests;
 
-- `npm run test --updateSnapshot` - update every snapshot that fails during this test run;
-
-- `npm run test --watch` - watch for changes and re-run tests;
-
-- `npm run test --coverage` - collect code coverage by tests;
-
 `npm run test:ci` - run all project tests and collect coverage.
+
+## Running Generators
+
+`npm run generator` - run and follow instructions;
