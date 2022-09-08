@@ -30,7 +30,10 @@
     "pre-commit": "lint-staged",
     "pre-push": "npm run build",
     "commitlint": "commitlint -e",
-    "generate": "node --no-warnings --experimental-loader esbuild-node-loader ./setup/plopjs/index.ts"
+    "generate": "node --no-warnings --experimental-loader esbuild-node-loader ./setup/plopjs/index.ts",
+    "docker:up": "docker-compose -f ./docker/docker-compose.yml up -d --build",
+    "docker:stop": "docker-compose -f ./docker/docker-compose.yml stop",
+    "docker:down": "docker-compose -f ./docker/docker-compose.yml down"
   },
   "dependencies": {
     "ahooks": "3.7.0",

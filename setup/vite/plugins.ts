@@ -1,6 +1,5 @@
 import react from '@vitejs/plugin-react';
 import { PluginOption } from 'vite';
-import importToCDN, { autoComplete } from 'vite-plugin-cdn-import';
 import viteCompression from 'vite-plugin-compression';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -9,9 +8,6 @@ import reactSvgPlugin from './plugins/react-svg';
 import { VitePlatform } from './config.types';
 
 const getBasePlugins = (platform: VitePlatform): PluginOption[] => [
-  importToCDN({
-    modules: [autoComplete('react'), autoComplete('react-dom')],
-  }),
   tsconfigPaths(),
   reactSvgPlugin({
     defaultExport: 'component',

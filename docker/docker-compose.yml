@@ -1,12 +1,25 @@
-version: '3.4'
+version: '0.1'
 
 services:
-  fe-project:
-    image: fe-project
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    volumes:
-      - .:/usr/src/app/:rw
+  nginx-proxy:
+    container_name: 'nginx-proxy'
+    image: jwilder/nginx-proxy
     ports:
-      - 3000:3000
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+
+  nginx:
+    container_name: 'nginx'
+    image: nginx:alpine
+    environment:
+      - VIRTUAL_HOST=fe.loc,,m.fe.loc
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - ./hosts/:/etc/nginx/conf.d/
+      - ./logs/:/var/log/nginx/
+      - ./../:/var/www/

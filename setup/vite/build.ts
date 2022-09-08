@@ -26,9 +26,6 @@ export const getBuildConfig = (platform: VitePlatform): BuildOptions => ({
         if (id.includes('node_modules')) {
           return 'vendor';
         }
-        if (id.includes('common')) {
-          return 'common';
-        }
         if (id.includes(platform)) {
           return platform;
         }
