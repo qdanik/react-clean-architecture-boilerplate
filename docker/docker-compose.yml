@@ -1,4 +1,5 @@
 version: '0.1'
+name: "react-project-container"
 
 services:
   nginx-proxy:
@@ -13,7 +14,7 @@ services:
     container_name: 'nginx'
     image: nginx:alpine
     environment:
-      - VIRTUAL_HOST=fe.loc,,m.fe.loc
+      - VIRTUAL_HOST=fe.loc,m.fe.loc
     build:
       dockerfile: ./Dockerfile
     ports:

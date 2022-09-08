@@ -27,12 +27,11 @@ const getBasePlugins = (platform: VitePlatform): PluginOption[] => [
     },
     titleProp: false,
   }),
+
   createHtmlPlugin({
     inject: {
       data: {
-        injectScript: `<script type="module" src="/src/presentation/${
-          platform || 'web'
-        }/index.tsx"></script>`,
+        injectScript: `<script type="module" src="/src/presentation/${platform}/index.tsx"></script>`,
         title: platform.toUpperCase(),
       },
     },

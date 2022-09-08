@@ -15,8 +15,7 @@ const defaultConfig = {
 const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => {
   const fileName = platform ? `.${platform}.${mode}.env` : `.${mode}.env`;
   const path = `./setup/env/${fileName}`;
-  const isDev = mode === 'dev';
-  const result = DotEnv.config({ debug: isDev, path });
+  const result = DotEnv.config({ debug: mode === 'dev', path });
 
   if (result.error) {
     throw result.error;
@@ -27,24 +26,25 @@ const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => 
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode = 'dev' }) => {
-  const platform = (process?.env?.platform || '') as VitePlatform;
-  const envConfig = getEnvConfig(mode as ViteMode, platform);
+  const envPlatform = (process?.env?.platform || '') as VitePlatform;
 
-  switch (command) {
-    case 'build':
-      return {
-        ...defaultConfig,
-        build: getBuildConfig(platform),
-        define: getBuildDefines(envConfig, platform),
-        mode: 'production',
-        plugins: getBuildPlugins(platform),
-      };
-    default:
-      return {
-        ...defaultConfig,
-        define: getDevDefines(envConfig, platform),
-        plugins: getDevPlugins(platform),
-        server: getServerConfig(envConfig),
-      };
+  const platform = envPlatform || 'web';
+  const envConfig = getEnvConfig(mode as ViteMode, envPlatform);
+
+  if (command === 'build') {
+    return {
+      ...defaultConfig,
+      build: getBuildConfig(platform),
+      define: getBuildDefines(envConfig, platform),
+      mode: 'production',
+      plugins: getBuildPlugins(platform),
+    };
   }
+
+  return {
+    ...defaultConfig,
+    define: getDevDefines(envConfig, platform),
+    plugins: getDevPlugins(platform),
+    server: getServerConfig(envConfig),
+  };
 });
