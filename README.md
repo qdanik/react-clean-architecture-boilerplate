@@ -6,12 +6,12 @@
 </h1>
 
 <p align="center">
-  React App boilerplate with clean architecture for Enterprise <a href="https://reactjs.org/">React</a>/<a href="https://vuejs.org/">Vue</a> Projects
+  React App boilerplate with clean architecture for Enterprise <a href="https://reactjs.org/">React</a> Projects
 </p>
 
 ## Quick Overview
 
-Layered Architecture for developing web/mobile/desktop applications using JavaScript. You can use [React](https://reactjs.org/)/[Vue](https://vuejs.org/) + Typescript for developing.
+React App boilerplate with clean architecture for developing web/mobile/desktop applications using TypeScript.
 
 > Of course you can use another framework :)
 
