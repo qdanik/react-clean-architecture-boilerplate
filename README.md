@@ -2,11 +2,11 @@
   <p align="center">
     <img src="./docs/icon.svg" width="180" height="180" alt="Layered Architecture Icon">
   </p>
-  React Project Boilerplate
+  React App Boilerplate
 </h1>
 
 <p align="center">
-  Layered Architecture for Enterprise <a href="https://reactjs.org/">React</a>/<a href="https://vuejs.org/">Vue</a> Projects
+  React App boilerplate with clean architecture for Enterprise <a href="https://reactjs.org/">React</a>/<a href="https://vuejs.org/">Vue</a> Projects
 </p>
 
 ## Quick Overview
