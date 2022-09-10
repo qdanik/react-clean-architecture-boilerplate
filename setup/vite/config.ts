@@ -1,5 +1,5 @@
 import DotEnv from 'dotenv';
-import { defineConfig } from 'vite';
+import { defineConfig, UserConfig } from 'vite';
 
 import { getBuildConfig } from './build';
 import { ViteEnvConfig, ViteMode, VitePlatform } from './config.types';
@@ -8,12 +8,12 @@ import { getBuildPlugins, getDevPlugins } from './plugins';
 import { getServerConfig } from './server';
 import styles from './styles';
 
-const defaultConfig = {
+const defaultConfig: UserConfig = {
   css: styles,
 };
 
 const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => {
-  const fileName = platform ? `.${platform}.${mode}.env` : `.${mode}.env`;
+  const fileName = `${platform ? `.${platform}` : ''}.${mode}.env`;
   const path = `./setup/env/${fileName}`;
   const result = DotEnv.config({ debug: mode === 'dev', path });
 
@@ -44,6 +44,7 @@ export default defineConfig(({ command, mode = 'dev' }) => {
   return {
     ...defaultConfig,
     define: getDevDefines(envConfig, platform),
+    mode: 'development',
     plugins: getDevPlugins(platform),
     server: getServerConfig(envConfig),
   };

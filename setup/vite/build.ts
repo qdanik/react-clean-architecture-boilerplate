@@ -5,10 +5,14 @@ import { VitePlatform } from './config.types';
 
 export const getBuildConfig = (platform: VitePlatform): BuildOptions => {
   const outputDir = `dist/${platform}`;
+  const getAssetsPath = (type: string, extname: string): string =>
+    `assets/${type}/[name]-[hash]${extname}`;
 
   return {
     chunkSizeWarningLimit: 1000,
     emptyOutDir: false,
+    minify: true,
+    outDir: outputDir,
     rollupOptions: {
       output: {
         assetFileNames: assetInfo => {
@@ -22,11 +26,10 @@ export const getBuildConfig = (platform: VitePlatform): BuildOptions => {
             extType = 'images';
           }
 
-          return `assets/${extType}/[name]-[hash][extname]`;
+          return getAssetsPath(extType, '[extname]');
         },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        dir: outputDir,
-        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: getAssetsPath('js', '.js'),
+        entryFileNames: getAssetsPath('js', '.js'),
         manualChunks: (id: string | string[]): string | void => {
           if (id.includes('node_modules')) {
             return 'vendor';

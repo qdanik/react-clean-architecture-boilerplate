@@ -75,6 +75,7 @@
     "import/no-useless-path-segments": "off",
     "import/no-cycle": "off",
     "import/prefer-default-export": "off",
+    "jsx-a11y/control-has-associated-label": "off",
     "linebreak-style": "off",
     "lines-between-class-members": "error",
     "newline-before-return": "error",
@@ -87,7 +88,7 @@
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
     "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-imports": "error",
 		"unused-imports/no-unused-vars": [
 			"warn",
 			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
@@ -133,7 +134,7 @@
       {
         "groups": [
           ["^\\u0000", "^react$", "^react", "^@?\\w", "^__mocks__(/.*|$)" ],
-          [ "^(containers|core|data|domain|presentation|typings)(/.*|$)" ],
+          [ "^(containers|core|data|domain|presentation|types)(/.*|$)" ],
           [
             "^\\.\\.(?!/?$)",
             "^\\.\\./?$",

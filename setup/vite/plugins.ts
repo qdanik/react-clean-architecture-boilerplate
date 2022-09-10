@@ -27,7 +27,6 @@ const getBasePlugins = (platform: VitePlatform): PluginOption[] => [
     },
     titleProp: false,
   }),
-
   createHtmlPlugin({
     inject: {
       data: {
