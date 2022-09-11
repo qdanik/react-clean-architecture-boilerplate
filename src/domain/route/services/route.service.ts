@@ -1,3 +1,3 @@
 export interface RouteService {
-  _: unknown;
+  redirectToSignIn(): void;
 }

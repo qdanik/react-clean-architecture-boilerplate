@@ -4,7 +4,9 @@ import resourcesToBackend from 'i18next-resources-to-backend';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
 
 import { Injectable } from 'containers/config';
-import { I18n, I18nLanguages, I18nNamespaces } from 'core/i18n';
+import { I18n, I18nLanguages } from 'core/i18n';
+
+import { I18N_CONFIG } from './i18next.constants';
 
 @Injectable()
 export class I18nextAdapter implements I18n<i18next> {
@@ -34,32 +36,7 @@ export class I18nextAdapter implements I18n<i18next> {
     this._instance
       .use(resourcesToBackend(this._loadResources))
       .use(languageDetector)
-      .init({
-        appendNamespaceToMissingKey: true,
-        cleanCode: true,
-        contextSeparator: '__',
-        debug: DEV,
-        defaultNS: I18nNamespaces.translation,
-        fallbackLng: I18nLanguages.en,
-        initImmediate: true,
-
-        interpolation: {
-          escapeValue: false,
-        },
-        keySeparator: false,
-        lng: I18nLanguages.en,
-        missingKeyNoValueFallbackToKey: true,
-        ns: Object.values(I18nNamespaces),
-        nsSeparator: ':',
-
-        pluralSeparator: '_',
-        preload: [I18nLanguages.en],
-        resources: {},
-
-        saveMissing: true,
-        simplifyPluralSuffix: true,
-        supportedLngs: Object.values(I18nLanguages),
-      })
+      .init(I18N_CONFIG)
       .then(() => this._instance.reloadResources())
       .catch((error: Error) => Promise.reject(error))
       .finally(() => {

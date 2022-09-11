@@ -1,6 +1,6 @@
 import { action, computed, makeAutoObservable, observable } from 'mobx';
 
-import { Notification } from 'domain/notification';
+import { Notification } from 'domain/notification/entities';
 
 import { NotificationStore } from './notification.store';
 
