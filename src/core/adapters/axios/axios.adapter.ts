@@ -1,103 +1,115 @@
+import { useCallback, useEffect, useState } from 'react';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { Inject, Injectable, Named, PostConstruct } from 'containers/config';
-import {
-  HttpClient,
-  HttpClientAdapter,
-  HttpClientAdapterType,
-  HttpInterceptorManager,
-} from 'core/http';
-import { Logger, LoggerType } from 'core/logger';
+import { HttpClient, HttpInterceptorManager } from 'core/http';
 
-import { AxiosMemoName } from './axios-memo.adapter';
+import { useAxiosMemoAdapter } from './axios-memo.adapter';
 
-@Injectable()
-export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
-  protected _http: AxiosInstance;
+export const useAxiosAdapter = (): HttpClient<AxiosRequestConfig> => {
+  const memoAdapter = useAxiosMemoAdapter();
+  const [http, setHttp] = useState<AxiosInstance>(null);
 
-  constructor(
-    @Inject(HttpClientAdapterType)
-    @Named(AxiosMemoName)
-    protected readonly _memoAdapter: HttpClientAdapter<AxiosRequestConfig>,
-    @Inject(LoggerType) private readonly _logger: Logger,
-  ) {}
-
-  @PostConstruct()
-  initialize(): void {
-    const config = this.getConfig();
-    this._http = axios.create(config);
-    this.setResponseInterceptors(null, this._errorInterceptor);
-  }
-
-  private _errorInterceptor = (error: AxiosResponse): Promise<AxiosResponse> => {
-    const {
-      config: { method, url, data = null },
-    } = error;
-    this._logger?.error(`[AxiosAdapter.${method}]`, { data, url });
-
-    return Promise.reject(error);
-  };
-
-  getConfig = (): AxiosRequestConfig => {
-    const adapter = this._memoAdapter.execute;
+  const getConfig = useCallback((): AxiosRequestConfig => {
+    const adapter = memoAdapter.execute;
 
     return {
       adapter,
       withCredentials: true,
     };
+  }, [memoAdapter.execute]);
+
+  const defaultErrorInterceptor = (error: AxiosResponse): Promise<AxiosResponse> => {
+    // const {
+    // config: { method, url, data = null },
+    // } = error;
+    // this._logger?.error(`[AxiosAdapter.${method}]`, { data, url });
+
+    return Promise.reject(error);
   };
 
-  delete<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this._http.delete<T, R>(url, config);
-  }
+  const get = useCallback(
+    <T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> => {
+      return http.get<T, R>(url, config);
+    },
+    [http],
+  );
 
-  get<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this._http.get<T, R>(url, config);
-  }
+  const head = useCallback(
+    <T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> => {
+      return http.head<T, R>(url, config);
+    },
+    [http],
+  );
 
-  head<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this._http.head<T, R>(url, config);
-  }
+  const options = useCallback(
+    <T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> => {
+      return http.options<T, R>(url, config);
+    },
+    [http],
+  );
 
-  options<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this._http.options<T, R>(url, config);
-  }
+  const patch = useCallback(
+    <T = unknown, D = unknown, R = AxiosResponse<T>>(
+      url: string,
+      data?: D,
+      config?: AxiosRequestConfig,
+    ): Promise<R> => {
+      return http.patch<T, R>(url, data, config);
+    },
+    [http],
+  );
 
-  patch<T = unknown, D = unknown, R = AxiosResponse<T>>(
-    url: string,
-    data?: D,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this._http.patch<T, R>(url, data, config);
-  }
+  const post = useCallback(
+    <T = unknown, D = unknown, R = AxiosResponse<T>>(
+      url: string,
+      data?: D,
+      config?: AxiosRequestConfig,
+    ): Promise<R> => {
+      return http.post<T, R>(url, data, config);
+    },
+    [http],
+  );
 
-  post<T = unknown, D = unknown, R = AxiosResponse<T>>(
-    url: string,
-    data?: D,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this._http.post<T, R>(url, data, config);
-  }
+  const put = useCallback(
+    <T = unknown, D = unknown, R = AxiosResponse<T>>(
+      url: string,
+      data?: D,
+      config?: AxiosRequestConfig,
+    ): Promise<R> => {
+      return http.put<T, R>(url, data, config);
+    },
+    [http],
+  );
 
-  put<T = unknown, D = unknown, R = AxiosResponse<T>>(
-    url: string,
-    data?: D,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this._http.put<T, R>(url, data, config);
-  }
+  const setRequestInterceptors: HttpInterceptorManager<AxiosResponse> = useCallback(
+    (requestInterceptor, errorInterceptor): number => {
+      return http.interceptors.request.use(requestInterceptor, errorInterceptor);
+    },
+    [http],
+  );
 
-  setRequestInterceptors: HttpInterceptorManager<AxiosResponse> = (
-    requestInterceptor,
-    errorInterceptor,
-  ): number => {
-    return this._http.interceptors.request.use(requestInterceptor, errorInterceptor);
+  const setResponseInterceptors: HttpInterceptorManager<AxiosResponse> = useCallback(
+    (responseInterceptor, errorInterceptor) => {
+      return http.interceptors.response.use(responseInterceptor, errorInterceptor);
+    },
+    [http],
+  );
+
+  useEffect(() => {
+    setHttp(axios.create(getConfig()));
+    setResponseInterceptors(null, defaultErrorInterceptor);
+  }, [getConfig, setResponseInterceptors]);
+
+  return {
+    delete: http.delete,
+    get,
+    getConfig,
+    head,
+    options,
+    patch,
+    post,
+    put,
+    setRequestInterceptors,
+    setResponseInterceptors,
   };
-
-  setResponseInterceptors: HttpInterceptorManager<AxiosResponse> = (
-    responseInterceptor,
-    errorInterceptor,
-  ) => {
-    return this._http.interceptors.response.use(responseInterceptor, errorInterceptor);
-  };
-}
+};

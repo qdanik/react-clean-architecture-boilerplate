@@ -1,7 +1,5 @@
 import { AxiosPromise } from 'axios';
 
-import { ServiceIdentifier } from 'containers/config';
-
 import { HttpRequestConfig, HttpResponse } from './http.types';
 import {
   HttpClientDeleteMethod,
@@ -13,10 +11,6 @@ import {
   HttpClientPutMethod,
   HttpInterceptorManager,
 } from './http-method.types';
-
-export const HttpClientType: ServiceIdentifier<HttpClient> = Symbol('HttpClient');
-export const HttpClientAdapterType: ServiceIdentifier<HttpClientAdapter<HttpRequestConfig>> =
-  Symbol('HttpClientAdapter');
 
 export interface HttpClient<THttpConfig extends HttpRequestConfig = HttpRequestConfig> {
   getConfig: () => THttpConfig;
