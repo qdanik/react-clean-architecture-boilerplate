@@ -1,3 +1,5 @@
+import { AxiosHeaders, RawAxiosRequestHeaders } from 'axios';
+
 export enum HttpMethods {
   POST = 'post',
   PUT = 'put',
@@ -16,7 +18,7 @@ export enum HttpTokenTypes {
   Basic = 'Basic',
 }
 
-export type HttpHeaders = Record<string, string | number | boolean>;
+export type HttpHeaders = RawAxiosRequestHeaders | AxiosHeaders;
 
 export type HttpParams = Record<string, string>;
 

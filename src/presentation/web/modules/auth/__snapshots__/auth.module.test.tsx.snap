@@ -81,7 +81,7 @@ exports[`auth.module should match snapshot 1`] = `
 }
 
 <form>
-  <logo.svg
+  <logosvg
     style="display: block; height: 100px; margin: 10px auto; width: 100px;"
   />
   <label

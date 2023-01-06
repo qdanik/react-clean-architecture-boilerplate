@@ -1,16 +1,8 @@
 import type { Config } from '@jest/types';
 
-type JestConfig = Partial<
-  Omit<Config.ProjectConfig, 'moduleNameMapper' | 'transform'> & Config.GlobalConfig
-> & {
-  preset: string;
-  moduleNameMapper: Record<string, string>;
-  transform: Record<string, string>;
-};
-
 process.env.TZ = 'UTC';
 
-const config: JestConfig = {
+const config: Config.InitialOptions = {
   collectCoverageFrom: ['<rootDir>/src/{domain,data,core}/**/*.ts'],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
@@ -36,9 +28,6 @@ const config: JestConfig = {
     AUTH_TOKEN: '<token>',
     DEV: false,
     UI_VERSION: '0.0.123',
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json',
-    },
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
   moduleNameMapper: {
@@ -54,7 +43,7 @@ const config: JestConfig = {
   transform: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/setup/jest/plugins/fileTransformer.js',
-    '^.+\\.(tsx|ts)?$': 'ts-jest',
+    '^.+\\.(tsx|ts)?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.json' }],
   },
 };
 

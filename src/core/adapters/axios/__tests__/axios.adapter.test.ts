@@ -1,8 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 import { AxiosAdapter } from '../axios.adapter';
-import { AxiosAbortAdapter } from '../axios-abort.adapter';
-import { AxiosMemoAdapter } from '../axios-memo.adapter';
 import { mockData, mockUrl } from './axios.adapter.mock';
 
 jest.mock('axios', () => {
@@ -41,14 +39,10 @@ jest.mock('axios', () => {
 
 describe('AxiosAdapters', () => {
   let axiosAdapter: AxiosAdapter;
-  let axiosAbortAdapter: AxiosAbortAdapter;
-  let axiosMemoAdapter: AxiosMemoAdapter;
   let axiosConfig: AxiosRequestConfig;
 
   beforeEach(() => {
-    axiosAbortAdapter = new AxiosAbortAdapter();
-    axiosMemoAdapter = new AxiosMemoAdapter(axiosAbortAdapter);
-    axiosAdapter = new AxiosAdapter(axiosMemoAdapter, null);
+    axiosAdapter = new AxiosAdapter(null);
     axiosAdapter.initialize();
     axiosConfig = axiosAdapter.getConfig();
   });

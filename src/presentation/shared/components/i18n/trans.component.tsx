@@ -14,5 +14,5 @@ export const Trans: React.FC<Props> = observer(({ i18nKey }): ReactElement => {
     return null;
   }
 
-  return t(i18nKey);
+  return <>{t(i18nKey)}</>;
 });

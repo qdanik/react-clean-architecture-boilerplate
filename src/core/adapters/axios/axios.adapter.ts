@@ -1,26 +1,14 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { Inject, Injectable, Named, PostConstruct } from 'containers/config';
-import {
-  HttpClient,
-  HttpClientAdapter,
-  HttpClientAdapterType,
-  HttpInterceptorManager,
-} from 'core/http';
+import { Inject, Injectable, PostConstruct } from 'containers/config';
+import { HttpClient, HttpInterceptorManager } from 'core/http';
 import { Logger, LoggerType } from 'core/logger';
-
-import { AxiosMemoName } from './axios-memo.adapter';
 
 @Injectable()
 export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
   protected _http: AxiosInstance;
 
-  constructor(
-    @Inject(HttpClientAdapterType)
-    @Named(AxiosMemoName)
-    protected readonly _memoAdapter: HttpClientAdapter<AxiosRequestConfig>,
-    @Inject(LoggerType) private readonly _logger: Logger,
-  ) {}
+  constructor(@Inject(LoggerType) private readonly _logger: Logger) {}
 
   @PostConstruct()
   initialize(): void {
@@ -39,10 +27,8 @@ export class AxiosAdapter implements HttpClient<AxiosRequestConfig> {
   };
 
   getConfig = (): AxiosRequestConfig => {
-    const adapter = this._memoAdapter.execute;
-
     return {
-      adapter,
+      baseURL: DEV ? BACKEND_URL : '',
       withCredentials: true,
     };
   };

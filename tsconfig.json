@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "outDir": "./ts-dist",
     "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
@@ -52,7 +53,6 @@
     "coverage",
     "docker",
     "docs",
-    "./setup/jest/plugins",
     ".*"
   ]
 }

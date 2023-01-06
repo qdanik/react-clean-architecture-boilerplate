@@ -1,12 +1,10 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosHeaders } from 'axios';
 
 import { Injectable, InjectNamed, PostConstruct } from 'containers/config';
 import { AxiosAdapter } from 'core/adapters';
 import { HttpTokenTypes } from 'core/http';
 import { LocalStorageName, Storage, StorageType } from 'core/storage';
 import { AuthTokens } from 'domain/auth';
-
-type AxiosRequestHeaders = AxiosRequestConfig['headers'];
 
 @Injectable()
 export class TokenAxiosAdapter extends AxiosAdapter {
@@ -15,7 +13,7 @@ export class TokenAxiosAdapter extends AxiosAdapter {
   @PostConstruct()
   initialize(): void {
     this._http.interceptors.request.use(config => {
-      const headers = this._getHeaders(config?.headers);
+      const headers = this._getHeaders(config?.headers as AxiosHeaders);
 
       return {
         ...config,
@@ -24,16 +22,15 @@ export class TokenAxiosAdapter extends AxiosAdapter {
     });
   }
 
-  private _getHeaders(headers: AxiosRequestHeaders = {}): AxiosRequestHeaders {
+  private _getHeaders(headers?: AxiosHeaders): AxiosHeaders {
     const accessToken = this._storage.get(AuthTokens.ACCESS);
 
-    if (!accessToken) {
+    if (!accessToken || !headers) {
       throw new Error('Access token not found!');
     }
 
-    return {
-      ...headers,
-      Authorization: `${HttpTokenTypes.Bearer} ${accessToken}`,
-    };
+    headers.set('Authorization', `${HttpTokenTypes.Bearer} ${accessToken}`);
+
+    return headers;
   }
 }
