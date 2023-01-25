@@ -2,16 +2,15 @@
   <p align="center">
     <img src="./docs/icon.svg" width="180" height="180" alt="Layered Architecture Icon">
   </p>
-  React App Boilerplate
+  React Boilerplate
 </h1>
 
 <p align="center">
-  React App boilerplate with clean architecture for Enterprise <a href="https://reactjs.org/">React</a> Projects
+  This React boilerplate offers a solid foundation for building enterprise-level React projects.
 </p>
 
 ## Quick Overview
-
-React App boilerplate with clean architecture for developing web/mobile/desktop applications using TypeScript.
+This React boilerplate provides a foundation for developing web, mobile, and desktop applications using TypeScript, with a focus on clean and maintainable architecture.
 
 > Of course you can use another framework :)
 
@@ -53,7 +52,7 @@ React App boilerplate with clean architecture for developing web/mobile/desktop 
 
 ## Contributing
 
-You are welcome to contribute this project, just open a Pull Request and waiting for review ;)
+We welcome contributions to this project. If you're interested in making a change, please open a pull request for review and consideration.
 
 ## License
 
