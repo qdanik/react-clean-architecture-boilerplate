@@ -1,4 +1,4 @@
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import { PluginOption } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 import { createHtmlPlugin } from 'vite-plugin-html';
@@ -40,24 +40,7 @@ const getBasePlugins = (platform: VitePlatform): PluginOption[] => [
 
 export const getDevPlugins = (platform: VitePlatform): PluginOption[] => [
   ...getBasePlugins(platform),
-  react({
-    babel: {
-      parserOpts: {
-        plugins: ['decorators-legacy'],
-      },
-      plugins: [
-        [
-          'babel-plugin-styled-components',
-          {
-            displayName: true,
-            fileName: false,
-          },
-        ],
-      ],
-    },
-    exclude: 'node_modules/**',
-    include: '**/*.tsx',
-  }),
+  react(),
 ];
 
 export const getBuildPlugins = (platform: VitePlatform): PluginOption[] => [

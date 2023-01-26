@@ -18,7 +18,7 @@ function process(_, filename) {
   )(filename);
 
   return {
-    code: `module.exports = ${JSON.stringify(name)}123345678;`,
+    code: `module.exports = ${JSON.stringify(name)};`,
   };
 }
 
