@@ -1,4 +1,9 @@
-import i18nextInstance, { i18n as i18next, ReadCallback, ResourceKey } from 'i18next';
+import i18nextInstance, {
+  CallbackError,
+  i18n as i18next,
+  ReadCallback,
+  ResourceKey,
+} from 'i18next';
 import languageDetector from 'i18next-browser-languagedetector';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
@@ -31,29 +36,38 @@ export class I18nextAdapter implements I18n<i18next> {
     this._language = value;
   };
 
-  private initialize = (): void => {
+  private initialize = async (): Promise<void> => {
     this._setLoading(true);
-    this._instance
-      .use(resourcesToBackend(this._loadResources))
-      .use(languageDetector)
-      .init(I18N_CONFIG)
-      .then(() => this._instance.reloadResources())
-      .catch((error: Error) => Promise.reject(error))
-      .finally(() => {
-        this._setLoading(false);
-      });
+
+    try {
+      await this._instance
+        .use(resourcesToBackend(this._loadResources))
+        .use(languageDetector)
+        .init(I18N_CONFIG);
+
+      return await this._instance.reloadResources();
+    } catch (error) {
+      return await Promise.reject(error);
+    } finally {
+      this._setLoading(false);
+    }
   };
 
-  private _loadResources = (language: string, namespace: string, callback: ReadCallback): void => {
+  private _loadResources = async (
+    language: string,
+    namespace: string,
+    callback: ReadCallback,
+  ): Promise<void> => {
     const fileName = APP_PLATFORM ? `${namespace}.${APP_PLATFORM}` : namespace;
 
-    import(`../../../../assets/locales/${language}/${fileName}.json`)
-      .then((file: { default: ResourceKey }) => {
-        callback(null, file.default);
-      })
-      .catch((error: Error) => {
-        callback(error, null);
-      });
+    try {
+      const file: { default: ResourceKey } = await import(
+        `../../../../assets/locales/${language}/${fileName}.json`
+      );
+      callback(null, file.default);
+    } catch (error: unknown) {
+      callback(error as CallbackError, null);
+    }
   };
 
   isInitialized = (): boolean => {
