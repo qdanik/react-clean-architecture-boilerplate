@@ -1,18 +1,17 @@
-# TypeScript coding 
-
+# TypeScript coding
 
 ## Table of contents
 
-* [Typescript coding style guide](#typescript-coding-style-guide)
-  * [Naming](#naming)
-  * [Naming Conventions](#naming-conventions)
-  * [Naming Booleans](#naming-booleans)
-  * [Brackets](#brackets)
-  * [Spaces](#spaces)
-  * [Semicolons](#semicolons)
-  * [Code Comments](#code-comments)
-  * [Barrels](#barrels)
-* [GIT Conventions](#git-conventions)
+- [Typescript coding style guide](#typescript-coding-style-guide)
+  - [Naming](#naming)
+  - [Naming Conventions](#naming-conventions)
+  - [Naming Booleans](#naming-booleans)
+  - [Brackets](#brackets)
+  - [Spaces](#spaces)
+  - [Semicolons](#semicolons)
+  - [Code Comments](#code-comments)
+  - [Barrels](#barrels)
+- [GIT Conventions](#git-conventions)
 
 ## Typescript coding style guide
 
@@ -26,18 +25,18 @@ Distinguish names in such a way that the reader knows what the differences offer
 
 Bad:
 
- ``` typescript
- function isBetween(a1: number, a2: number, a3: number): boolean {
-   return a2 <= a1 && a1 <= a3;
- }
+```typescript
+function isBetween(a1: number, a2: number, a3: number): boolean {
+  return a2 <= a1 && a1 <= a3;
+}
 ```
 
-Good: 
+Good:
 
-``` typescript
- function isBetween(value: number, left: number, right: number): boolean {
-   return left <= value && value <= right;
- }
+```typescript
+function isBetween(value: number, left: number, right: number): boolean {
+  return left <= value && value <= right;
+}
 ```
 
 **Use pronounceable variable names**
@@ -46,7 +45,7 @@ If you can't pronounce it, you can't discuss it without sounding weird.
 
 Bad:
 
-``` typescript
+```typescript
 class Subs {
   public ccId: number;
   public billingAddrId: number;
@@ -56,7 +55,7 @@ class Subs {
 
 Good:
 
-``` typescript
+```typescript
 class Subscription {
   public creditCardId: number;
   public billingAddressId: number;
@@ -67,11 +66,11 @@ class Subscription {
 **Avoid mental mapping**
 
 Explicit is better than implicit.<br />
-*Clarity is king.*
+_Clarity is king._
 
 Bad:
 
-``` typescript
+```typescript
 const u = getUser();
 const s = getSubscription();
 const t = charge(u, s);
@@ -79,7 +78,7 @@ const t = charge(u, s);
 
 Good:
 
-``` typescript
+```typescript
 const user = getUser();
 const subscription = getSubscription();
 const transaction = charge(user, subscription);
@@ -91,12 +90,12 @@ If your class/type/object name tells you something, don't repeat that in your va
 
 Bad:
 
-``` typescript
+```typescript
 type Car = {
   carMake: string;
   carModel: string;
   carColor: string;
-}
+};
 
 function print(car: Car): void {
   console.log(`${car.carMake} ${car.carModel} (${car.carColor})`);
@@ -105,12 +104,12 @@ function print(car: Car): void {
 
 Good:
 
-``` typescript
+```typescript
 type Car = {
   make: string;
   model: string;
   color: string;
-}
+};
 
 function print(car: Car): void {
   console.log(`${car.make} ${car.model} (${car.color})`);
@@ -119,119 +118,119 @@ function print(car: Car): void {
 
 ### Naming Conventions
 
-* Use camelCase for variable and function names
+- Use camelCase for variable and function names
 
 Bad:
 
-``` typescript
+```typescript
 var FooVar;
-function BarFunc() { }
+function BarFunc() {}
 ```
 
 Good:
 
-``` typescript
+```typescript
 var fooVar;
-function barFunc() { }
+function barFunc() {}
 ```
 
-* Use camelCase of class members, interface members, methods and methods parameters
+- Use camelCase of class members, interface members, methods and methods parameters
 
 Bad:
 
-``` typescript
+```typescript
 class Foo {
   Bar: number;
-  Baz() { }
+  Baz() {}
 }
 ```
 
 Good:
 
-``` typescript
+```typescript
 class Foo {
   bar: number;
-  baz() { }
+  baz() {}
 }
 ```
 
-* Use PascalCase for class names and interface names.
+- Use PascalCase for class names and interface names.
 
 Bad:
 
-``` typescript
-class foo { }
+```typescript
+class foo {}
 ```
 
 Good:
 
-``` typescript
-class Foo { }
+```typescript
+class Foo {}
 ```
 
-* Use PascalCase for enums and camelCase for enum members
+- Use PascalCase for enums and camelCase for enum members
 
 Bad:
 
-``` typescript
+```typescript
 enum notificationTypes {
   Default = 0,
   Info = 1,
   Success = 2,
   Error = 3,
-  Warning = 4
+  Warning = 4,
 }
 ```
 
 Good:
 
-``` typescript
+```typescript
 enum NotificationTypes {
   default = 0,
   info = 1,
   success = 2,
   error = 3,
-  warning = 4
+  warning = 4,
 }
 ```
 
 ### Naming Booleans
 
-* Don't use negative names for boolean variables.
+- Don't use negative names for boolean variables.
 
 Bad:
 
-``` typescript
+```typescript
 const isNotEnabled = true;
 ```
 
 Good:
 
-``` typescript
+```typescript
 const isEnabled = false;
 ```
 
-* A prefix like is, are, or has helps every developer to distinguish a boolean from another variable by just looking at it
+- A prefix like is, are, or has helps every developer to distinguish a boolean from another variable by just looking at it
 
 Bad:
 
-``` typescript
+```typescript
 const enabled = false;
 ```
 
 Good:
 
-``` typescript
+```typescript
 const isEnabled = false;
 ```
 
 ### Brackets
 
-* **OTBS** (one true brace style). [Wikipedia](https://en.wikipedia.org/wiki/Indentation_style#Variant:_1TBS_(OTBS))
+- **OTBS** (one true brace style). [Wikipedia](<https://en.wikipedia.org/wiki/Indentation_style#Variant:_1TBS_(OTBS)>)
 
 The one true brace style is one of the most common brace styles in TypeScript, in which the opening brace of a block is placed on the same line as its corresponding statement or declaration.
 
-``` typescript
+```typescript
 if (foo) {
   bar();
 } else {
@@ -239,9 +238,8 @@ if (foo) {
 }
 ```
 
-* Do not omit curly brackets
-  
-* **Always** wrap the body of the statement in curly brackets.
+- Do not omit curly brackets
+- **Always** wrap the body of the statement in curly brackets.
 
 ### Spaces
 
@@ -253,11 +251,11 @@ Use semicolons.
 
 ### Code Comments
 
-> So when you find yourself in a position where you need to write a comment, think it through  and  see  whether  there  isn't  some  way  to  turn  the  tables  and  express  yourself  in code. Every time you express yourself in code, you should pat yourself on the back. Everytime you  write  a  comment,  you  should  grimace  and  feel  the  failure  of  your  ability of expression.
+> So when you find yourself in a position where you need to write a comment, think it through and see whether there isn't some way to turn the tables and express yourself in code. Every time you express yourself in code, you should pat yourself on the back. Everytime you write a comment, you should grimace and feel the failure of your ability of expression.
 
 **Bad Comments**
 
-Most comments fall into this category. Usually they are crutches or excuses for poor code or justifications for insufficient  decisions, amounting to little more than the programmer talking to himself.
+Most comments fall into this category. Usually they are crutches or excuses for poor code or justifications for insufficient decisions, amounting to little more than the programmer talking to himself.
 
 **Mumbling**
 
@@ -267,19 +265,19 @@ Plopping in a comment just because you feel you should or because the process re
 
 Sometimes you see comments that are nothing but noise. They restate the obvious and provide no new information.
 
-``` typescript
+```typescript
 // redirect to the Contact Details screen
 this.router.navigateByUrl(`/${ROOT}/contact`);
 ```
 
-``` typescript
+```typescript
 // self explanatory, parse ...
 this.parseProducts(products);
 ```
 
 **Scary noise**
 
-``` typescript
+```typescript
 /** The name. */
 private name;
 
@@ -293,7 +291,7 @@ private licenceName;
 private info;
 ```
 
-Read these comments again more carefully. Do you see the cut-paste error? If authors aren't  paying attention when comments are  written (or pasted), why should  readers be expected to profit from them?
+Read these comments again more carefully. Do you see the cut-paste error? If authors aren't paying attention when comments are written (or pasted), why should readers be expected to profit from them?
 
 **TODO Comments**
 
@@ -303,46 +301,44 @@ If you're going to write a TODO comment, you should link to your external issue 
 
 There are valid use cases for a TODO comment. Perhaps you're working on a big feature and you want to make a pull request that only fixes part of it. You also want to call out some refactoring that still needs to be done, but that you'll fix in another PR.
 
-``` typescript
+```typescript
 // TODO: Consolidate both of these classes. PURCHASE-123
 ```
 
-This is actionable because it forces us to go to our issue tracker and create a ticket. That is less likely to get lost than a code comment that will potentially never be seen again. 
+This is actionable because it forces us to go to our issue tracker and create a ticket. That is less likely to get lost than a code comment that will potentially never be seen again.
 
 **Comments can sometimes be useful**
 
-* When explaining why something is being implemented in a particular way.
-* When explaining complex algorithms (when all other methods for simplifying the algorithm have been tried and come up short).
+- When explaining why something is being implemented in a particular way.
+- When explaining complex algorithms (when all other methods for simplifying the algorithm have been tried and come up short).
 
 **Comment conventions**
 
-* Write comments in *English*.
-  
-* Do not add empty comments
-  
-* Begin single-line comments with a single space
-  
+- Write comments in _English_.
+- Do not add empty comments
+- Begin single-line comments with a single space
+
 Good:
 
-``` typescript
+```typescript
 // Single-line comment
 ```
 
 Bad:
 
-``` typescript
+```typescript
 //Single-line comment
 //  Single-line comment
 ```
 
-* Write single-line comments properly
-  
-  * Single-line comments should always be preceded by a single blank line.
-  * Single-line comments should never be followed by blank line(s).
+- Write single-line comments properly
+
+  - Single-line comments should always be preceded by a single blank line.
+  - Single-line comments should never be followed by blank line(s).
 
 Good:
 
-``` typescript
+```typescript
 const x;
 
 // This comment is valid
@@ -351,41 +347,42 @@ const y;
 
 Bad:
 
-``` typescript
+```typescript
 const x;
 
 // This comment is not valid
 
 const y;
 ```
-``` typescript
+
+```typescript
 const x;
 // This comment is not valid
 
 const y;
 ```
 
-* Do not write embedded comments
+- Do not write embedded comments
 
-  * Do not write comments between declaration of statement and opening curly brackets.
-  * Place comments above statements, or within statement body.
+  - Do not write comments between declaration of statement and opening curly brackets.
+  - Place comments above statements, or within statement body.
 
 Good:
 
-``` typescript
+```typescript
 // This method does something..
 public method() {
 }
 ```
 
-Bad: 
+Bad:
 
-``` typescript
+```typescript
 public method() { // This method does something..
 }
 ```
 
-``` typescript
+```typescript
 public method() {
 // This method does something..
 }
@@ -399,7 +396,7 @@ public method() {
 
 Example of a barrel file:
 
-``` typescript
+```typescript
 export * from './product-added-dialog';
 export * from './website-selector';
 export * from './product-family-selector';
@@ -412,24 +409,25 @@ How to use it inside components:
 
 Good:
 
-``` typescript
-import { ProductAddedDialog, WebsiteSelector, ProductFamilySelector } from 'presentation/components';
+```typescript
+import {
+  ProductAddedDialog,
+  WebsiteSelector,
+  ProductFamilySelector,
+} from 'presentation/components';
 ```
 
 Bad:
 
-``` typescript
+```typescript
 import { ProductAddedDialog } from 'presentation/components/product-added-dialog';
 import { WebsiteSelector } from 'presentation/components/website-selector';
 import { ProductFamilySelector } from 'presentation/components/product-family-selector';
 ```
 
-* Barrel files are named index.ts by convention
-* Do not import a barrel in the files that are already used in that barrel because this leads to circular dependency
-
+- Barrel files are named index.ts by convention
+- Do not import a barrel in the files that are already used in that barrel because this leads to circular dependency
 
 ## GIT Conventions
 
 [Click to see commits conventional](https://www.conventionalcommits.org/en/v1.0.0/)
-
-

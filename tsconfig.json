@@ -1,58 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./ts-dist",
-    "baseUrl": ".",
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "listFiles": false,
-    "allowJs": true,
-    "sourceMap": true,
-    "checkJs": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "jsx": "react",
-    "lib": [
-      "es6",
-      "es7",
-      "dom",
-      "esnext"
-    ],
-    "paths": {
-      "*": [
-        "src/*"
-      ],
-      "assets/*": [
-        "assets/*"
-      ]
-    },
-    "types": [
-      "reflect-metadata",
-      "@types/jest",
-      "vite/client"
-    ],
-    "typeRoots": [
-      "node_modules/@types",
-      "src/types"
-    ]
+    "typeRoots": ["packages/types", "node_modules/@types"]
   },
-  "include": [
-    "./setup",
-    "./assets",
-    "./src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist-web",
-    "dist-mobile",
-    "coverage",
-    "docker",
-    "docs",
-    ".*"
-  ]
+  "include": ["./packages", "./projects"],
+  "exclude": ["node_modules"]
 }

@@ -2,21 +2,21 @@
 
 All available scripts for project.
 
- `npm install` - install dependencies;
+`npm install` - install dependencies;
 
 ## Running Application
 
-* type - web | mobile. Default: web;
+- type - web | mobile. Default: web;
 
- `npm run start:[type]` - run dev server;
+`npm run start:[type]` - run dev server;
 
- `npm run preview` - run build preview server;
+`npm run preview` - run build preview server;
 
- `npm run build:[web|mobile]` - build target application.
+`npm run build:[web|mobile]` - build target application.
 
- `npm run build` - build all applications.
+`npm run build` - build all applications.
 
- `npm run start:stage` - run dev server with staged ENV config;
+`npm run start:stage` - run dev server with staged ENV config;
 
 ## Running Linters
 

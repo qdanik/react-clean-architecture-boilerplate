@@ -10,6 +10,7 @@
 </p>
 
 ## Quick Overview
+
 This React boilerplate provides a foundation for developing web, mobile, and desktop applications using TypeScript, with a focus on clean and maintainable architecture.
 
 > Of course you can use another framework :)
@@ -22,12 +23,13 @@ This React boilerplate provides a foundation for developing web, mobile, and des
 
 ## Docs
 
-  - [Technologies Used](#technologies-used)
-  - [Project Scripts](./docs/SCRIPTS.md "Project Scripts Documentation")
-  - [Architecture](./docs/ARCHITECTURE.md "Project Architecture Documentation")
-  - [Code Conventions](./docs/CODE_CONVENTIONS.md "Project Code Conventions") *In progress*
+- [Technologies Used](#technologies-used)
+- [Project Scripts](./docs/SCRIPTS.md 'Project Scripts Documentation')
+- [Architecture](./docs/ARCHITECTURE.md 'Project Architecture Documentation')
+- [Code Conventions](./docs/CODE_CONVENTIONS.md 'Project Code Conventions') _In progress_
 
 ## Technologies Used
+
 - Core
   - [TypeScript](http://www.typescriptlang.org/)
   - [InversifyJS](https://github.com/inversify/InversifyJS)
@@ -38,16 +40,22 @@ This React boilerplate provides a foundation for developing web, mobile, and des
   - [React Router](https://reactrouter.com/)
   - [React Hook Form](https://react-hook-form.com/)
   - [Styled Components](https://styled-components.com/)
+  - [i18next](https://i18next.com/)
 - Testing
   - [Jest](https://jestjs.io)
   - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - Code Quality
   - [Prettier](https://prettier.io/)
   - [ESLint](https://eslint.org/)
+  - [Husky](https://typicode.github.io/husky/#/)
+  - [Commit Lint](https://commitlint.js.org/#/)
 - Bundlers
   - [ViteJs](https://vitejs.dev/)
+- Monorepo
+  - [Lerna](https://lerna.js.org/)
 
 ## System Requirements
+
 - [Node.js 16+](https://nodejs.org/en/download/)
 
 ## Contributing

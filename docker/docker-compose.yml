@@ -1,14 +1,14 @@
 version: '0.1'
-name: "react-project-container"
+name: 'react-project-container'
 
 services:
   nginx-proxy:
     container_name: 'nginx-proxy'
     image: jwilder/nginx-proxy
     ports:
-      - "80:80"
+      - '80:80'
     volumes:
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
   nginx:
     container_name: 'nginx'
@@ -18,7 +18,7 @@ services:
     build:
       dockerfile: ./Dockerfile
     ports:
-      - "8080:80"
+      - '8080:80'
     restart: always
     volumes:
       - ./hosts/:/etc/nginx/conf.d/

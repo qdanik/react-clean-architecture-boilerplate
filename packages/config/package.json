@@ -1,0 +1,10 @@
+{
+  "name": "@package/config",
+  "version": "0.0.0",
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc"
+    ]
+  }
+}

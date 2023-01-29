@@ -1,0 +1,11 @@
+{
+  "name": "@package/types",
+  "version": "0.0.0",
+  "private": true,
+  "types": "./global.d.ts",
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc"
+    ]
+  }
+}

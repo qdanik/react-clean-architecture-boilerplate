@@ -1,0 +1,32 @@
+{
+  "name": "@projects/web",
+  "version": "0.0.1",
+  "description": "Web application",
+  "scripts": {
+    "preview": "platform=web vite --port 3030 --mode=dev",
+    "start": "platform=web vite --host --mode=dev",
+    "build": "platform=web vite --config ./vite.config.ts build --mode=prod",
+    "lint": "npm run eslint && npm run tslint",
+    "eslint": "eslint \"**/*.{ts,tsx}\" --max-warnings 0",
+    "eslint:fix": "eslint \"**/*.{ts,tsx}\" --max-warnings 0 --fix",
+    "eslint:perf": "TIMING=1 npm run eslint",
+    "tslint": "tsc --pretty --noEmit",
+    "test": "jest --config ./setup/jest/config.ts --verbose --runInBand",
+    "test:ci": "jest --config ./setup/jest/config.ts --no-cache --coverage",
+    "lint-staged": "lint-staged"
+  },
+  "babel": {
+    "extends": "../../packages/config/.babelrc"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write ./",
+      "eslint \"./**/*.{ts,tsx}\" --max-warnings 0 --fix"
+    ]
+  }
+}

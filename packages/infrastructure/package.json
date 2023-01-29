@@ -1,0 +1,17 @@
+{
+  "name": "@package/infrastructure",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "eslint": "eslint \"**/*.{ts,tsx}\" --max-warnings 0",
+    "eslint:fix": "eslint \"**/*.{ts,tsx}\" --max-warnings 0 --fix"
+  },
+  "dependencies": {
+    "axios": "^1.2.6",
+    "i18next": "^22.4.9",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.1.1",
+    "inversify": "^6.0.1",
+    "mobx": "^6.7.0"
+  }
+}

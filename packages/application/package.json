@@ -1,0 +1,14 @@
+{
+  "name": "@package/application",
+  "version": "0.0.0",
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "./.eslintrc"
+    ]
+  },
+  "scripts": {
+    "eslint": "eslint \"**/*.{ts,tsx}\" --max-warnings 0",
+    "eslint:fix": "eslint \"**/*.{ts,tsx}\" --max-warnings 0 --fix"
+  }
+}

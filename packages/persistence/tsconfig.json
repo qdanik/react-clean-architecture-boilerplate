@@ -1,0 +1,8 @@
+{
+  "extends": "@package/config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./ts-dist",
+    "baseUrl": "."
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}
