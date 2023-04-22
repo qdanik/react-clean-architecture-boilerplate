@@ -4,7 +4,7 @@ import { I18n, I18nLanguages, I18nType } from 'core/i18n';
 
 import { useInjection } from '../ioc';
 
-export function useTranslation(): {
+export function useI18nAdapter(): {
   t: TFunction;
   i18n: I18NextType;
   adapter: I18n;

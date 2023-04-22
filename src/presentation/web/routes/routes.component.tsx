@@ -1,7 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { useTranslation, withI18n } from 'presentation/shared';
+import { withI18n } from 'presentation/shared';
 
 import { AuthPage } from '../pages';
 import { Main } from './routes.styled';

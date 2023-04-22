@@ -26,13 +26,10 @@ const config: Config.InitialOptions = {
   globals: {
     APP_PLATFORM: 'web',
     AUTH_TOKEN: '<token>',
-    DEV: false,
+    IS_DEV: false,
     UI_VERSION: '0.0.123',
   },
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/node_modules/@types', '<rootDir>/src'],
-  moduleNameMapper: {
-    'assets/(.*)': '<rootDir>/assets/$1',
-  },
   preset: 'ts-jest',
   rootDir: '../../',
   roots: ['<rootDir>/src'],

@@ -1,4 +1,4 @@
-declare const DEV: boolean;
+declare const IS_DEV: boolean;
 
 declare const AUTH_TOKEN: string;
 declare const APP_PLATFORM: string;

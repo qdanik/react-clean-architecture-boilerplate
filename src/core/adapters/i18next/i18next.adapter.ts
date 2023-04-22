@@ -1,11 +1,7 @@
-import i18nextInstance, {
-  CallbackError,
-  i18n as i18next,
-  ReadCallback,
-  ResourceKey,
-} from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import i18nextInstance, { i18n as i18next } from 'i18next';
 import languageDetector from 'i18next-browser-languagedetector';
-import resourcesToBackend from 'i18next-resources-to-backend';
+import HttpBackend from 'i18next-http-backend';
 import { action, computed, makeAutoObservable, observable } from 'mobx';
 
 import { Injectable } from 'containers/config';
@@ -26,23 +22,14 @@ export class I18nextAdapter implements I18n<i18next> {
     this.initialize();
   }
 
-  @action private _setLoading = (value: boolean): void => {
-    this._loading = value;
-  };
-
-  @action private _setLanguage = async (value: I18nLanguages): Promise<void> => {
-    await this._instance.changeLanguage(value);
-    await this._instance.reloadResources();
-    this._language = value;
-  };
-
   private initialize = async (): Promise<void> => {
     this._setLoading(true);
 
     try {
       await this._instance
-        .use(resourcesToBackend(this._loadResources))
+        .use(HttpBackend)
         .use(languageDetector)
+        .use(initReactI18next)
         .init(I18N_CONFIG);
 
       return await this._instance.reloadResources();
@@ -53,29 +40,14 @@ export class I18nextAdapter implements I18n<i18next> {
     }
   };
 
-  private _loadResources = async (
-    language: string,
-    namespace: string,
-    callback: ReadCallback,
-  ): Promise<void> => {
-    const fileName = APP_PLATFORM ? `${namespace}.${APP_PLATFORM}` : namespace;
-
-    try {
-      const file: { default: ResourceKey } = await import(
-        `../../../../assets/locales/${language}/${fileName}.json`
-      );
-      callback(null, file.default);
-    } catch (error: unknown) {
-      callback(error as CallbackError, null);
-    }
+  @action private _setLoading = (value: boolean): void => {
+    this._loading = value;
   };
 
-  isInitialized = (): boolean => {
-    return this._instance.isInitialized;
-  };
-
-  getInstance = (): i18next => {
-    return this._instance;
+  @action private _setLanguage = async (value: I18nLanguages): Promise<void> => {
+    await this._instance.changeLanguage(value);
+    await this._instance.reloadResources();
+    this._language = value;
   };
 
   @computed isLoading = (): boolean => {
@@ -84,6 +56,14 @@ export class I18nextAdapter implements I18n<i18next> {
 
   @computed getLanguage = (): I18nLanguages => {
     return this._language || (this._instance.language as I18nLanguages);
+  };
+
+  isInitialized = (): boolean => {
+    return this._instance.isInitialized;
+  };
+
+  getInstance = (): i18next => {
+    return this._instance;
   };
 
   changeLanguage = async (language: I18nLanguages): Promise<boolean> => {

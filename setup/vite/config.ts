@@ -1,27 +1,15 @@
-import DotEnv from 'dotenv';
 import { defineConfig, UserConfig } from 'vite';
 
 import { getBuildConfig } from './build';
-import { ViteEnvConfig, ViteMode, VitePlatform } from './config.types';
+import { ViteMode, VitePlatform } from './config.types';
 import { getBuildDefines, getDevDefines } from './define';
-import { getBuildPlugins, getDevPlugins } from './plugins';
+import { getEnvConfig } from './env';
+import { getBuildPlugins, getDevPlugins, getPreviewPlugins } from './plugins';
 import { getServerConfig } from './server';
 import styles from './styles';
 
 const defaultConfig: UserConfig = {
   css: styles,
-};
-
-const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => {
-  const fileName = `${platform ? `.${platform}` : ''}.${mode}.env`;
-  const path = `./setup/env/${fileName}`;
-  const result = DotEnv.config({ debug: mode === 'dev', path });
-
-  if (result.error) {
-    throw result.error;
-  }
-
-  return result.parsed as ViteEnvConfig;
 };
 
 // https://vitejs.dev/config/
@@ -32,20 +20,34 @@ export default defineConfig(({ command, mode = 'dev' }) => {
   const envConfig = getEnvConfig(mode as ViteMode, envPlatform);
 
   if (command === 'build') {
+    envConfig.IS_DEV = false;
+
     return {
       ...defaultConfig,
       build: getBuildConfig(platform),
       define: getBuildDefines(envConfig, platform),
       mode: 'production',
-      plugins: getBuildPlugins(platform),
+      plugins: getBuildPlugins(envConfig, platform),
     };
   }
+
+  if (mode === 'preview') {
+    envConfig.IS_DEV = true;
+
+    return {
+      base: './',
+      build: getBuildConfig(platform),
+      plugins: getPreviewPlugins(envConfig, platform),
+      preview: getServerConfig(envConfig),
+    };
+  }
+  envConfig.IS_DEV = true;
 
   return {
     ...defaultConfig,
     define: getDevDefines(envConfig, platform),
     mode: 'development',
-    plugins: getDevPlugins(platform),
+    plugins: getDevPlugins(envConfig, platform),
     server: getServerConfig(envConfig),
   };
 });

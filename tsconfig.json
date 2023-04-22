@@ -26,30 +26,24 @@
     "paths": {
       "*": [
         "src/*"
-      ],
-      "assets/*": [
-        "assets/*"
       ]
     },
     "types": [
       "reflect-metadata",
-      "@types/jest",
+      "jest",
       "vite/client"
     ],
     "typeRoots": [
-      "node_modules/@types",
-      "src/types"
+      "node_modules/@types"
     ]
   },
   "include": [
     "./setup",
-    "./assets",
     "./src"
   ],
   "exclude": [
     "node_modules",
-    "dist-web",
-    "dist-mobile",
+    "dist",
     "coverage",
     "docker",
     "docs",

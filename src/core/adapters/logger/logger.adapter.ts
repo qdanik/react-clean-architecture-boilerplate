@@ -5,7 +5,7 @@ import { Logger } from 'core/logger';
 @Injectable()
 export class WebLoggerAdapter implements Logger {
   error<Args>(...args: Args[]): void {
-    if (!DEV) {
+    if (!IS_DEV) {
       return;
     }
 
@@ -13,7 +13,7 @@ export class WebLoggerAdapter implements Logger {
   }
 
   warn<Args>(...args: Args[]): void {
-    if (!DEV) {
+    if (!IS_DEV) {
       return;
     }
 
@@ -21,7 +21,7 @@ export class WebLoggerAdapter implements Logger {
   }
 
   info<Args>(module: string, ...args: Args[]): void {
-    if (!DEV) {
+    if (!IS_DEV) {
       return;
     }
 
@@ -31,7 +31,7 @@ export class WebLoggerAdapter implements Logger {
   }
 
   debug<Args>(...args: Args[]): void {
-    if (!DEV) {
+    if (!IS_DEV) {
       return;
     }
 
@@ -39,7 +39,7 @@ export class WebLoggerAdapter implements Logger {
   }
 
   trace<Args>(...args: Args[]): void {
-    if (!DEV) {
+    if (!IS_DEV) {
       return;
     }
 
