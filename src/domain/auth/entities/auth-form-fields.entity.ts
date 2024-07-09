@@ -1,3 +1,6 @@
 export class AuthFormFields {
-  constructor(public login: string, public password: string) {}
+  constructor(
+    public login: string,
+    public password: string,
+  ) {}
 }

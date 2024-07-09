@@ -1,4 +1,3 @@
-/* eslint-disable import/no-self-import */
 import 'axios';
 
 declare module 'axios' {

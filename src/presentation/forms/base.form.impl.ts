@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { Inject, Injectable } from 'containers/config';
 import { Form, FormType } from 'core/form';
 
