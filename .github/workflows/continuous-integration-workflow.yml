@@ -6,21 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['16.x']
+        node-version: ['20.x']
     steps:
       - uses: actions/checkout@v1
       - name: Setting up Node.js (v${{ matrix.node-version }}.x)
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install --frozen-lockfile
+      - run: npm install --legacy-peer-deps
       - run: npm run lint
   tests:
     name: Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['16.x']
+        node-version: ['20.x']
       fail-fast: false
     steps:
       - uses: actions/checkout@v1
@@ -28,19 +28,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install --frozen-lockfile
+      - run: npm install --legacy-peer-deps
       - run: npm run test:ci
   build:
     name: Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['16.x']
+        node-version: ['20.x']
     steps:
       - uses: actions/checkout@v1
       - name: Setting up Node.js (v${{ matrix.node-version }}.x)
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install --frozen-lockfile
+      - run: npm install --legacy-peer-deps
       - run: npm run build

@@ -29,9 +29,7 @@
       ]
     },
     "types": [
-      "reflect-metadata",
-      "jest",
-      "vite/client"
+      "jest"
     ],
     "typeRoots": [
       "node_modules/@types"
@@ -39,7 +37,8 @@
   },
   "include": [
     "./setup",
-    "./src"
+    "./src",
+    "eslint.config.js"
   ],
   "exclude": [
     "node_modules",

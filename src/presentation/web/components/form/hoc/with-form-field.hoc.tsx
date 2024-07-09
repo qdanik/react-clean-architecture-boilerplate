@@ -21,9 +21,8 @@ type FormFieldProps<TValue = string> = {
 export type FormComponentProps<Props extends FieldProps, TValue = string> = Partial<Props> &
   FormFieldProps<TValue>;
 
-type GetComponentProps<TProps> = TProps extends FormComponentProps<infer Props>
-  ? Partial<Props>
-  : TProps;
+type GetComponentProps<TProps> =
+  TProps extends FormComponentProps<infer Props> ? Partial<Props> : TProps;
 
 export function withFormField<WrappedProps extends FormComponentProps<FieldProps>, TValue>(
   WrappedComponent: FunctionComponent<WrappedProps>,

@@ -5,7 +5,10 @@ export class Notification {
 
   private _type: NotificationType = NotificationType.Info;
 
-  constructor(private readonly _message?: string, private readonly _title?: string) {
+  constructor(
+    private readonly _message?: string,
+    private readonly _title?: string,
+  ) {
     this._id = String(+new Date());
   }
 

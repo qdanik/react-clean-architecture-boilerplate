@@ -1,9 +1,12 @@
-import format from 'date-fns/format';
+import { format } from 'date-fns/format';
 
 import { DateFormats } from '../date.types';
 
 export class DateEntity {
-  constructor(private readonly _date: Date, private readonly _format: DateFormats) {}
+  constructor(
+    private readonly _date: Date,
+    private readonly _format: DateFormats,
+  ) {}
 
   formatBy(dateFormat: DateFormats): string {
     return format(this._date, dateFormat);

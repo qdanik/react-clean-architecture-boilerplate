@@ -1,3 +1,5 @@
+import { isEqual } from 'lodash';
+
 import { HttpRequestConfig } from 'core/http';
 
 import { ErrorCodes, StatusCodes } from '../error.types';
@@ -32,6 +34,6 @@ export class Error {
   }
 
   isUnauthorized(): boolean {
-    return this.statusCode === StatusCodes.UNAUTHORIZED;
+    return isEqual(this.statusCode, StatusCodes.UNAUTHORIZED);
   }
 }
