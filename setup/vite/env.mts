@@ -1,6 +1,6 @@
 import DotEnv from 'dotenv';
 
-import { ViteEnvConfig, ViteMode, VitePlatform } from './config.types';
+import { ViteEnvConfig, ViteMode, VitePlatform } from './config.types.mjs';
 
 export const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvConfig => {
   const envFile = mode === 'preview' ? 'dev' : mode;
@@ -21,7 +21,6 @@ export const getEnvConfig = (mode: ViteMode, platform: VitePlatform): ViteEnvCon
     IS_DEV: false,
   };
 
-  // eslint-disable-next-line no-console
   console.log('[ENV_CONFIG]', config);
 
   return config;

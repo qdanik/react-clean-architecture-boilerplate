@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { use } from 'react';
 
 import { Container } from 'containers/config';
 
 import { Context } from '../ioc.constants';
 
 export function useContainer(): Container {
-  const { container } = useContext(Context);
+  const { container } = use(Context);
 
   if (!container) {
     throw new Error('The container should not be null');

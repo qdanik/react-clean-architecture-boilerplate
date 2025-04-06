@@ -71,7 +71,7 @@ export class I18nextAdapter implements I18n<i18next> {
       await this._setLanguage(language);
 
       return true;
-    } catch (error) {
+    } catch {
       await this._setLanguage(I18nLanguages.en);
 
       return false;

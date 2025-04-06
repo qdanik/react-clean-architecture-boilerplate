@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Injectable } from 'containers/config';
 import { Logger } from 'core/logger';
 

@@ -1,12 +1,12 @@
 import { defineConfig, UserConfig } from 'vite';
 
-import { getBuildConfig } from './build';
-import { ViteMode, VitePlatform } from './config.types';
-import { getBuildDefines, getDevDefines } from './define';
-import { getEnvConfig } from './env';
-import { getBuildPlugins, getDevPlugins, getPreviewPlugins } from './plugins';
-import { getServerConfig } from './server';
-import styles from './styles';
+import { getBuildConfig } from './build.mjs';
+import { ViteMode, VitePlatform } from './config.types.mjs';
+import { getBuildDefines, getDevDefines } from './define.mjs';
+import { getEnvConfig } from './env.mjs';
+import { getBuildPlugins, getDevPlugins, getPreviewPlugins } from './plugins.mjs';
+import { getServerConfig } from './server.mjs';
+import styles from './styles.mjs';
 
 const defaultConfig: UserConfig = {
   css: styles,

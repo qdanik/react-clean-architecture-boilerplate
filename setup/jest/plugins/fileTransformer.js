@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+ 
 const { basename } = require('path');
 const { camelCase, capitalize } = require('lodash');
 const { compose } = require('lodash/fp');

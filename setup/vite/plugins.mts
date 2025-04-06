@@ -5,8 +5,8 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import mkcert from 'vite-plugin-mkcert';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import reactSvgPlugin from './plugins/react-svg';
-import { ViteEnvConfig, VitePlatform } from './config.types';
+import reactSvgPlugin from './plugins/react-svg/index.mjs';
+import { ViteEnvConfig, VitePlatform } from './config.types.mjs';
 
 const getBasePlugins = (env: ViteEnvConfig, platform: VitePlatform): PluginOption[] => [
   tsconfigPaths(),

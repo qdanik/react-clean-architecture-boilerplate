@@ -1,6 +1,6 @@
 import { ServerOptions } from 'vite';
 
-import { ViteEnvConfig } from './config.types';
+import { ViteEnvConfig } from './config.types.mjs';
 
 export const getServerConfig = (env: ViteEnvConfig): ServerOptions => ({
   host: env.DEV_SERVER_HOST,

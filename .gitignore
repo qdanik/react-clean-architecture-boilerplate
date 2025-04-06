@@ -12,6 +12,8 @@ setup/husky/.gitignore
 
 dist
 dist*
+ts-dist
+ts-dist*
 coverage
 node_modules
 docker/logs/*.log

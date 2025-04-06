@@ -1,7 +1,7 @@
 import folderDelete from 'rollup-plugin-delete';
 import { BuildOptions } from 'vite';
 
-import { VitePlatform } from './config.types';
+import { VitePlatform } from './config.types.mjs';
 
 const getAssetsPath = (type: string, extname: string): string =>
   `assets/${type}/[name]-[hash]${extname}`;

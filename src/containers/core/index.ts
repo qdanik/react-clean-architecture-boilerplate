@@ -16,13 +16,13 @@ import { LoggerType } from 'core/logger';
 import { MobxStoreImpl, MobxStoreType } from 'core/mobx-store';
 import { CookieStorageName, LocalStorageName, SessionStorageName, StorageType } from 'core/storage';
 
-export const coreModules = new ContainerModule(bind => {
-  bind(LoggerType).to(WebLoggerAdapter);
-  bind(MobxStoreType).to(MobxStoreImpl).inSingletonScope();
-  bind(StorageType).to(BrowserCookieAdapter).whenTargetNamed(CookieStorageName);
-  bind(StorageType).to(LocalStorageAdapter).whenTargetNamed(LocalStorageName);
-  bind(StorageType).to(SessionStorageAdapter).whenTargetNamed(SessionStorageName);
-  bind(HttpClientType).to(AxiosAdapter);
-  bind(FormType).to(ReactHookFormAdapter);
-  bind(I18nType).to(I18nextAdapter).inSingletonScope();
+export const coreModules = new ContainerModule(container => {
+  container.bind(LoggerType).to(WebLoggerAdapter);
+  container.bind(MobxStoreType).to(MobxStoreImpl).inSingletonScope();
+  container.bind(StorageType).to(BrowserCookieAdapter).whenNamed(CookieStorageName);
+  container.bind(StorageType).to(LocalStorageAdapter).whenNamed(LocalStorageName);
+  container.bind(StorageType).to(SessionStorageAdapter).whenNamed(SessionStorageName);
+  container.bind(HttpClientType).to(AxiosAdapter);
+  container.bind(FormType).to(ReactHookFormAdapter);
+  container.bind(I18nType).to(I18nextAdapter).inSingletonScope();
 });

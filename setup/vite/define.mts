@@ -1,4 +1,4 @@
-import { ViteEnvConfig, VitePlatform } from './config.types';
+import { ViteEnvConfig, VitePlatform } from './config.types.mjs';
 
 const getDefaultDefines = (env: ViteEnvConfig, platform: VitePlatform) => ({
   APP_PLATFORM: JSON.stringify(platform),

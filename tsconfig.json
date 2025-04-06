@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noEmit": true,
     "outDir": "./ts-dist",
     "baseUrl": ".",
     "target": "ESNext",
@@ -38,7 +39,7 @@
   "include": [
     "./setup",
     "./src",
-    "eslint.config.js"
+    "eslint.config.mjs"
   ],
   "exclude": [
     "node_modules",
