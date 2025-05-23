@@ -13,6 +13,7 @@ import globals from 'globals';
 export default [
   {
     ignores: [
+      'dist/*',
       'node_modules/*',
       '**/package.json',
       '**/package-lock.json',
@@ -124,6 +125,9 @@ export default [
       '@typescript-eslint/no-namespace': 'off',
     },
     settings: {
+      'path': {
+        config: './tsconfig.prod.json',
+      },
       'import/resolver': {
         node: {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
